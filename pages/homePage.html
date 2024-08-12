@@ -3,9 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/css/homePage.css">
     <title>HOME</title>
 </head>
 <body>
     
+    <section id="navBar" class="w-100">
+        <nav class="d-flex w-100 justify-content-around align-items-center">
+            <h1>SE10</h1>
+            <div class="d-flex align-items-center d-none d-lg-block">
+                <img src="/assets/img/searchIcon.png" alt="Search Icon" class="searchIcon position-relative">
+                <input type="text" class="fs-6" placeholder="Search for friends">
+            </div>
+            <div class="profile d-none d-lg-block">
+                <img src="/assets/img/defaultProfileImage.png" alt="Default Profile Image">
+            </div>
+            <div class="notification d-lg-none">
+                <img src="/assets/img/notificationIcon.png" alt="Notification Icon">
+            </div>
+        </nav>
+    </section>
+
+    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/assets/jquery/jquery-3.7.1.min.js"></script>
+    <script src="/controller/HomePageController.js"></script>
 </body>
 </html>
