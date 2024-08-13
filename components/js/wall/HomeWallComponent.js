@@ -1,29 +1,44 @@
 $(document).ready(function() {
-    // LoadCards();
+    LoadCards();
 });
 
 function LoadCards(){
-    $("#homeWallComponent").empty();
+    $("#homeWallComponent .postCards").empty();
     for (let i = 0; i < 10; i++) {
         $("#homeWallComponent").append(
-            card()
+            PostCard()
         )
     }
 }
 
-const card = () =>{
+const PostCard = () =>{
     return `
-    <div class="card border-0 rounded-4 mb-3">
-            <div class="card-header rounded-top-5">
-                Post Something
-            </div>
-            <div class="card-body rounded-bottom-5 d-flex align-items-center gap-4">
-                <img src="../../../assets/image/profilePic.png">
-                <div class="input-group flex-nowrap d-flex align-items-center">
-                    <input type="text" class="form-control border-0" placeholder="What’s on your mind ?" aria-label="What’s on your mind ?" aria-describedby="addon-wrapping">
-                    <span class="input-group-text bg-transparent border-0" id="addon-wrapping">
-                        <img src="../../../assets/icons/sendIcon.png" alt="">
-                    </span>
+    <div id="postCard" class="p-5 mb-3">
+            <div>
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex gap-3 align-items-center">
+                        <img class="profileImage" src="../../../assets/image/profilePic.png" alt="Profile Image">
+                        <div class="d-flex flex-column">
+                            <h5 class="m-0">Samuel Edison</h5>
+                            <h6>A few moment ago</h6>
+                        </div>
+                    </div>
+                    <button class="bg-transparent border-0">
+                        <img src="../../../assets/icons/moreIcon.png" alt="More Icon">
+                    </button>
+                </div>
+                <div class="px-3 mx-5 mt-2">
+                    <p>🚀 Just finished my new web app for task management! Built with React and Node.js Check it out and share your thoughts! 💡</p>
+                    <div class="d-flex justify-content-between">
+                        <div class="d-flex gap-3 align-items-center">
+                            <img src="../../../assets/icons/likeIcon.png" alt="Inspire Icon">
+                            <span>56 Inspirations</span>
+                        </div>
+                        <button class="border-0 p-2 px-3 rounded-4 d-flex align-items-center gap-2">
+                            <img src="../../../assets/icons/ideaIcon.png" alt="Inspire Icon">
+                            <span>Inspire</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
