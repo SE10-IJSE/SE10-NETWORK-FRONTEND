@@ -195,20 +195,17 @@ body{
 
 #homePage > .homeWallComponent{
     width: 58vw;
+    background: #0a53be;
     height: 83vh;
-    /*margin: 0 16px;*/
+    margin: 0 16px;
 }
 
 #homePage .homeWallComponent > iframe{
     width: 100%;
-    height: 100%;
+    height: auto;
     max-height: 100%;
     overflow-x: hidden;
     overflow-y: scroll;
-}
-
-#homePage .homeWallComponent > iframe::-webkit-scrollbar{
-    width: 0 !important;
 }
 
 
@@ -299,7 +296,7 @@ body{
     }
 
     #homePage{
-        padding: 0 20px;
+        padding: 34px 20px 0 20px;
     }
 
     #navBar nav{
