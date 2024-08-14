@@ -1,11 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DELETE-CONFIRMATION-POPUP</title>
-</head>
-<body>
-    
-</body>
+    <link rel="stylesheet" href="/assets/css/deleteConfirmationPopup.css" />
+  </head>
+  <body>
+    <button id="deleteBtn">Delete</button>
+
+    <div id="popupModal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <p class="modal-header">Are you sure you want to delete the post?</p>
+        <p class="modal-subheader">This action can’t be reversed</p>
+        <div class="modal-actions">
+          <button id="cancelDelete" class="btn-cancel">Cancel</button>
+          <button id="confirmDelete" class="btn-delete">Delete post</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="/controller/DeleteConfirmationPopupController.js"></script>
+  </body>
 </html>
