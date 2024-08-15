@@ -24,4 +24,17 @@
     color: #505050;
 }
 
+.recent-list {
+    height: auto;
+    max-height: 80vh;
+    overflow: scroll;
+}
+
+.recent-list::-webkit-scrollbar {
+    width: 0 !important;
+}
+
+body{
+    overflow-y: hidden;
+}
 
