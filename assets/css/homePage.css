@@ -167,8 +167,8 @@ body{
 #homePage .approveButton button{
     margin-top: 40px;
     border-radius: 15px;
-    border: 1px solid #E7E7E7;
-    background: #FFF;
+    border: none;
+    background: transparent;
     display: flex;
     padding: 12px 27px;
     gap: 16px;
@@ -189,23 +189,29 @@ body{
 #homePage .myPostButton button,
 #homePage .approveButton button{
     margin-top: 5px;
-    background: none;
-    border: none;
+}
+
+#homePage .active button{
+    border: 1px solid #E7E7E7;
+    background: #FFF;
 }
 
 #homePage > .homeWallComponent{
     width: 58vw;
-    background: #0a53be;
     height: 83vh;
-    margin: 0 16px;
+    /*margin: 0 16px;*/
 }
 
 #homePage .homeWallComponent > iframe{
     width: 100%;
-    height: auto;
+    height: 100%;
     max-height: 100%;
     overflow-x: hidden;
     overflow-y: scroll;
+}
+
+#homePage .homeWallComponent > iframe::-webkit-scrollbar{
+    width: 0 !important;
 }
 
 
@@ -296,7 +302,7 @@ body{
     }
 
     #homePage{
-        padding: 34px 20px 0 20px;
+        padding: 0 20px;
     }
 
     #navBar nav{
