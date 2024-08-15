@@ -1,11 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PROFILE</title>
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="/components/css/wall/ProfileWallComponent.css" />
+
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
 </head>
-<body>
-    
+
+<body class="p-3">
+    <div class="profile-wall " >
+    <section class="container-fluid p-0">
+        <div class="profile-banner position-relative d-flex align-items-center">
+            <img src="/assets/image/serene-sloth-hangs-leisurely-amongst-green-leaves-eyes-closed-contentment 3.png" class="img-fluid w-100" alt="Cover Photo" />
+            <button type="button" class="btn btn-light btn-edit-cover bg-light align-items-center fw-bold">
+                <i class="bx bxs-camera " style="margin-right: 5px; "></i> Edit Cover Photo
+            </button>
+            <button type="button" class="btn btn-light btn-edit-cover btn-edit-mobile" id="btn-Edit">
+                <i class="bx bxs-camera"></i>
+            </button>
+        </div>
+
+        <div class="container d-flex flex-column flex-md-row align-items-center details-container" id="check">
+            <div class="position-relative">
+                <img src="/assets/image/profilePic.png" class="rounded-circle profile-pic" alt="Profile Picture" />
+                <button type="button" class="btn btn-light btn-edit-cover bg-light align-items-center gap-2 position-absolute w-1 h-25" id="circle-camera">
+                    <i class="bx bxs-camera"></i>
+                </button>
+            </div>
+            <div class="profile-info ms-md-4 mt-3 mt-md-0 text-center text-md-start">
+                <h1>Abrahum Joe</h1>
+                <h3 class="text-muted">@st-456782</h3>
+                <h4>Passionate Software Engineering Student</h4>
+            </div>
+            <div class="ms-md-auto mt-3 mt-md-0">
+                <button type="button" class="btn btn-light fw-bold" id="edit-info-btn">
+                    <i class="bx bxs-edit fw-bolder "></i> Edit Info
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <hr class="underline-bar w-auto mx-3" />
+
+    <section class="information-container">
+        <div class="container mt-4">
+            <h3>General Information</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="info-box p-3">
+                        <h5>Email</h5>
+                        <input type="email" class="form-control bg-transparent border-0" placeholder="Enter your email"
+                            value="AbrahumJoe123@gmail.com" />
+                    </div>
+                    <br />
+                </div>
+                <div class="col-md-6">
+                    <div class="info-box p-3">
+                        <h5>Date of Birth</h5>
+                        <input type="date" class="form-control bg-transparent border-0" value="2024-07-27" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mt-4">
+            <h3>Security</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="info-box p-3">
+                        <h5>Current Password</h5>
+                        <div class="input-group">
+                            <input type="password" class="form-control border-0" id="currentPassword" placeholder="**********" />
+                            <span class="input-group-text bg-transparent border-0" onclick="togglePassword('currentPassword', this)">
+                                <i class="bx bx-low-vision text-danger fs-5"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <br />
+                </div>
+                <div class="col-md-6">
+                    <div class="info-box p-3">
+                        <h5>New Password</h5>
+                        <div class="input-group">
+                            <input type="password" class="form-control border-0" id="newPassword" placeholder="**********" />
+                            <span class="input-group-text bg-transparent border-0" onclick="togglePassword('newPassword', this)">
+                                <i class="bx bx-low-vision text-danger fs-5"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <br />
+                </div>
+                <div class="col-md-6">
+                    <div class="info-box p-3">
+                        <h5>Confirm Password</h5>
+                        <div class="input-group">
+                            <input type="password" class="form-control border-0" id="confirmPassword" placeholder="**********" />
+                            <span class="input-group-text bg-transparent border-0" onclick="togglePassword('confirmPassword', this)">
+                                <i class="bx bx-low-vision text-danger fs-5"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                 <div class="col-md-6 d-flex align-items-end">
+                 <div class="container mt-4 d-flex justify-content-end align-items-end">
+                    <button type="button" class="btn btn-custom-danger me-2 ">Logout</button>
+                    <button type="button" class="btn btn-custom-warning">
+                        Edit Details
+                    </button>
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!--     <div class="container mt-4 d-flex justify-content-end">-->
+<!--        <button type="button" class="btn btn-custom-danger me-2">Logout</button>-->
+<!--        <button type="button" class="btn btn-custom-warning">-->
+<!--            Edit Details-->
+<!--        </button>-->
+<!--    </div>-->
+</div>
+
+
+
+    <script src="/assets/bootstrap/js/bootstrap.js"></script>
+    <script src="/components/js/wall/ProfileWallComponent.js"></script>
 </body>
+
 </html>
