@@ -51,3 +51,11 @@ $('#homePage .approveButton').click(function (){
     })
     changeButtonCss('approve');
 });
+
+$('.searchPopUp').click(function (){
+    $('.searchPopUp').css('display', 'none');
+});
+
+$('#navBar input').click(function (){
+    $('.searchPopUp').css('display', 'flex');
+});
