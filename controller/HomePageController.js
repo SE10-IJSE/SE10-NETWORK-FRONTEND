@@ -16,8 +16,6 @@ function changeButtonCss(button) {
     }
 }
 
-
-
 $('#homePage .profile .myProfileBtn').click(function() {
     $('#homePage .homeWallComponent iframe').attr('src', '../components/pages/wall/profileWallComponent.html')
         .css({
@@ -42,6 +40,14 @@ $('#homePage .homeButton').click(function (){
         'box-shadow': 'none',
     })
     changeButtonCss('home');
+})
+
+$('#homePage .myPostButton').click(function (){
+    $('#homePage .homeWallComponent iframe').attr('src', '../components/pages/wall/myPostWallComponent.html').css({
+        'border-radius': '0',
+        'box-shadow': 'none',
+    })
+    changeButtonCss('post');
 })
 
 $('#homePage .approveButton').click(function (){
