@@ -65,3 +65,18 @@ $('.searchPopUp').click(function (){
 $('#navBar input').click(function (){
     $('.searchPopUp').css('display', 'flex');
 });
+
+// bottom nav bar mobile start
+  const clickableElements = document.querySelectorAll(".clickable-element");
+
+  clickableElements.forEach(function (element) {
+    element.addEventListener("click", function () {
+      // Remove red border from all elements
+      clickableElements.forEach(function (el) {
+        el.classList.remove("red-border-bottom");
+      });
+      // Add red border only to the clicked element
+      this.classList.add("red-border-bottom");
+    });
+  });
+// bottom nav bar mobile end
