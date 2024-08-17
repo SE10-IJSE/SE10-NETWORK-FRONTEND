@@ -1,348 +1,359 @@
-body{
-    background: #FFFAFA;
+body {
+  background: #fffafa;
 }
 
-#navBar{
-    background: #FFF;
-    box-shadow: 0 -8px 80px 0 rgba(0, 0, 0, 0.10);
-    padding: 25px 100px;
+#navBar {
+  background: #fff;
+  box-shadow: 0 -8px 80px 0 rgba(0, 0, 0, 0.1);
+  padding: 25px 100px;
 }
 
-#navBar h1{
-    color: #E90708;
-    font-family: "Poppins", sans-serif;
-    font-size: 32px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    margin: 0;
+#navBar h1 {
+  color: #e90708;
+  font-family: "Poppins", sans-serif;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin: 0;
 }
 
-#navBar input{
-    width: 25vw;
-    border-radius: 41px;
-    border: 1px solid rgba(233, 7, 8, 0.33);
-    background: #FFFAFA;
-    padding: 12px 12px 12px 62px;
-    font-family: "Poppins", sans-serif;
-    color: rgba(233, 7, 8, 0.50);
-    font-weight: 500;
+#navBar input {
+  width: 25vw;
+  border-radius: 41px;
+  border: 1px solid rgba(233, 7, 8, 0.33);
+  background: #fffafa;
+  padding: 12px 12px 12px 62px;
+  font-family: "Poppins", sans-serif;
+  color: rgba(233, 7, 8, 0.5);
+  font-weight: 500;
 }
 
-#navBar input::placeholder{
-    color: rgba(233, 7, 8, 0.50);
+#navBar input::placeholder {
+  color: rgba(233, 7, 8, 0.5);
 }
 
-#navBar input:focus{
-    outline: none;
-    border: 1px solid #E90708;
-    color: rgb(233, 7, 8);
+#navBar input:focus {
+  outline: none;
+  border: 1px solid #e90708;
+  color: rgb(233, 7, 8);
 }
 
-#navBar .searchIcon{
-    left: 45px;
+#navBar .searchIcon {
+  left: 45px;
 }
 
-#navBar .profile{
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
+#navBar .profile {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
 }
 
-#navBar .profile img{
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    border: 2px #FFF;;
-    background-size: cover;
+#navBar .profile img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px #fff;
+  background-size: cover;
 }
 
 #navBar .notification {
-    width: 20px;
-    height: 20px;
-    display: flex;
+  width: 20px;
+  height: 20px;
+  display: flex;
 }
 
-#navBar .notification img{
-    width: 100%;
-    height: 100%;
+#navBar .notification img {
+  width: 100%;
+  height: 100%;
 }
 
-#homePage{
-    padding: 34px 100px 0 100px;
+#homePage {
+  padding: 34px 100px 0 100px;
 }
 
-#homePage > :first-child{
-    width: 15vw;
+#homePage > :first-child {
+  width: 15vw;
 }
 
-#homePage .profile{
-    border-radius: 15px;
-    background: #FFF;
-    box-shadow: 0 4px 18.3px 0 rgba(0, 0, 0, 0.05);
+#homePage .profile {
+  border-radius: 15px;
+  background: #fff;
+  box-shadow: 0 4px 18.3px 0 rgba(0, 0, 0, 0.05);
 }
 
-#homePage .profile .banner{
-    width: 100%;
-    height: 100%;
-    border-radius: 15px 15px 0 0;
+#homePage .profile .banner {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px 15px 0 0;
 }
 
-#homePage .profile img{
-    width: 100%;
-    height: 100%;
+#homePage .profile img {
+  width: 100%;
+  height: 100%;
 }
 
-#homePage .profile .profileImage{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    position: relative;
-    bottom: 30px;
+#homePage .profile .profileImage {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  bottom: 30px;
 }
 
-#homePage .profile img{
-    width: 100%;
-    height: 100%;
+#homePage .profile img {
+  width: 100%;
+  height: 100%;
 }
 
-
-#homePage .profile .profileImage img{
-    width: 63px;
-    height: 100%;
-    border-radius: 50%;
-    border: 2px solid #FFF;
-    object-fit: cover;
+#homePage .profile .profileImage img {
+  width: 63px;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  object-fit: cover;
 }
 
-#homePage .profile *{
-    text-align: center;
-    line-height: 10px;
+#homePage .profile * {
+  text-align: center;
+  line-height: 10px;
 }
 
-#homePage .profile h4{
-    color: #000;
-    font-family: "Poppins", sans-serif;
-    font-size: 18px;
-    font-weight: 700;
+#homePage .profile h4 {
+  color: #000;
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
 }
 
-#homePage .profile h5{
-    color: #9E9E9E;
-    font-family: "Poppins", sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    margin-bottom: 14px;
+#homePage .profile h5 {
+  color: #9e9e9e;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 14px;
 }
 
-#homePage .profile h6{
-    color: #000;
-    font-family: "Poppins", sans-serif;
-    font-size: 13px;
-    padding: 0 15px;
-    font-weight: 500;
-    line-height: 18px;
+#homePage .profile h6 {
+  color: #000;
+  font-family: "Poppins", sans-serif;
+  font-size: 13px;
+  padding: 0 15px;
+  font-weight: 500;
+  line-height: 18px;
 }
 
-#homePage .profile .profileDetails{
-    position: relative;
-    bottom: 10px;
+#homePage .profile .profileDetails {
+  position: relative;
+  bottom: 10px;
 }
 
-#homePage .profile button{
-    padding: 18px 0;
-    border-radius: 0 0 15px 15px;
-    border: 0;
-    border-top: 2px solid #EBEBEB;
-    background: #FFF;
-    color: #E90708;
-    text-align: center;
-    font-family: "Poppins", sans-serif;
-    font-size: 14px;
-    font-weight: 500;
+#homePage .profile button {
+  padding: 18px 0;
+  border-radius: 0 0 15px 15px;
+  border: 0;
+  border-top: 2px solid #ebebeb;
+  background: #fff;
+  color: #e90708;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 #homePage .homeButton button,
 #homePage .myPostButton button,
-#homePage .approveButton button{
-    margin-top: 40px;
-    border-radius: 15px;
-    border: none;
-    background: transparent;
-    display: flex;
-    padding: 12px 27px;
-    gap: 16px;
-    align-items: center;
-    color: #000;
-    font-family: "Poppins", sans-serif;
-    font-size: 16px;
-    font-weight: 600;
+#homePage .approveButton button {
+  margin-top: 40px;
+  border-radius: 15px;
+  border: none;
+  background: transparent;
+  display: flex;
+  padding: 12px 27px;
+  gap: 16px;
+  align-items: center;
+  color: #000;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
 }
 
 #homePage .homeButton button img,
 #homePage .myPostButton button img,
-#homePage .approveButton button img{
-    width: 20px;
-    height: 20px;
+#homePage .approveButton button img {
+  width: 20px;
+  height: 20px;
 }
 
 #homePage .myPostButton button,
-#homePage .approveButton button{
-    margin-top: 5px;
+#homePage .approveButton button {
+  margin-top: 5px;
 }
 
-#homePage .active button{
-    border: 1px solid #E7E7E7;
-    background: #FFF;
+#homePage .active button {
+  border: 1px solid #e7e7e7;
+  background: #fff;
 }
 
-#homePage > .homeWallComponent{
-    width: 58vw;
-    height: 83vh;
-    /*margin: 0 16px;*/
+#homePage > .homeWallComponent {
+  width: 58vw;
+  height: 83vh;
+  /*margin: 0 16px;*/
 }
 
-#homePage .homeWallComponent > iframe{
-    width: 100%;
-    height: 100%;
-    max-height: 100%;
-    overflow-x: hidden;
-    overflow-y: scroll;
+#homePage .homeWallComponent > iframe {
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
-#homePage .homeWallComponent > iframe::-webkit-scrollbar{
-    width: 0 !important;
+#homePage .homeWallComponent > iframe::-webkit-scrollbar {
+  width: 0 !important;
 }
 
-
-#homePage > :last-child{
-    width: 15vw;
+#homePage > :last-child {
+  width: 15vw;
 }
 
-#homePage .birthDays{
-    width: 100%;
-    height: auto;
-    background-color: #FFF;
-    border-radius: 15px;
-    padding: 16px 18px;
-    box-shadow: 0 4px 18.3px 0 rgba(0, 0, 0, 0.05);
+#homePage .birthDays {
+  width: 100%;
+  height: auto;
+  background-color: #fff;
+  border-radius: 15px;
+  padding: 16px 18px;
+  box-shadow: 0 4px 18.3px 0 rgba(0, 0, 0, 0.05);
 }
 
-#homePage .birthDays h3{
-    color: #000;
-    font-family: "Poppins", sans-serif;
-    font-size: 18px;
-    font-weight: 700;
+#homePage .birthDays h3 {
+  color: #000;
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
 }
 
-#homePage .birthDays h3 img{
-    height: 23px;
-    width: auto;
-    margin-left: 10px;
+#homePage .birthDays h3 img {
+  height: 23px;
+  width: auto;
+  margin-left: 10px;
 }
 
-#homePage .birthDays img{
-    width: 14px;
-    height: 14px;
+#homePage .birthDays img {
+  width: 14px;
+  height: 14px;
 }
 
-#homePage .birthDays p{
-    color: #797979;
-    font-family: "Poppins", sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    margin-top: 5px ;
+#homePage .birthDays p {
+  color: #797979;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 5px;
 }
 
-#homePage .birthDays + h1{
-    color: #000;
-    font-family: "Poppins", sans-serif;
-    font-size: 24px;
-    font-weight: 700;
-    margin-top: 40px;
-    margin-bottom: 26px;
+#homePage .birthDays + h1 {
+  color: #000;
+  font-family: "Poppins", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  margin-top: 40px;
+  margin-bottom: 26px;
 }
 
-#homePage > :last-child button{
-    border-radius: 15px;
-    border: 1px solid #E7E7E7;
-    background: #FFF;
-    display: flex;
-    padding: 12px 27px;
-    align-items: center;
-    gap: 14px;
-    width: 100%;
+#homePage > :last-child button {
+  border-radius: 15px;
+  border: 1px solid #e7e7e7;
+  background: #fff;
+  display: flex;
+  padding: 12px 27px;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
 }
 
-#homePage > :last-child button img{
-    width: 23px;
-    height: 23px;
+#homePage > :last-child button img {
+  width: 23px;
+  height: 23px;
 }
 
-#homePage > :last-child button span{
-    color: #797979;
-    font-family: "Poppins", sans-serif;
-    font-size: 12px;
-    font-weight: 500;
-    text-align: start;
+#homePage > :last-child button span {
+  color: #797979;
+  font-family: "Poppins", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  text-align: start;
 }
 
 .searchPopUp {
-    top: 84px;
-    height: 90vh;
-    display: none;
+  top: 84px;
+  height: 90vh;
+  display: none;
 }
 
-.searchPopUp iframe{
-    width: 25vw;
-    z-index: 10;
-    box-shadow: 0 0 36px -20px rgba(0, 0, 0, 0.25);
-    background: #FFF;
-    border-radius: 5px;
-    position: relative;
-    left: 25px;
-    height: 30vh;
-    animation: -fade 0.5s ease-in;
+.searchPopUp iframe {
+  width: 25vw;
+  z-index: 10;
+  box-shadow: 0 0 36px -20px rgba(0, 0, 0, 0.25);
+  background: #fff;
+  border-radius: 5px;
+  position: relative;
+  left: 25px;
+  height: 30vh;
+  animation: -fade 0.5s ease-in;
 }
 
 @keyframes -fade {
-    0% {
-        height: 0;
-    }
-    100% {
-        height: 30vh;
-    }
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 30vh;
+  }
 }
 
-@media screen and (max-width: 1440px){
-    #homePage{
-        padding: 34px 75px 0 75px;
-    }
-    #navBar{
-        padding: 25px 75px;
-    }
+/* bottom nav bar mobile start */
+.img-box {
+  border-bottom: 3px solid transparent;
+
+  padding: 1px !important;
+  height: 30px;
 }
 
-@media screen and (max-width: 992px){
-    #navBar{
-        padding: 0;
-    }
+.red-border-bottom {
+  border-bottom: 3px solid red; /* Red border when clicked */
+}
+/* bottom nav bar mobile end */
 
-    #homePage{
-        padding: 0 20px;
-    }
+@media screen and (max-width: 1440px) {
+  #homePage {
+    padding: 34px 75px 0 75px;
+  }
+  #navBar {
+    padding: 25px 75px;
+  }
+}
 
-    #navBar nav{
-        justify-content: space-between !important;
-        padding: 32px 30px 12px 30px;
-    }
-    #navBar h1{
-        color: #000;
-        font-size: 20px;
-        font-weight: 700;
-    }
-    #homePage > .homeWallComponent {
-        width: 100%;
-        margin: 0;
-    }
+@media screen and (max-width: 992px) {
+  #navBar {
+    padding: 0;
+  }
+
+  #homePage {
+    padding: 0 20px;
+  }
+
+  #navBar nav {
+    justify-content: space-between !important;
+    padding: 32px 30px 12px 30px;
+  }
+  #navBar h1 {
+    color: #000;
+    font-size: 20px;
+    font-weight: 700;
+  }
+  #homePage > .homeWallComponent {
+    width: 100%;
+    margin: 0;
+  }
 }
