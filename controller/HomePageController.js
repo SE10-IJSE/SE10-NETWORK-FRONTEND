@@ -57,6 +57,13 @@ $('#homePage .approveButton').click(function (){
     changeButtonCss('approve');
 });
 
+$('.bottom-nav-bar .search-nav').click(function() {
+    $('#homePage .homeWallComponent iframe').attr('src', '/pages/searchPageMobile.html').css({
+        'border-radius': '0',
+        'box-shadow': 'none',
+    });
+});
+
 $('.searchPopUp').click(function (){
     $('.searchPopUp').css('display', 'none');
 });
