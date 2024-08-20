@@ -6,3 +6,11 @@
     box-sizing: border-box;
     text-decoration: none;
 }
+
+:root {
+    --bg-color: #FFFAFA;
+    --text-color: #000;
+    --second-bg-color: #f1eded;
+    --btn-bg-color: #EA1717;
+    --btn-hover-color: #c00707;
+}
