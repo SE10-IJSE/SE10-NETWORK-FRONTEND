@@ -1,0 +1,340 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+html,
+body {
+    background-color: #f6f5f7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: "Poppins", sans-serif;
+    overflow: hidden;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    max-height: 832px;
+    max-width: 1280px;
+    box-shadow: 0px 0px 22.9px -6px rgba(0, 0, 0, 0.1);
+    background-color: #FFFAFA;
+    position: relative;
+}
+
+.small-image {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 150px;
+    height: auto;
+}
+
+.reg-bg,
+.form-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.reg-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+form {
+    background-color: #FFFAFA;
+    padding: 0 20px;
+    width: 100%;
+    max-width: 494px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.reg-line {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.line {
+    background-color: #E90708;
+    width: 43px;
+    height: 2px;
+}
+
+h1 {
+    font-size: 32px;
+    margin: 20px 0 0 0;
+}
+
+h2 {
+    font-size: 15px;
+    color: #5c5b5b;
+}
+
+h3 {
+    font-size: 14px;
+    color: #7B7B7B;
+}
+
+h4 {
+    font-size: 15px;
+    color: #B2B2B2;
+    margin: 0 0 35px 0;
+}
+
+h5 {
+    font-size: 10px;
+    color: #949494;
+}
+
+.input-container {
+    position: relative;
+    width: 106%;
+}
+
+/* CSS for Input field for Bio */
+.txt-field {
+    width: 100%;
+    height: 66px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 22.9px -6px rgba(0, 0, 0, 0.1);
+    border: none;
+    padding: 25px 50px 15px 30px;
+    font-weight: bold;
+    font-size: 16px;
+    background-color: white;
+    box-sizing: border-box;
+}
+
+.txt-field:focus {
+    outline: 2px solid #E90708;
+    background-color: white;
+}
+
+.txt-field::placeholder {
+    color: #999;
+    opacity: 1;
+    transition: color 0.2s ease-out;
+}
+
+.txt-field:focus::placeholder {
+    color: #E90708;
+}
+
+.txt-label {
+    position: absolute;
+    left: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #5c5b5b;
+    font-family: "Poppins";
+    pointer-events: none;
+    transition: all 0.2s ease-out;
+    background-color: transparent;
+    padding: 0 5px;
+    font-weight: 600;
+    z-index: 1;
+}
+
+.txt-field:focus+.txt-label,
+.txt-field:not(:placeholder-shown)+.txt-label {
+    top: 18px;
+    left: 25px;
+    font-size: 12px;
+    color: #E90708;
+    z-index: 10;
+}
+
+/* CSS for input Profile picture & cover picture */
+.pic-container {
+    width: 95%;
+    height: 100px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 22.9px -6px rgba(0, 0, 0, 0.1);
+    border: 2px solid rgb(255, 255, 255);
+    padding: 10px 25px;
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: 30px;
+    position: relative;
+    background-color: rgb(255, 255, 255);
+}
+
+.pic-container-border {
+    border: 2px solid #E90708;
+}
+
+.propic {
+    width: 170%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 7.5%;
+    left: -5%;
+}
+
+.coverpic {
+    width: 170%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 7.5%;
+    left: -5%;
+}
+
+#propic-drop-area {
+    width: 80px;
+    height: 80px;
+    padding: 10px;
+    text-align: center;
+    border-radius: 100%;
+    border: 1px solid #D8D8D8;
+    cursor: cell;
+    transition: 0.5s ease;
+}
+
+#coverpic-drop-area {
+    width: 150px;
+    height: 80px;
+    padding: 10px;
+    text-align: center;
+    border-radius: 10px;
+    border: 1px solid #D8D8D8;
+    cursor: cell;
+}
+
+#profile-img-view {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    border: none;
+    background-position: center;
+    background-size: cover;
+}
+
+#cover-img-view {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    border: none;
+    background-position: center;
+    background-size: cover;
+}
+
+#profile-img-view img,
+#cover-img-view img {
+    width: 25px;
+    opacity: 30%;
+}
+
+#profile-img-view p,
+#cover-img-view p {
+    font-size: 4px;
+    color: #9E9E9E;
+}
+
+#profile-img-view span,
+#cover-img-view span {
+    display: block;
+    font-size: 7px;
+    color: #A5A5A5;
+}
+
+/* Check box */
+.checkBox {
+    display: block;
+    position: relative;
+    padding-left: 25px;
+    margin: 25px 0px;
+    cursor: pointer;
+    font-size: 10px;
+    font-family: "Poppins";
+    color: #949494;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.checkBox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.checkMark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 12px;
+    width: 11px;
+    background-color: transparent;
+    border: 1px solid #949494;
+    border-radius: 4px;
+}
+
+/* When the checkbox is checked, add a red background */
+.checkBox input:checked~.checkMark {
+    background-color: #E90708;
+    border: #E90708;
+    border: 1px solid #E90708;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkMark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.checkBox input:checked~.checkMark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.checkBox .checkMark:after {
+    left: 25%;
+    top: 5%;
+    width: 2.5px;
+    height: 6px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+/* Create an account button */
+.btn {
+    background-color: #E90708;
+    border-radius: 28px;
+    height: 44px;
+    width: 190px;
+    border: none;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    font-family: "Poppins";
+    cursor: pointer;
+}
+
+.not-acc-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
