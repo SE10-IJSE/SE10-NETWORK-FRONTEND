@@ -20,7 +20,6 @@ $('#homePage .profile .myProfileBtn').click(function() {
     $('#homePage .homeWallComponent iframe').attr('src', '../components/pages/wall/profileWallComponent.html')
         .css({
             'border-radius': '15px',
-            'box-shadow': '0px 4px 18.3px 0px rgba(0, 0, 0, 0.10)',
         });
     changeButtonCss('profile');
 });

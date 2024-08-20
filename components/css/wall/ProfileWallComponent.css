@@ -1,25 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-
-:root {
-    --bg-color: #FFFAFA;
-    --text-color: #000;
-    --second-bg-color: #f1eded;
-}
-
 body {
     background-color: var(--bg-color);
     margin: 0;
     padding: 0;
-    box-shadow: 0 4px 18.3px 0 rgba(0, 0, 0, 0.05);
     border-radius: 15px;
+    background-clip: content-box;
+    box-shadow: 0px 4px 18.3px 0px rgba(0, 0, 0, 0.10);
 }
 
 body::-webkit-scrollbar {
     width: 0;
 }
 
-.profile-banner {
+.profile-wall * {
+    font-family: "Poppins", sans-serif;
+}
 
+.profile-banner {
     height: 35vh;
     min-height: 200px;
     max-height: 400px;
@@ -27,15 +23,11 @@ body::-webkit-scrollbar {
     border-radius: 10px;
 }
 
-/* .container-fluid {
-    height: 75vh;
-} */
 .profile-wall {
     padding-bottom: 2%;
     border-radius: 15px;
     background: var(--bg-color);
     box-sizing: border-box;
-
 }
 
 .profile-banner .img-fluid {
@@ -58,12 +50,75 @@ body::-webkit-scrollbar {
     color: #000;
 }
 
-.btn-edit-mobile {
-    display: none;
-}
-
 #btn-Edit {
     border-radius: 100%;
+}
+
+/* Edit Cover Photo Button Styling */
+.btn-edit-cover {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #000;
+    z-index: 2;
+}
+
+.dropdown-menu {
+    position: absolute;
+    bottom: 70px;
+    right: 30px;
+    display: none;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 3;
+}
+
+.dropdown-item {
+    padding: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #000;
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    text-align: center;
+}
+
+.dropdown-item:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown-menu-profile {
+    position: absolute;
+    top: 142px;
+    display: none;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 3;
+}
+
+.dropdown-item-profile {
+    padding: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #000;
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    text-align: center;
+}
+
+.dropdown-item-profile:hover {
+    background-color: #f1f1f1;
 }
 
 .details-container {
@@ -111,14 +166,17 @@ body::-webkit-scrollbar {
     background-color: rgba(255, 255, 255, 1);
 }
 
+.btn-edit-mobile {
+    border-radius: 100%;
+    display: none;
+}
+
 .underline-bar {
     border: none;
     height: 3px;
     background-color: #666;
-    /* width: 100%; */
     opacity: 0.1;
     box-sizing: border-box;
-
 }
 
 #edit-info-btn {
@@ -135,54 +193,59 @@ body::-webkit-scrollbar {
     border-radius: 8px;
     box-shadow: 0 0 22.9px -6px rgba(0, 0, 0, 0.10);
 }
-.form-control:focus{
-    box-shadow: none !important;    
+
+.form-control:focus {
+    box-shadow: none !important;
 }
+
 .info-box h5 {
     font-size: 16px;
     font-weight: bold;
 }
 
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(34%) sepia(83%) saturate(7434%) hue-rotate(0deg) brightness(101%) contrast(108%);
+}
 
-/* .btn-custom{
-    margin: 500px;
-} */
 .btn-custom-danger {
     background-color: white;
-    color: red;
-    border: 2px solid red;
+    color: var(--btn-bg-color);
+    border: 2px solid var(--btn-bg-color);
     transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-custom-danger+.btn-custom-danger {
+    margin-left: 20px;
+    background-color: var(--btn-bg-color);
+    color: var(--second-bg-color);
+}
+
+.btn-custom-danger+.btn-custom-danger:hover {
+    background-color: var(--btn-hover-color);
+    color: var(--second-bg-color);
 }
 
 .btn-custom-danger:hover {
-    background-color: red;
+    background-color: var(--btn-bg-color);
     color: white;
 }
 
-.btn-custom-warning {
-    background-color: white;
-    color: red;
-    border: 2px solid red;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.btn-custom-warning:hover {
-    background-color: rgb(255, 153, 0);
-    color: white;
-}
-
-.profile-wall * {
-    font-family: "Poppins", sans-serif;
-}
-
-.profile-wall h5 {
-    font-size: 13px;
-    color: #949494;
-    font-weight: 500;
-}
 
 .profile-wall input {
     color: #000;
+}
+
+#circle-camera {
+    background-color: var(--second-bg-color) !important;
+    border-radius: 100%;
+    font-size: 14px;
+    width: 38px;
+    border: none;
+    top: 80%;
+    right: 0;
+    transform: translateY(-50%);
+    z-index: 1;
+
 }
 
 @media (max-width: 768px) {
@@ -199,8 +262,12 @@ body::-webkit-scrollbar {
     }
 
     .btn-edit-mobile {
-        display: block;
-        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 38px;
+        border-radius: 100%;
         background-color: rgba(0, 0, 0, 0.25);
         color: rgba(255, 255, 255, 0.8);
         font-size: 18px;
@@ -226,22 +293,4 @@ body::-webkit-scrollbar {
     .profile-info h1 {
         margin-top: 0;
     }
-}
-
-/*.position-relative {*/
-/*    position: relative;*/
-/*}*/
-
-#circle-camera {
-    background-color: var(--second-bg-color) !important;
-    border-radius: 100%;
-    font-size: 13px;
-    border: none;
-    /*position: absolute;*/
-    top: 80%;
-    right: 0;
-
-    transform: translateY(-50%);
-    z-index: 1;
-    /* Ensure it appears above the image */
 }

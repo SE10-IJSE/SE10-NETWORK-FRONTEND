@@ -166,7 +166,7 @@ body {
 #homePage .approveButton button {
   margin-top: 40px;
   border-radius: 15px;
-  border: none;
+  border: 1px solid transparent;
   background: transparent;
   display: flex;
   padding: 12px 27px;
