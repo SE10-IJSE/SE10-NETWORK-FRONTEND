@@ -1,8 +1,8 @@
-#homeWallComponent .card{
+#homeWallComponent .card {
     box-shadow: 0 4px 18.3px 0 rgba(0, 0, 0, 0.05);
 }
 
-#homeWallComponent .card .card-header{
+#homeWallComponent .card .card-header {
     color: #000;
     font-family: "Poppins", sans-serif;
     font-size: 16px;
@@ -12,19 +12,19 @@
     background-color: #FFFFFF;
 }
 
-#homeWallComponent .card .card-body{
+#homeWallComponent .card .card-body {
     padding: 22px 42px;
     background-color: #FFFFFF;
 }
 
-#homeWallComponent .card .card-body > img{
+#homeWallComponent .card .card-body>img {
     width: 63px;
     height: 63px;
     border: 3px solid #04FF00;
     border-radius: 50%;
 }
 
-#homeWallComponent .input-group{
+#homeWallComponent .input-group {
     border-radius: 8px;
     border: 1.5px solid #D5D5D5;
     background: #FFF;
@@ -32,7 +32,7 @@
     padding-right: 15px;
 }
 
-#homeWallComponent .input-group input{
+#homeWallComponent .input-group input {
     padding: 18px 22px;
     color: #949494;
     font-family: "Poppins", sans-serif;
@@ -40,15 +40,15 @@
     font-weight: 500;
 }
 
-#homeWallComponent .input-group input:focus{
+#homeWallComponent .input-group input:focus {
     box-shadow: none !important;
 }
 
-#homeWallComponent .input-group img{
+#homeWallComponent .input-group img {
     width: 17px;
     height: 17px;
 }
 
-body::-webkit-scrollbar{
+body::-webkit-scrollbar {
     width: 0;
 }
