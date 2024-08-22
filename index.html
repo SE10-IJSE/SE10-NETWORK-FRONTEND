@@ -1,59 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SE10-NETWORK LOGIN</title>
-    <!-- <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/assets/css/styles.css"> -->
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/assets/css/loginPage.css">
-    <link href="https://fonts.googleapis.com/css2?family=Rubik+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+    <link
+            href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+            rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/assets/css/loginPage.css" />
+    <link
+            href="https://fonts.googleapis.com/css2?family=Rubik+One&display=swap"
+            rel="stylesheet"
+    />
 </head>
 
 <body>
-    <div class="container" id="container">
-        <div class="form-container register-container">
-            <form action="/pages/homePage.html" id="login">
-                <div class="reg-line">
-                    <div class="line"></div>
-                    <h3>Login Form</h3>
-                </div>
+<div class="container" id="container">
+    <div class="form-container register-container">
+        <form id="login">
+            <div class="reg-line">
+                <div class="line"></div>
+                <h3>Login Form</h3>
+            </div>
 
-                <h1>Where ideas meet execution</h1>
-                <h4>Login to access the portal</h4>
+            <h1>Where ideas meet execution</h1>
+            <h4>Login to access the portal</h4>
 
-                <div class="input-container">
-                    <input type="email" placeholder=" " class="txt-field" id="email">
-                    <label for="email" class="txt-label">Email</label>
-                </div>
+            <div class="input-container">
+                <input type="email" placeholder=" " class="txt-field" id="email" />
+                <label for="email" class="txt-label">Email</label>
+            </div>
 
-                <div class="input-container" style="margin-top: 40px; margin-bottom: 40px;">
-                    <input type="password" placeholder="" class="txt-field" id="password">
-                    <label for="password" class="txt-label">Password</label>
-                    <i class="ri-eye-line" id="togglePassword"></i>
-                </div>
+            <div
+                    class="input-container"
+                    style="margin-top: 40px; margin-bottom: 40px"
+            >
+                <input
+                        type="password"
+                        placeholder=""
+                        class="txt-field"
+                        id="password"
+                />
+                <label for="password" class="txt-label">Password</label>
+                <i class="ri-eye-line" id="togglePassword"></i>
+            </div>
 
-                <div class="not-acc-container">
-                    <input type="submit" value="LOGIN" class="btn">
-                    <p class="not-acc">
-                        Have not an account ? <span id="register">Register</span> Now.
-                    </p>
-                </div>
-
-            </form>
-        </div>
-        <div class="reg-bg">
-            <img src="/assets/image/registrationBg.png" alt="">
-        </div>
-
-        <img src="/assets/image/dots.png" alt="Small Image" class="small-image">
+            <div class="not-acc-container">
+                <input type="submit" value="LOGIN" class="btn" />
+                <p class="not-acc">
+                    Have not an account ? <span id="register">Register</span> Now.
+                </p>
+            </div>
+        </form>
+    </div>
+    <div class="reg-bg">
+        <img src="/assets/image/registrationBg.png" alt="" />
     </div>
 
-    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="/assets/jquery/jquery-3.7.1.min.js"></script>
-    <script src="/controller/LoginPageController.js"></script>
-</body>
+    <img src="/assets/image/dots.png" alt="Small Image" class="small-image" />
+</div>
 
+<script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="/assets/jquery/jquery-3.7.1.min.js"></script>
+<script src="/assets/axios/axios.min.js"></script>
+<script type="module" src="/controller/LoginPageController.js"></script>
+</body>
 </html>
