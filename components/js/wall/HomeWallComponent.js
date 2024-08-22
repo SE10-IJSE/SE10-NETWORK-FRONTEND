@@ -1,19 +1,27 @@
-$(document).ready(function() {
+$(document).ready(function () {
+  LoadCards();
+
+  $(window).resize(function () {
     LoadCards();
+  });
 });
 
-function LoadCards(){
-    $("#homeWallComponent .postCards").empty();
-    for (let i = 0; i < 10; i++) {
-        $("#homeWallComponent").append(
-            PostCard()
-        )
+function LoadCards() {
+  $("#homeWallComponent .postCards").empty();
+  const isMobile = window.innerWidth <= 767;
+
+  for (let i = 0; i < 10; i++) {
+    if (isMobile) {
+      $("#homeWallComponent").append(PostCardMobile());
+    } else {
+      $("#homeWallComponent").append(PostCard());
     }
+  }
 }
 
-const PostCard = () =>{
-    return `
-    <div id="postCard" class="p-5 mb-3">
+const PostCard = () => {
+  return `
+    <div id="postCard" class="p-5 mb-3 rounded-4">
             <div>
                 <div class="d-flex justify-content-between">
                     <div class="d-flex gap-3 align-items-center">
@@ -42,5 +50,40 @@ const PostCard = () =>{
                 </div>
             </div>
         </div>
-    `
-}
+    `;
+};
+
+const PostCardMobile = () => {
+  return `
+    <div id="postCardMobile" class="p-3 mb-3">
+            <div>
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex gap-3 align-items-center">
+                        <img class="profileImage" src="../../../assets/image/profilePic.png" alt="Profile Image">
+                        <div class="d-flex flex-column mt-1">
+                            <h5>Samuel Edison</h5>
+                            <h6>A few moment ago</h6>
+                        </div>
+                    </div>
+                    <button class="bg-transparent border-0">
+                        <i class='bx bx-dots-vertical-rounded' style='color:rgba(0,0,0,0.44)'  ></i>
+                    </button>
+                </div>
+
+                <div class="mt-3">
+                    <p>🚀Just finished my new web app for task management! Built with React and Node.js Check it out and share your thoughts! 💡</p>
+                    <div class="d-flex justify-content-between">
+                        <div class="d-flex gap-1 align-items-center">
+                            <img src="../../../assets/icons/likeIcon.png" alt="Inspire Icon">
+                            <span>56 Inspirations</span>
+                        </div>
+                        <button class="border-0 p-2 px-3 rounded-4 d-flex align-items-center gap-1">
+                            <img src="../../../assets/icons/ideaIcon.png" alt="Inspire Icon">
+                            <span>Inspire</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+};
