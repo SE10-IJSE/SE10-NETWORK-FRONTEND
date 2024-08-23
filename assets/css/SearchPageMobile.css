@@ -40,7 +40,7 @@ body {
     height: 20px;
     width: 25px;
     display: flex;
-  justify-content: center;
+    justify-content: center;
 }
 
 .recent-container {
@@ -57,6 +57,12 @@ body {
 .recent-list {
     display: flex;
     flex-direction: column;
+    height: 83vh;
+    overflow-y: scroll;
+}
+
+.recent-list::-webkit-scrollbar {
+    width: 5px;
 }
 
 .recent-item {
