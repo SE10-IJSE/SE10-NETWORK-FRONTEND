@@ -1,6 +1,36 @@
-$(document).ready(function () {
-  changeButtonCss("home");
+import { getUserData } from "../model/UserProfileModel.js";
+
+$(document).ready(async function () {
+  let token = getJwtToken();
+
+  if (token) axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
+  try {
+    const userData = await getUserData(); // Fetch user data
+
+    // Update the homePage HTML with user data
+    setUserProfileDetails(userData.data);
+    changeButtonCss("home");
+  } catch (error) {
+    console.error("Error fetching user data:", error);
+  }
 });
+
+function setUserProfileDetails(user) {
+  $(".profileDetails h4").text(user.name);
+  $(".profileDetails h5").text(`@${user.userId}`);
+  $(".profileDetails h6").text(user.bio);
+}
+
+function getJwtToken() {
+  const cookies = document.cookie.split("; ");
+  for (let cookie of cookies) {
+    if (cookie.startsWith("jwt=")) {
+      return cookie.split("=")[1];
+    }
+  }
+  return null;
+}
 
 function changeButtonCss(button) {
   const buttons = {

@@ -12,10 +12,28 @@ export const postLoginData = (data) => {
   return axios(config)
     .then((response) => {
       console.log("Login successful:", response.data);
-      return response; // Return the response to handle in the controller
+      return response;
     })
     .catch((error) => {
       console.error("Login failed:", error);
-      throw error; // Propagate the error to be caught in the controller
+      throw error;
+    });
+};
+
+export const getTokenValidation = () => {
+  let config = {
+    method: "get",
+    maxBodyLength: Infinity,
+    url: "http://localhost:8080/api/v1/auth/validate",
+  };
+
+  return axios(config)
+    .then((response) => {
+      console.log("Validation successful:", response.data);
+      return response;
+    })
+    .catch((error) => {
+      console.error("Validation failed:", error);
+      throw error;
     });
 };
