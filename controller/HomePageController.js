@@ -115,6 +115,15 @@ $(".bottom-nav-bar .home-nav").click(function () {
     });
 });
 
+$(".bottom-nav-bar .myPost-nav").click(function () {
+  $("#homePage .homeWallComponent iframe")
+      .attr("src", "/components/pages/wall/myPostWallComponent.html")
+      .css({
+          "border-radius": "0",
+          "box-shadow": "none",
+      });
+});
+
 $(".bottom-nav-bar .profile-nav").click(function () {
   $("#homePage .homeWallComponent iframe")
     .attr("src", "/components/pages/wall/profileWallComponent.html")
