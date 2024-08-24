@@ -85,9 +85,9 @@
           <div
             class="profile-info ms-md-4 mt-3 mt-md-0 text-center text-md-start"
           >
-            <h1>Abrahum Joe</h1>
+            <h1 id="name">Abrahum Joe</h1>
             <h3 class="text-muted">@st-456782</h3>
-            <h4>Passionate Software Engineering Student</h4>
+            <h4 id="bio">Passionate Software Engineering Student</h4>
           </div>
           <div class="ms-md-auto mt-3 mt-md-0">
             <button
@@ -202,7 +202,11 @@
                 <button type="button" class="btn btn-custom-danger me-2">
                   Logout
                 </button>
-                <button type="button" class="btn btn-custom-danger">
+                <button
+                  type="button"
+                  class="btn btn-custom-danger"
+                  id="update-btn"
+                >
                   Edit Details
                 </button>
               </div>
@@ -214,6 +218,10 @@
 
     <script src="/assets/bootstrap/js/bootstrap.js"></script>
     <script src="/assets/jquery/jquery-3.7.1.min.js"></script>
-    <script src="/components/js/wall/ProfileWallComponent.js"></script>
+    <script src="/assets/axios/axios.min.js"></script>
+    <script
+      type="module"
+      src="/components/js/wall/ProfileWallComponent.js"
+    ></script>
   </body>
 </html>
