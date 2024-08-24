@@ -282,3 +282,83 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     width: 100px !important;
   }
 }
+
+@media screen and (max-width: 576px) {
+  .profile-info h4 {
+    font-size: 15px;
+    margin-top: 5px;
+    padding-right: 30px;
+  }
+
+  #edit-info-btn {
+    margin-left: 20px;
+    margin-top: 15px;
+    width: 100%;
+  }
+
+  .information-container h3 {
+    margin-bottom: 30px;
+    font-size: 20px;
+  }
+
+  .info-box h5 {
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .info-box input {
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .security-container .row > div:last-child {
+    flex-direction: column;
+  }
+
+  .btn-container {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .btn-custom-danger {
+    display: none;
+  }
+
+  .btn-custom-warning {
+    width: 130px;
+    margin-top: 10px;
+    font-size: 15px;
+  }
+
+  .log {
+    display: block;
+    width: 48%;
+    margin-right: 4%;
+  }
+
+  #edit-info-btn {
+    width: 140px !important;
+  }
+
+  #logout-btn {
+    font-size: 0.7rem;
+    width: 90px !important;
+    height: 36px;
+    margin-top: 15px;
+  }
+
+  #logout-btn:hover {
+    background-color: var(--btn-hover-color);
+    color: white;
+  }
+
+  .button-handling {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .log i {
+    display: none;
+  }
+}
