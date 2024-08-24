@@ -1,12 +1,20 @@
 $(document).ready(function() {
     LoadCards();
+    $(window).resize(function () {
+        LoadCards();
+    });
     $('.postMoreOption').css('display', 'none');
 });
 
 function LoadCards(){
-    $("#myPostWallComponent").empty();
+    $("#myPostWallComponent .postCards").empty();
+    const isMobile=window.innerWidth <=767;
     for (let i = 0; i < 10; i++) {
-        $("#myPostWallComponent").append(MyPostCard());
+        if (isMobile) {
+            $("#myPostWallComponent").append(PostCardMobile());
+        } else {
+            $("#myPostWallComponent").append(MyPostCard());
+        }
     }
 }
 
@@ -66,3 +74,39 @@ const MyPostCard = () => {
     </div>
     `;
 }
+
+const PostCardMobile = () => {
+    return `
+    <div id="postCardMobile" class="p-3 mb-3">
+            <div>
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex gap-3 align-items-center">
+                        <img class="profileImage" src="../../../assets/image/profilePic.png" alt="Profile Image" style="border: 2px solid #04FF00; ">
+                        <div class="d-flex flex-column mt-1">
+                            <h5 >Abrahum Joe</h5>
+                            <h6>7 hours ago</h6>
+                        </div>
+                    </div>
+                    <button class="bg-transparent border-0">
+                        <i class='bx bx-dots-vertical-rounded' style='color:rgba(0,0,0,0.44)'  ></i>
+                    </button>
+                </div>
+
+                <div class="mt-3">
+                    <p>🤖 Revolutionizing tech, one innovation at a time. #TechTrends #Innovation </p>
+                    <div class="d-flex justify-content-between">
+                        <div class="d-flex gap-1 align-items-center">
+                            <img src="../../../assets/icons/likeIcon.png" alt="Inspire Icon">
+                            <span>56 Insights</span>
+                        </div>
+                        
+                        <button class="border-0 p-2 px-3 d-flex align-items-center gap-1 btn btn-light fw-bold" id="edit-info-btn ">
+                            <img src="../../../assets/icons/editIcon.png" alt="Inspire Icon">
+                            <span>Edit Post</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+};
