@@ -1,5 +1,7 @@
 import { getUserData } from "../../../model/UserProfileModel.js";
 import { updateUserData } from "../../../model/UserProfileModel.js";
+import { updateUserPhoto } from "../../../model/UserProfileModel.js";
+import { deleteUserPhoto } from "../../../model/UserProfileModel.js";
 
 function togglePassword(inputId, element) {
   const input = document.getElementById(inputId);
@@ -38,6 +40,18 @@ document.addEventListener("DOMContentLoaded", async function () {
         document.querySelector("input[type='email']").value =
           userData.data.email;
         document.querySelector("input[type='date']").value = userData.data.dob;
+
+        // Set cover photo
+        const coverPhotoElement = document.querySelector(".profile-banner img");
+        if (userData.data.coverImg) {
+          coverPhotoElement.src = `data:image/jpeg;base64,${userData.data.coverImg}`;
+        }
+
+        // Set profile photo
+        const profilePicElement = document.querySelector(".profile-pic");
+        if (userData.data.profileImg) {
+          profilePicElement.src = `data:image/jpeg;base64,${userData.data.profileImg}`;
+        }
       }
     } catch (error) {
       console.error("Error fetching user data:", error);
@@ -50,11 +64,13 @@ document.addEventListener("DOMContentLoaded", async function () {
   const editCoverPhotoMobileBtn = document.getElementById("btn-Edit");
   const editProfilePhotoBtn = document.getElementById("circle-camera");
   const dropdownMenu = document.getElementById("cover-photo-dropdown");
-  const dropdownMenuProfile = document.getElementById(
-    "cover-photo-dropdown-profile"
-  );
+  const dropdownMenuProfile = document.getElementById("profile-photo-dropdown");
 
   function toggleDropdown(targetDropdown) {
+    if (!targetDropdown) {
+      console.error("Target dropdown is null");
+      return;
+    }
     targetDropdown.style.display =
       targetDropdown.style.display === "none" ||
       targetDropdown.style.display === ""
@@ -87,18 +103,106 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
   });
 
+  // Event listeners for "Remove Photo" buttons
+  document.querySelectorAll(".remove-photo-btn").forEach((btn) => {
+    btn.addEventListener("click", async function (event) {
+      const isCoverPhoto = event.target.closest("#cover-photo-dropdown");
+      const photoType = isCoverPhoto ? "cover" : "profile";
+      const email = document.querySelector("input[type='email']").value;
+
+      try {
+        const response = await deleteUserPhoto({ email, type: photoType });
+        if (response.status === 200) {
+          window.top.location.reload(); // Reload page on successful deletion
+        } else {
+          alert("Failed to remove photo.");
+        }
+      } catch (error) {
+        alert("Error removing photo.");
+      }
+
+      dropdownMenu.style.display = "none";
+      dropdownMenuProfile.style.display = "none";
+    });
+  });
+
+  // Event listener for cover photo upload button
   document
-    .getElementById("upload-photo-btn")
+    .querySelector("#cover-photo-dropdown #upload-photo-btn")
     .addEventListener("click", function () {
-      alert("Upload photo clicked");
+      const fileInput = document.getElementById("fileInput");
+      fileInput.click();
+
+      fileInput.addEventListener("change", async function () {
+        const file = fileInput.files[0];
+        if (file) {
+          if (file.size <= 7 * 1024 * 1024) {
+            const formData = new FormData();
+            formData.append("image", file);
+            formData.append("type", "cover");
+            formData.append(
+              "email",
+              document.querySelector("input[type='email']").value
+            );
+
+            try {
+              const response = await updateUserPhoto(formData);
+              if (response.status === 200) {
+                window.top.location.reload();
+              } else {
+                alert("Failed to update cover photo.");
+              }
+            } catch (error) {
+              alert("Error uploading cover photo.");
+            }
+          } else {
+            alert("Image needs to be less than 7MB.");
+          }
+        }
+        fileInput.value = "";
+      });
+
       dropdownMenu.style.display = "none";
     });
 
+  // Event listener for profile photo upload button
   document
-    .getElementById("remove-photo-btn")
+    .querySelector("#profile-photo-dropdown .upload-photo-btn")
     .addEventListener("click", function () {
-      alert("Remove photo clicked");
-      dropdownMenu.style.display = "none";
+      const fileInput = document.getElementById("fileInput");
+      fileInput.click();
+
+      fileInput.addEventListener("change", async function () {
+        const file = fileInput.files[0];
+        if (file) {
+          if (file.size <= 7 * 1024 * 1024) {
+            // Create FormData and append file
+            const formData = new FormData();
+            formData.append("image", file);
+            formData.append("type", "profile");
+            formData.append(
+              "email",
+              document.querySelector("input[type='email']").value
+            );
+
+            try {
+              const response = await updateUserPhoto(formData);
+              if (response.status === 200) {
+                window.top.location.reload();
+              } else {
+                alert("Failed to update profile photo.");
+              }
+            } catch (error) {
+              alert("Error uploading profile photo.");
+            }
+          } else {
+            alert("Image needs to be less than 7MB.");
+          }
+        }
+        fileInput.value = "";
+      });
+
+      dropdownMenuProfile.style.display = "none";
     });
 
   // Adding event listener for the "Edit Details" button
@@ -118,7 +222,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         userId: userData.data.userId,
         name: document.getElementById("name").textContent,
         email: document.querySelector("input[type='email']").value,
-        bio: document.getElementById("bio").value,
+        bio: document.getElementById("bio").textContent,
         password: document.getElementById("currentPassword").value,
         newPassword: newPassword,
         dob: document.querySelector("input[type='date']").value,
@@ -132,8 +236,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         if (response.status === 200) {
           // Set the new cookie with the updated token
           document.cookie = `jwt=${response.data.data.token}; path=/`;
-          alert("Profile updated successfully!");
-          window.location.reload();
+          window.top.location.reload();
         } else if (response.status === 406) {
           alert("Current password is incorrect.");
         }

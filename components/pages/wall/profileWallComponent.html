@@ -46,7 +46,7 @@
             <button class="dropdown-item" id="upload-photo-btn">
               <i class="bx bx-upload"></i> Upload Photo
             </button>
-            <button class="dropdown-item" id="remove-photo-btn">
+            <button class="dropdown-item remove-photo-btn">
               <i class="bx bx-trash"></i> Remove Photo
             </button>
           </div>
@@ -70,23 +70,21 @@
               <i class="bx bxs-camera"></i>
             </button>
 
-            <div
-              class="dropdown-menu-profile"
-              id="cover-photo-dropdown-profile"
-            >
-              <button class="dropdown-item-profile" id="upload-photo-btn">
+            <div class="dropdown-menu-profile" id="profile-photo-dropdown">
+              <button class="dropdown-item-profile upload-photo-btn">
                 <i class="bx bx-upload"></i> Upload
               </button>
-              <button class="dropdown-item-profile" id="remove-photo-btn">
+              <button class="dropdown-item-profile remove-photo-btn">
                 <i class="bx bx-trash"></i> Remove
               </button>
             </div>
           </div>
+          <input type="file" id="fileInput" class="d-none" accept="image/*" />
           <div
             class="profile-info ms-md-4 mt-3 mt-md-0 text-center text-md-start"
           >
             <h1 id="name">Abrahum Joe</h1>
-            <h3 class="text-muted">@st-456782</h3>
+            <h3 id="studentId" class="text-muted">@st-456782</h3>
             <h4 id="bio">Passionate Software Engineering Student</h4>
           </div>
           <div class="button-handling ms-md-auto mt-3 mt-md-0">
