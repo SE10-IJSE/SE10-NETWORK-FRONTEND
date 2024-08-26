@@ -7,7 +7,7 @@ const profileDropArea = document.getElementById("propic-drop-area");
 const profileInputFile = document.getElementById("profile-input-file");
 const profileImgView = document.getElementById("profile-img-view");
 
-profileInputFile.addEventListener("change", uploadProfilePicture);
+profileInputFile.addEventListener("change", displayProfilePicture);
 
 // Drag & drop
 profileDropArea.addEventListener("dragover", function (e) {
@@ -17,7 +17,7 @@ profileDropArea.addEventListener("dragover", function (e) {
 profileDropArea.addEventListener("drop", function (e) {
   e.preventDefault();
   profileInputFile.files = e.dataTransfer.files;
-  uploadProfilePicture();
+  displayProfilePicture();
 });
 
 // Applying border style on click
@@ -43,7 +43,7 @@ const coverDropArea = document.getElementById("coverpic-drop-area");
 const coverInputFile = document.getElementById("cover-input-file");
 const coverImgView = document.getElementById("cover-img-view");
 
-coverInputFile.addEventListener("change", uploadCoverPicture);
+coverInputFile.addEventListener("change", displayCoverPicture);
 
 // Drag & drop
 coverDropArea.addEventListener("dragover", function (e) {
@@ -53,7 +53,7 @@ coverDropArea.addEventListener("dragover", function (e) {
 coverDropArea.addEventListener("drop", function (e) {
   e.preventDefault();
   coverInputFile.files = e.dataTransfer.files;
-  uploadCoverPicture();
+  displayCoverPicture();
 });
 
 // Applying border style on click
@@ -72,61 +72,49 @@ document.addEventListener("click", function (event) {
   }
 });
 
-// Function to save image with a suggested file path
-function saveImageToDevice(base64Image, fileName) {
-  const link = document.createElement("a");
-  link.href = base64Image;
-  link.download = fileName; // Suggested filename with student ID
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-}
-
-// Function to create filenames with student ID
-function generateFileName(studentId, imageType) {
-  const timeStamp = new Date().getTime(); // Unique timestamp to avoid overwriting
-  return `${studentId}_${imageType}_${timeStamp}.png`;
-}
-
-// Profile picture upload function
-function uploadProfilePicture(studentId) {
+// Function to display profile picture
+function displayProfilePicture() {
   const file = profileInputFile.files[0];
   if (file) {
-    const reader = new FileReader();
-    reader.onloadend = function () {
-      const profilePicBase64 = reader.result;
-
-      // Display the profile picture
-      profileImgView.style.backgroundImage = `url(${profilePicBase64})`;
-      profileImgView.textContent = "";
-
-      // Save the profile picture to device storage
-      saveImageToDevice(profilePicBase64, `${studentId}_profile_picture.png`);
-    };
-    reader.readAsDataURL(file);
+    if (file.size > 7 * 1024 * 1024) {
+      // Check if file size exceeds 7MB
+      alert("Please select a profile photo smaller than 7MB.");
+      profileInputFile.value = ""; // Reset the file input
+      profileImgView.style.backgroundImage = ""; // Clear any previous image
+    } else {
+      const reader = new FileReader();
+      reader.onloadend = function () {
+        const profilePicBase64 = reader.result;
+        profileImgView.style.backgroundImage = `url(${profilePicBase64})`;
+        profileImgView.textContent = "";
+      };
+      reader.readAsDataURL(file);
+    }
   }
 }
 
-// Cover picture upload function
-function uploadCoverPicture(studentId) {
+// Function to display cover picture
+function displayCoverPicture() {
   const file = coverInputFile.files[0];
   if (file) {
-    const reader = new FileReader();
-    reader.onloadend = function () {
-      const coverPicBase64 = reader.result;
-
-      // Display the cover picture
-      coverImgView.style.backgroundImage = `url(${coverPicBase64})`;
-      coverImgView.textContent = "";
-
-      // Save the cover picture to device storage
-      saveImageToDevice(coverPicBase64, `${studentId}_cover_picture.png`);
-    };
-    reader.readAsDataURL(file);
+    if (file.size > 7 * 1024 * 1024) {
+      // Check if file size exceeds 7MB
+      alert("Please select a cover photo smaller than 7MB.");
+      coverInputFile.value = ""; // Reset the file input
+      coverImgView.style.backgroundImage = ""; // Clear any previous image
+    } else {
+      const reader = new FileReader();
+      reader.onloadend = function () {
+        const coverPicBase64 = reader.result;
+        coverImgView.style.backgroundImage = `url(${coverPicBase64})`;
+        coverImgView.textContent = "";
+      };
+      reader.readAsDataURL(file);
+    }
   }
 }
 
-// Add event listeners for profile picture
+// Add event listeners for profile and cover pictures
 document.addEventListener("DOMContentLoaded", function () {
   const storedData = localStorage.getItem("registrationFormData");
 
@@ -141,14 +129,25 @@ document.addEventListener("DOMContentLoaded", function () {
         let bio = document.getElementById("bio").value;
 
         if (bio !== null && bio !== "") {
-          postRegisterData({
-            userId: formData.studentId,
-            name: formData.name,
-            email: formData.email,
-            password: formData.password,
-            dob: formData.dob,
-            bio: bio,
-          })
+          const formDataToSend = new FormData();
+          formDataToSend.append("userId", formData.studentId);
+          formDataToSend.append("name", formData.name);
+          formDataToSend.append("email", formData.email);
+          formDataToSend.append("password", formData.password);
+          formDataToSend.append("dob", formData.dob);
+          formDataToSend.append("batch", formData.batch);
+          formDataToSend.append("bio", bio);
+
+          // Append profile and cover pictures if they exist
+          if (profileInputFile.files[0]) {
+            formDataToSend.append("profilePic", profileInputFile.files[0]);
+          }
+
+          if (coverInputFile.files[0]) {
+            formDataToSend.append("coverPic", coverInputFile.files[0]);
+          }
+
+          postRegisterData(formDataToSend)
             .then((response) => {
               if (response.status === 201) {
                 // Remove form data from localStorage
@@ -159,10 +158,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 axios.defaults.headers.common[
                   "Authorization"
                 ] = `Bearer ${response.data}`;
-
-                // Save profile picture and cover picture to device storage
-                uploadProfilePicture(formData.studentId);
-                uploadCoverPicture(formData.studentId);
 
                 // Redirect to the homepage
                 window.location.href = "/pages/homePage.html";
