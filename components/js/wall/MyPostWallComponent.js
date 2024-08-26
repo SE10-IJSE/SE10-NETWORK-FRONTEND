@@ -1,42 +1,44 @@
-$(document).ready(function() {
+$(document).ready(function () {
+  LoadCards();
+  $(window).resize(function () {
     LoadCards();
-    $(window).resize(function () {
-        LoadCards();
-    });
-    $('.postMoreOption').css('display', 'none');
+  });
+  $(".postMoreOption").css("display", "none");
 });
 
-function LoadCards(){
-    $("#myPostWallComponent .postCards").empty();
-    const isMobile=window.innerWidth <=767;
-    for (let i = 0; i < 10; i++) {
-        if (isMobile) {
-            $("#myPostWallComponent").append(PostCardMobile());
-        } else {
-            $("#myPostWallComponent").append(MyPostCard());
-        }
+function LoadCards() {
+  $("#myPostWallComponent .postCards").empty();
+  const isMobile = window.innerWidth <= 767;
+  for (let i = 0; i < 10; i++) {
+    if (isMobile) {
+      $("#myPostWallComponent").append(PostCardMobile());
+    } else {
+      $("#myPostWallComponent").append(MyPostCard());
     }
+  }
 }
 
 var flag = false;
 
-$('#myPostWallComponent').on('click', '.postMore', function() {
-    $('#myPostWallComponent .postMoreOption').hide();
-    if (flag === false) {
-        $(this).closest('.postCard').find('.postMoreOption').css('display', 'block');
-        flag = true;
-    }
-    else {
-        $(this).closest('.postCard').find('.postMoreOption').css('display', 'none');
-        flag = false;
-    }
+$("#myPostWallComponent").on("click", ".postMore", function () {
+  $("#myPostWallComponent .postMoreOption").hide();
+  if (flag === false) {
+    $(this)
+      .closest(".postCard")
+      .find(".postMoreOption")
+      .css("display", "block");
+    flag = true;
+  } else {
+    $(this).closest(".postCard").find(".postMoreOption").css("display", "none");
+    flag = false;
+  }
 });
 
 const MyPostCard = () => {
-    return `
+  return `
     <div class="p-5 mb-3 postCard" id="postCard">
         <div class="list-group postMoreOption">
-            <a href="#" class="list-group-item list-group-item-action d-flex align-items-center ">
+            <a href="#" class="list-group-item list-group-item-action d-flex align-items-center postInfoPopup ">
                 <img src="/assets/icons/info.png"> <div class="option">Post Info</div>
             </a>
             <a href="#" class="list-group-item list-group-item-action d-flex align-items-center">
@@ -73,10 +75,10 @@ const MyPostCard = () => {
         </div>
     </div>
     `;
-}
+};
 
 const PostCardMobile = () => {
-    return `
+  return `
     <div id="postCardMobile" class="p-3 mb-3">
             <div>
                 <div class="d-flex justify-content-between">
@@ -110,3 +112,24 @@ const PostCardMobile = () => {
         </div>
     `;
 };
+
+// ---------------------------post-info-popup---------------------------------------
+$("#myPostWallComponent").on("click", ".postInfoPopup", function () {
+  showModal();
+});
+
+$("#cancelInfo").on("click", closeModal);
+
+function showModal() {
+  $("#popupModal").css("display", "flex");
+  setTimeout(function () {
+    $("#popupModal").addClass("active");
+  }, 10);
+}
+
+function closeModal() {
+  $("#popupModal").removeClass("active");
+  setTimeout(function () {
+    $("#popupModal").css("display", "none");
+  }, 300);
+}

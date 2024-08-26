@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css" />
   <link rel="stylesheet" href="/assets/css/styles.css" />
   <link rel="stylesheet" href="/assets/css/postMoreOptionsPopUp.css">
+  <link rel="stylesheet" href="/assets/css/postInfoPopup.css">
   <link rel="stylesheet" href="/components/css/wall/MyPostWallComponent.css" />
   <link rel="stylesheet" href="/components/css/PostCardComponent.css" />
   <link rel="stylesheet" href="/components/css/CreatePostCardComponent.css" />
@@ -56,6 +57,23 @@
       <div class="postCards"></div>
     </div>
   </section>
+
+  <!-- post-info-popup -->
+  <div id="popupModal" class="modal">
+    <div class="modal-content">
+        <p class="modal-header">Post Information</p>
+        <div class="modal-info">
+            <p><span class="modal-subheader">Posted Date:</span> 12/08/2024</p>
+            <p><span class="modal-subheader">Posted Time:</span> 21:30</p>
+        </div>
+        <div class="modal-info">
+            <p><span class="modal-subheader">Approved By:</span> John Edrick</p>
+        </div>
+        <div class="modal-actions">
+            <button id="cancelInfo" class="btn-cancel">Cancel</button>
+        </div>
+    </div>
+  </div>
 </div>
 
 <script src="/assets/jquery/jquery-3.7.1.min.js"></script>
