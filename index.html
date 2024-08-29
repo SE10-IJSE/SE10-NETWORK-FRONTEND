@@ -19,17 +19,17 @@
 
   <body>
     <div
-      class="container p-0 d-flex h-100 flex-column-reverse flex-lg-row"
+      class="container p-0 d-flex flex-column-reverse flex-lg-row"
       id="container"
     >
-      <div class="form-container register-container">
+      <div class="form-container register-container p-0">
         <form
           id="login"
-          class="w-100 px-3 mx-3 px-sm-4 mx-sm-4 px-md-5 mx-md-5"
+          class="w-100 px-3 mx-3 px-sm-4 mx-sm-4 px-md-5 mx-md-5 px-lg-3 mx-lg-4 mx-xl-5"
         >
           <div class="reg-line">
             <div class="line"></div>
-            <h3>Login Form</h3>
+            <h3 class="mb-0 mx-2">Login Form</h3>
           </div>
 
           <h1 class="font-semibold w-100">Where ideas meet execution</h1>
@@ -40,26 +40,26 @@
             <label for="email" class="txt-label">Email</label>
           </div>
 
-          <div
-            class="input-container"
-            style="margin-top: 40px; margin-bottom: 40px"
-          >
-            <input
-              type="password"
-              placeholder=""
-              class="txt-field"
-              id="password"
-            />
-            <label for="password" class="txt-label">Password</label>
-            <i class="ri-eye-line" id="togglePassword"></i>
+          <div class="password-container mb-xl-5 mb-lg-3">
+            <div class="input-container" style="margin-top: 40px; margin-bottom: 30px;">
+              <input type="password" placeholder="" class="txt-field" id="password">
+              <label for="password" class="txt-label">Password</label>
+              <i class="ri-eye-line" id="togglePassword"></i>
+            </div>
+            <div class="remember-container">
+              <label for="rememberMe">
+                <input type="checkbox" id="rememberMe" class="remember-checkbox">
+                Remember Me
+              </label>
+            </div>
           </div>
 
           <div
             class="not-acc-container align-items-center mt-5 d-flex flex-column flex-md-row gap-4 gap-md-0"
           >
             <input type="submit" value="LOGIN" class="btn" />
-            <p class="not-acc">
-              Have not an account ? <span id="register">Register</span> Now.
+            <p class="not-acc mb-0">
+              Don't have an account ? <span id="register">Register</span> Now.
             </p>
           </div>
         </form>

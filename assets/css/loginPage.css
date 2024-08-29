@@ -132,7 +132,7 @@ h3 {
 h4 {
   font-size: 15px;
   color: #b2b2b2;
-  margin: 0 0 35px 0;
+  margin: 0 0 50px 0;
 }
 
 .input-container {
@@ -143,8 +143,6 @@ h4 {
 .password-container {
   width: 100%;
   position: relative;
-  margin-top: 30px;
-  margin-bottom: 100px;
 }
 
 .password-container .txt-field {
@@ -165,7 +163,6 @@ h4 {
   position: absolute;
   right: 0;
   top: 100%;
-  margin-top: 25px;
   font-size: 14px;
 }
 
@@ -299,9 +296,78 @@ input[type="checkbox"] {
   .not-acc {
     font-size: 13px;
   }
+
+  .container{
+    height: 100%;
+  }
 }
 
-@media screen and (max-width: 992px) and (min-width: 768px) {
+/* Responsive */
+
+@media screen and (max-width: 1320px) {
+  .container {
+    max-width: 1200px;
+  }
+}
+
+@media screen and (max-width: 1250px) {
+  .container {
+    max-width: 1100px;
+  }
+
+  .line {
+    width: 35px;
+  }
+
+  h3 {
+    font-size: 12px;
+  }
+
+  h1 {
+    font-size: 25px;
+    margin-bottom: 5px;
+  }
+
+  h4 {
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .container {
+    max-width: 1050px;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .container {
+    max-width: 950px;
+  }
+
+  .remember-container label {
+    font-size: 12px;
+  }
+
+  .btn {
+    width: 160px;
+    font-size: 13px;
+  }
+
+  .small-image {
+    width: 100px;
+  }
+
+  .txt-label {
+    font-size: 14px;
+  }
+
+  form {
+    padding: 0 30px;
+  }
+
+}
+
+@media screen and (max-width: 991px) and (min-width: 768px) {
   .btn {
     width: 30vw;
     font-size: 16px;
@@ -347,7 +413,6 @@ input[type="checkbox"] {
   }
 
   .remember-container {
-    margin-top: 20px;
     font-size: 12px;
   }
 
@@ -360,6 +425,7 @@ input[type="checkbox"] {
   #togglePassword {
     font-size: 20px;
   }
+
 }
 
 @media screen and (max-width: 768px) and (min-width: 500px) {
