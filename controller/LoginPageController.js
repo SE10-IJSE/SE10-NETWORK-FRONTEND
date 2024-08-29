@@ -4,7 +4,23 @@ document.addEventListener("DOMContentLoaded", function () {
   const jwtToken = getJwtToken();
 
   if (jwtToken) {
-    window.location.href = "/pages/homePage.html";
+    axios.defaults.headers.common["Authorization"] = `Bearer ${jwtToken}`;
+
+    getTokenValidation()
+      .then((response) => {
+        if (response.data === true) {
+          // Token is valid, redirect to the home page
+          window.location.href = "/pages/homePage.html";
+        } else {
+          // Token is invalid, proceed with the login page
+          loadLoginPage();
+        }
+      })
+      .catch((error) => {
+        console.error("Token validation failed:", error);
+        // Load the login page in case of an error
+        loadLoginPage();
+      });
   } else {
     // No token found, load the login page
     loadLoginPage();
