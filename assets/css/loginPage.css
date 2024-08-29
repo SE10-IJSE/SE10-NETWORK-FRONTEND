@@ -276,34 +276,6 @@ input[type="checkbox"] {
   color: #e90708;
 }
 
-/* **************responsive mobile view login page => 991px to 360px****************/
-
-@media screen and (max-width: 991px) and (min-width: 360px) {
-  .reg-bg {
-    width: 100%;
-    max-height: 200px;
-  }
-
-  .reg-bg .mobile-img {
-    width: 100vw;
-    height: 200px;
-  }
-
-  form {
-    max-width: 992px;
-  }
-
-  .not-acc {
-    font-size: 13px;
-  }
-
-  .container{
-    height: 100%;
-  }
-}
-
-/* Responsive */
-
 @media screen and (max-width: 1320px) {
   .container {
     max-width: 1200px;
@@ -365,6 +337,30 @@ input[type="checkbox"] {
     padding: 0 30px;
   }
 
+}
+
+@media screen and (max-width: 991px) {
+  .reg-bg {
+    width: 100%;
+    max-height: 200px;
+  }
+
+  .reg-bg .mobile-img {
+    width: 100vw;
+    height: 200px;
+  }
+
+  form {
+    max-width: 992px;
+  }
+
+  .not-acc {
+    font-size: 13px;
+  }
+
+  .container{
+    height: 100%;
+  }
 }
 
 @media screen and (max-width: 991px) and (min-width: 768px) {
@@ -442,5 +438,16 @@ input[type="checkbox"] {
   .txt-field {
     height: 60px;
     font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  h1 {
+    font-size: 17px;
+  }
+
+  h4 {
+    font-size: 12px;
+    margin: 0 0 35px 0;
   }
 }
