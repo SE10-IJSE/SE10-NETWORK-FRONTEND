@@ -35,6 +35,23 @@ export const updateUserData = (data) => {
     });
 };
 
+export const deleteUser = (id) => {
+  let config = {
+    method: "delete",
+    maxBodyLength: Infinity,
+    url: `http://localhost:8080/api/v1/user/${id}`,
+  };
+
+  return axios(config)
+    .then((response) => {
+      console.log("Delete successful:", response.code);
+    })
+    .catch((error) => {
+      console.error("Delete failed:", error);
+      throw error;
+    });
+};
+
 export const updateUserPhoto = (formData) => {
   let config = {
     method: "put",
