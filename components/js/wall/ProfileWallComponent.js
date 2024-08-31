@@ -1,7 +1,10 @@
 import { getUserData } from "../../../model/UserProfileModel.js";
-import { updateUserData } from "../../../model/UserProfileModel.js";
-import { updateUserPhoto } from "../../../model/UserProfileModel.js";
-import { deleteUserPhoto } from "../../../model/UserProfileModel.js";
+import {
+  updateUserData,
+  deleteUser,
+  updateUserPhoto,
+  deleteUserPhoto,
+} from "../../../model/UserProfileModel.js";
 
 function togglePassword(inputId, element) {
   const input = document.getElementById(inputId);
@@ -51,6 +54,35 @@ document.addEventListener("DOMContentLoaded", async function () {
         const profilePicElement = document.querySelector(".profile-pic");
         if (userData.data.profileImg) {
           profilePicElement.src = `data:image/jpeg;base64,${userData.data.profileImg}`;
+        }
+
+        // Logout button click event
+        const logoutBtn = document.getElementById("logout-btn-desktop");
+        if (logoutBtn) {
+          logoutBtn.addEventListener("click", function () {
+            // Remove the JWT token from the cookie
+            document.cookie =
+              "jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            window.top.location.href = "/index.html";
+          });
+        }
+
+        // Delete button click event
+        const deleteBtn = document.getElementById("delete-btn");
+        if (deleteBtn) {
+          deleteBtn.addEventListener("click", async function () {
+            try {
+              const response = await deleteUser(userData.data.userId);
+              if (response.status === 204) {
+                // Remove the JWT token from the cookie
+                document.cookie =
+                  "jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                window.top.location.href = "/index.html";
+              }
+            } catch (error) {
+              console.error("Error deleting user:", error);
+            }
+          });
         }
       }
     } catch (error) {

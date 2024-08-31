@@ -153,11 +153,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Remove form data from localStorage
                 localStorage.removeItem("registrationFormData");
 
-                // Set the JWT token in a cookie and authorization header
+                // Set the JWT token in a cookie
                 document.cookie = `jwt=${response.data.data.token}; path=/`;
-                axios.defaults.headers.common[
-                  "Authorization"
-                ] = `Bearer ${response.data}`;
 
                 // Redirect to the homepage
                 window.location.href = "/pages/homePage.html";

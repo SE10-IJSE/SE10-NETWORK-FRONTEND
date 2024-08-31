@@ -1,5 +1,8 @@
 import { getUserData } from "../model/UserProfileModel.js";
-import { getTokenValidation } from "../model/HomePageModel.js";
+import {
+  getTokenValidation,
+  getBirthdayNames,
+} from "../model/HomePageModel.js";
 
 $(document).ready(async function () {
   let jwtToken = getJwtToken();
@@ -14,20 +17,29 @@ $(document).ready(async function () {
           const userData = await getUserData();
           setUserProfileDetails(userData.data);
           changeButtonCss("home");
+          approveButtonVisibility(userData.data.role);
+
+          // Fetch and display birthday names
+          const birthdayResponse = await getBirthdayNames();
+          updateBirthdaySection(birthdayResponse.data);
         } catch (error) {
           console.error("Error fetching user data:", error);
         }
 
         loadHomePage();
       } else {
-        window.location.href = "index.html";
+        document.cookie =
+          "jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        window.location.href = "/index.html";
       }
     } catch (error) {
+      document.cookie = "jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       console.error("Token validation failed:", error);
-      window.location.href = "index.html";
+      window.location.href = "/index.html";
     }
   } else {
-    window.location.href = "index.html";
+    document.cookie = "jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    window.location.href = "/index.html";
   }
 });
 
@@ -49,11 +61,20 @@ function setUserProfileDetails(user) {
   // Decode the Base64 strings and set the images
   if (user.profileImg) {
     const profilePicUrl = `data:image/png;base64,${user.profileImg}`;
+    // Set profile image in the main profile section
     $(".profileImage img").attr("src", profilePicUrl).css({
       "border-radius": "50%",
       width: "63px",
       height: "63px",
       border: "2px solid #fff",
+      "object-fit": "cover",
+    });
+
+    // Set profile image in the navbar
+    $("#navBar .profile img").attr("src", profilePicUrl).css({
+      "border-radius": "50%",
+      width: "40px",
+      height: "40px",
       "object-fit": "cover",
     });
   }
@@ -66,6 +87,33 @@ function setUserProfileDetails(user) {
       "border-radius": "15px 15px 0 0",
       "object-fit": "cover",
     });
+  }
+}
+
+function approveButtonVisibility(role) {
+  const approveButton = document.querySelector(".approveButton");
+  if (role === "ADMIN") {
+    approveButton.classList.remove("d-none");
+  } else {
+    approveButton.classList.add("d-none");
+  }
+}
+
+function updateBirthdaySection(birthdays) {
+  const birthdayText = $(".birthDays p");
+  if (birthdays.length === 0) {
+    birthdayText.text("No one has birthdays today");
+  } else if (birthdays.length === 1) {
+    birthdayText.text(`${birthdays[0]} has a birthday today`);
+  } else if (birthdays.length === 2) {
+    birthdayText.text(
+      `${birthdays[0]} and ${birthdays[1]} have birthdays today`
+    );
+  } else {
+    const moreCount = birthdays.length - 2;
+    birthdayText.text(
+      `${birthdays[0]}, ${birthdays[1]} +${moreCount} more have birthdays today`
+    );
   }
 }
 
@@ -156,6 +204,15 @@ function loadHomePage() {
   $(".bottom-nav-bar .profile-nav").click(function () {
     $("#homePage .homeWallComponent iframe")
       .attr("src", "/components/pages/wall/profileWallComponent.html")
+      .css({
+        "border-radius": "0",
+        "box-shadow": "none",
+      });
+  });
+
+  $(".bottom-nav-bar .myPost-nav").click(function () {
+    $("#homePage .homeWallComponent iframe")
+      .attr("src", "/components/pages/wall/myPostWallComponent.html")
       .css({
         "border-radius": "0",
         "box-shadow": "none",
