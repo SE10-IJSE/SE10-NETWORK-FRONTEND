@@ -1,392 +1,527 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rubik+Mono+One&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
-
 /* Retain box shadow and prevent color change for autofill in Chrome, Safari, and Edge */
 /* Chrome, Safari, Edge */
 input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 22.9px -6px rgba(0, 0, 0, 0.1), 0 0 0 1000px white inset !important;
-    -webkit-text-fill-color: black !important;
+  -webkit-box-shadow: 0 0 22.9px -6px rgba(0, 0, 0, 0.1),
+    0 0 0 1000px white inset !important;
+  -webkit-text-fill-color: black !important;
 }
 
 input:-webkit-autofill:focus {
-    -webkit-box-shadow: 0 0 22.9px -6px rgba(0, 0, 0, 0.1), 0 0 0 1000px white inset !important;
-    -webkit-text-fill-color: black !important;
+  -webkit-box-shadow: 0 0 22.9px -6px rgba(0, 0, 0, 0.1),
+    0 0 0 1000px white inset !important;
+  -webkit-text-fill-color: black !important;
 }
 
 input:-webkit-autofill:hover {
-    -webkit-box-shadow: 0 0 22.9px -6px rgba(0, 0, 0, 0.1), 0 0 0 1000px white inset !important;
-    -webkit-text-fill-color: black !important;
+  -webkit-box-shadow: 0 0 22.9px -6px rgba(0, 0, 0, 0.1),
+    0 0 0 1000px white inset !important;
+  -webkit-text-fill-color: black !important;
 }
 
 input:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 22.9px -6px rgba(0, 0, 0, 0.1), 0 0 0 1000px white inset !important;
-    -webkit-text-fill-color: black !important;
+  -webkit-box-shadow: 0 0 22.9px -6px rgba(0, 0, 0, 0.1),
+    0 0 0 1000px white inset !important;
+  -webkit-text-fill-color: black !important;
 }
 
 /* Firefox */
 input:-moz-autofill {
-    box-shadow: 0 0 22.9px -6px rgba(0, 0, 0, 0.1), 0 0 0 1000px white inset !important;
-    -moz-text-fill-color: black !important;
+  box-shadow: 0 0 22.9px -6px rgba(0, 0, 0, 0.1), 0 0 0 1000px white inset !important;
+  -moz-text-fill-color: black !important;
 }
 
 input:-moz-autofill:focus {
-    box-shadow: 0 0 22.9px -6px rgba(0, 0, 0, 0.1), 0 0 0 1000px white inset !important;
-    -moz-text-fill-color: black !important;
+  box-shadow: 0 0 22.9px -6px rgba(0, 0, 0, 0.1), 0 0 0 1000px white inset !important;
+  -moz-text-fill-color: black !important;
 }
 
 input:-moz-autofill:hover {
-    box-shadow: 0 0 22.9px -6px rgba(0, 0, 0, 0.1), 0 0 0 1000px white inset !important;
-    -moz-text-fill-color: black !important;
+  box-shadow: 0 0 22.9px -6px rgba(0, 0, 0, 0.1), 0 0 0 1000px white inset !important;
+  -moz-text-fill-color: black !important;
 }
 
 input:-moz-autofill:active {
-    box-shadow: 0 0 22.9px -6px rgba(0, 0, 0, 0.1), 0 0 0 1000px white inset !important;
-    -moz-text-fill-color: black !important;
+  box-shadow: 0 0 22.9px -6px rgba(0, 0, 0, 0.1), 0 0 0 1000px white inset !important;
+  -moz-text-fill-color: black !important;
 }
+
 html,
 body {
-    background-color: #f6f5f7;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-family: "Poppins", sans-serif;
-    overflow: hidden;
-    height: 100vh;
+  background-color: #f6f5f7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Poppins", sans-serif;
+  overflow: hidden;
+  height: 100vh;
+  margin: 0;
 }
 
 .small-image {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 150px;
-    height: auto;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 150px;
+  height: auto;
 }
 
 .reg-bg,
 .form-container {
-    flex: 1;
-    /* Divides the container into two equal parts */
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  flex: 1;
+  /* Divides the container into two equal parts */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .reg-bg img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-form{
-    background-color: #FFFAFA;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    flex-direction: column;
-    padding-left: 70px;
-    height: 100%;
+form {
+  background-color: #fffafa;
+  width: 100%;
+  max-width: 494px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
 }
 
-.container{
-    background-color: #FFFAFA;
-    box-shadow: 0px 0px 22.9px -6px rgba(0, 0, 0, 0.1);
-    position: relative;
-    overflow: hidden;
-    width: 1280px;
-    max-width: 100%;
-    height: 830px;
-    display: flex;
+.container {
+  background-color: #fffafa;
+  box-shadow: 0px 0px 22.9px -6px rgba(0, 0, 0, 0.1);
+  position: relative;
+  max-width: 1280px;
+  /* max-width: 100%; */
+  max-height: 832px;
+  display: flex;
 }
 
 .reg-bg {
-    flex: 1;
-    /* Takes up 50% of the width */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    position: absolute;
-    right: 0;
-    top: 0;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Image styling */
 .reg-bg img {
-    width: 640px;
-    height: auto;
-    object-fit: cover;
-    object-position: center;
-    background-size: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
-.form-container{
-    position: absolute;
-    top: 0;
-    height: 100%;
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.form-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-h3{
-    font-size: 14px;
-    color: #7B7B7B;
+h3 {
+  font-size: 14px;
+  color: #7b7b7b;
 }
 
-h1{
-    font-size: 32px;
-    margin: 30px 0 0 0;
+h1 {
+  font-size: 32px;
+  margin: 30px 0 0 0;
 }
 
-h4{
-    font-size: 15px;
-    color: #B2B2B2;
-    margin: 0 0 35px 0;
+h4 {
+  font-size: 15px;
+  color: #b2b2b2;
+  margin: 0 0 35px 0;
 }
 
-.reg-line{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
+.reg-line {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
 }
 
-.line{
-    background-color: #E90708;
-    width: 43px;
-    height: 2px;
+.line {
+  background-color: #e90708;
+  width: 43px;
+  height: 2px;
 }
 
-.first-container{
-    display: flex;
-    flex-direction: row;
-    gap: 184px;
+.first-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
 }
 
 /*Batch Combo Box CSS*/
 
 select {
-    height: 30px;
-    width: 140px;
-    margin-top: 13px;
-    border-radius: 5px;
-    color: #7B7B7B;
-    font-weight: 500;
-    padding-left: 8px;
-    border: none;
-    box-shadow: 0px 0px 22.9px -6px rgba(0, 0, 0, 0.1);
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-image: url('/assets/icons/down.png');
-    background-repeat: no-repeat;
-    background-position: right 10px center;
-    background-size: 16px 16px;
+  height: 30px;
+  width: 140px;
+  margin-top: 9px;
+  border-radius: 5px;
+  color: #7b7b7b;
+  font-weight: 500;
+  padding-left: 8px;
+  border: none;
+  box-shadow: 0px 0px 22.9px -6px rgba(0, 0, 0, 0.1);
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("/assets/icons/down.png");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px 16px;
+}
+
+.w-35 {
+  width: 140px;
+}
+
+.fs-6 {
+  font-size: 0.9rem !important;
 }
 
 select option {
-    background-color: white; 
-    color: gray; 
+  background-color: white;
+  color: gray;
 }
 
 select option:checked {
-    background-color: #fcc0c0; /* Change this to your desired color */
-    color: #000; /* Change this to your desired text color */
+  background-color: #fcc0c0; /* Change this to your desired color */
+  color: #000; /* Change this to your desired text color */
 }
 
 select:focus {
-    outline: 2px solid #E90708;
-    background-color: rgb(255, 255, 255);
+  outline: 2px solid #e90708;
+  background-color: rgb(255, 255, 255);
 }
 
 /*First 3 Input Fields CSS*/
 
 .input-container {
-    position: relative;
-    width: 100%;
+  position: relative;
+  width: 100%;
 }
 
 .txt-field {
-    width: 100%;
-    height: 66px;
-    border-radius: 8px;
-    box-shadow: 0px 0px 22.9px -6px rgba(0, 0, 0, 0.1);
-    border: none;
-    padding: 25px 50px 15px 30px;
-    font-weight: bold;
-    font-size: 16px;
-    background-color: white;
-    box-sizing: border-box;
+  width: 100%;
+  height: 66px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 22.9px -6px rgba(0, 0, 0, 0.1);
+  border: none;
+  padding: 25px 50px 15px 30px;
+  font-weight: bold;
+  font-size: 16px;
+  background-color: white;
+  box-sizing: border-box;
 }
 
 .txt-field:focus {
-    outline: 2px solid #E90708;
-    background-color: white;
+  outline: 2px solid #e90708;
+  background-color: white;
 }
 
 .txt-field::placeholder {
-    color: #999;
-    opacity: 1;
-    transition: color 0.2s ease-out;
+  color: #999;
+  opacity: 1;
+  transition: color 0.2s ease-out;
 }
 
 .txt-field:focus::placeholder {
-    color: #E90708;
+  color: #e90708;
 }
 
-.txt-field:focus+.txt-label,
-.txt-field:not(:placeholder-shown)+.txt-label {
-    top: 18px;
-    left: 25px;
-    font-size: 12px;
-    color: #E90708;
-    z-index: 10;
+.txt-field:focus + .txt-label,
+.txt-field:not(:placeholder-shown) + .txt-label {
+  top: 18px;
+  left: 25px;
+  font-size: 12px;
+  color: #e90708;
+  z-index: 10;
 }
 
-.txt-field:focus+.name,
-.txt-field:not(:placeholder-shown)+.name {
-    top: 38px;
+.txt-field:focus + .name,
+.txt-field:not(:placeholder-shown) + .name {
+  top: 38px;
 }
 
-.txt-field:focus+.email,
-.txt-field:not(:placeholder-shown)+.email {
-    top: 38px;
+.txt-field:focus + .email,
+.txt-field:not(:placeholder-shown) + .email {
+  top: 38px;
 }
 
 .txt-label {
-    position: absolute;
-    left: 30px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 16px;
-    color: #999;
-    pointer-events: none;
-    transition: all 0.2s ease-out;
-    background-color: transparent;
-    padding: 0 5px;
-    font-weight: normal;
-    z-index: 1;
+  position: absolute;
+  left: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #999;
+  pointer-events: none;
+  transition: all 0.2s ease-out;
+  background-color: transparent;
+  padding: 0 5px;
+  font-weight: normal;
+  z-index: 1;
 }
 
-.name, .email , .dob{
-    top: 62%;
+.name,
+.email,
+.dob {
+  top: 62%;
 }
 
-#email{
-    margin-top: 20px;
+#email {
+  margin-top: 20px;
 }
 
-#name{
-    margin-top: 20px; 
+#name {
+  margin-top: 20px;
 }
 
 /*Password CSS*/
-.password{
-    display: flex;
-    flex-direction: row;
-    gap: 14px;
-}
-
-#password{
-    width: 250px;
-}
-
-#password-confirm{
-    width: 250px;
+.password {
+  display: flex;
+  flex-direction: row;
+  gap: 14px;
 }
 
 #togglePassword {
-    position: absolute;
-    top: 50%;
-    right: 15px;
-    /* Position inside the input field */
-    transform: translateY(-50%);
-    cursor: pointer;
-    font-size: 24px;
-    color: #E90708;
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  /* Position inside the input field */
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 24px;
+  color: #e90708;
 }
 
 #togglePassword:hover {
-    color: #E90708;
+  color: #e90708;
 }
 
 #togglePasswordConfirm {
-    position: absolute;
-    top: 50%;
-    right: 15px;
-    /* Position inside the input field */
-    transform: translateY(-50%);
-    cursor: pointer;
-    font-size: 24px;
-    color: #E90708;
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  /* Position inside the input field */
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 24px;
+  color: #e90708;
 }
 
 #togglePasswordConfirm:hover {
-    color: #E90708;
+  color: #e90708;
 }
 /*Date-Of-Birth Containor*/
 
-#dob{
-    margin-top: 20px; 
+#dob {
+  margin-top: 20px;
 }
 
-.txt-field:focus+.dob,
-.txt-field:not(:placeholder-shown)+.dob {
-    top: 38px;
+.txt-field:focus + .dob,
+.txt-field:not(:placeholder-shown) + .dob {
+  top: 38px;
 }
 
-.dob{
-    top: 60%;
+.dob {
+  top: 60%;
 }
 
 /* Hide the default date input icon */
 input[type="date"]::-webkit-calendar-picker-indicator {
-    display: none;
-    -webkit-appearance: none;
+  display: none;
+  -webkit-appearance: none;
 }
 
 /* Hide the icon for Firefox */
 input[type="date"] {
-    appearance: textfield;
+  appearance: textfield;
 }
 
-.btn{
-    background-color: #E90708;
-    border-radius: 28px;
-    height: 44px;
-    width: 190px;
-    border: none;
-    color: white;
-    font-weight: bold;
-    font-size: 15px;
+.btn {
+  background-color: #e90708;
+  border-radius: 28px;
+  height: 44px;
+  width: 190px;
+  border: none;
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
 }
 
-#login{
-    cursor: pointer;
+#login {
+  cursor: pointer;
 }
 
-.not-acc-container{
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    margin-top: 20px; 
+.not-acc-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
 }
 
-.not-acc{
-    color: #949494;
-    font-size: 11px;
-    font-weight: bold;
+.not-acc {
+  color: #949494;
+  font-size: 11px;
+  font-weight: bold;
 }
 
-.not-acc span{
-    color: #E90708;
+.not-acc span {
+  color: #e90708;
 }
 
-.se10{
-    position: absolute;
-    font-family: "Rubik Mono One", monospace;
-    font-weight: 400;
-    font-style: normal;
+.se10 {
+  position: absolute;
+  font-family: "Rubik Mono One", monospace;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Responsive */
+
+@media screen and (max-width: 1320px) {
+  .container {
+    max-width: 1200px;
+  }
+
+  .txt-field {
+    height: 60px;
+  }
+
+  #dob {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 1250px) {
+  .container {
+    max-width: 1100px;
+  }
+
+  .line {
+    width: 35px;
+  }
+
+  h3 {
+    font-size: 12px;
+  }
+
+  h1 {
+    font-size: 25px;
+    margin-bottom: 5px;
+  }
+
+  h4 {
+    font-size: 13px;
+  }
+
+  .txt-label {
+    font-size: 14px;
+  }
+
+  .txt-field {
+    height: 55px;
+    font-size: 14px;
+  }
+
+  #name {
+    margin-top: 15px;
+  }
+
+  #email {
+    margin-top: 15px;
+  }
+
+  #dob {
+    margin-top: 15px;
+  }
+
+  .txt-field:focus + .email,
+  .txt-field:not(:placeholder-shown) + .email {
+    top: 30px;
+  }
+
+  .txt-field:focus + .name,
+  .txt-field:not(:placeholder-shown) + .name {
+    top: 30px;
+  }
+
+  .txt-field:focus + .dob,
+  .txt-field:not(:placeholder-shown) + .dob {
+    top: 30px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .container {
+    max-width: 1050px;
+  }
+
+  .not-acc-container {
+    margin-top: 15px;
+  }
+
+  .small-image {
+    width: 100px;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .container {
+    max-width: 950px;
+  }
+
+  .remember-container label {
+    font-size: 12px;
+  }
+
+  .btn {
+    width: 160px;
+    font-size: 13px;
+    height: 40px;
+  }
+
+  .txt-label {
+    font-size: 12px;
+  }
+
+  form {
+    padding: 0 30px;
+  }
+
+  h1 {
+    font-size: 23px;
+    margin-bottom: 3px;
+  }
+
+  h4 {
+    margin-bottom: 25px;
+  }
+
+  .small-image {
+    width: 70px;
+  }
+
+  #togglePasswordConfirm {
+    font-size: 22px;
+  }
+
+  #togglePassword {
+    font-size: 22px;
+  }
+
+  .fs-6 {
+    font-size: 0.8rem !important;
+  }
 }
