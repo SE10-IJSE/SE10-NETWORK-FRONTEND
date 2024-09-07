@@ -11,7 +11,25 @@ export const getUserData = () => {
       return response;
     })
     .catch((error) => {
-      console.error("Data Retrieved successfully:", error);
+      console.error("Data Retrieval failed:", error);
+      throw error;
+    });
+};
+
+export const getUserProfilePhoto = () => {
+  let config = {
+    method: "get",
+    maxBodyLength: Infinity,
+    url: "http://localhost:8080/api/v1/user/profileImg",
+  };
+
+  return axios(config)
+    .then((response) => {
+      console.log("Data Retrieved successfully");
+      return response.data;
+    })
+    .catch((error) => {
+      console.error("Data Retrieval failed:", error);
       throw error;
     });
 };
