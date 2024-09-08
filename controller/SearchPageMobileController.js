@@ -1,57 +1,212 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const searchInput = document.getElementById('searchInput');
-    const recentContainer = document.querySelector('.recent-list');
+import { searchUsers } from "../model/SearchPopupModel.js";
 
-    const handleRecentContainerClick = (event) => {
-        const target = event.target;
+$(document).ready(function () {
+  //Add jwt token in the header
+  let jwtToken = getJwtToken();
+  axios.defaults.headers.common["Authorization"] = `Bearer ${jwtToken}`;
 
-        if (target.classList.contains('remove-btn')) {
-            const recentItem = target.closest('.recent-item');
-            if (recentItem) {
-                recentItem.remove();
-                searchInput.value = '';
-            }
-        }
+  let currentPage = 0;
+  let isLoading = false;
+  let hasMoreResults = true;
+  let currentSearchTerm = "";
 
-        if (target.closest('.recent-item')) {
-            const recentItem = target.closest('.recent-item');
-            const itemName = recentItem.querySelector('span').textContent;
-            searchInput.value = itemName;
-        }
-    };
+  const $searchInput = $("#searchInput");
+  const $recentContainer = $(".recent-container");
+  const $recentList = $(".recent-list");
+  const $backButton = $(".back-button");
 
-    recentContainer.addEventListener('click', handleRecentContainerClick);
-
-    searchInput.addEventListener('keypress', (event) => {
-        if (event.key === 'Enter') {
-            event.preventDefault();
-
-            const query = searchInput.value.trim();
-            if (query) {
-                addRecentItem(query);
-                searchInput.value = '';
-            }
-        }
+  function initEventListeners() {
+    $searchInput.on("keypress", function (e) {
+      if (e.which === 13) {
+        e.preventDefault();
+        handleSearch();
+      }
     });
 
-    const addRecentItem = (name) => {
-        const recentItem = document.createElement('div');
-        recentItem.classList.add('recent-item');
+    $searchInput.on("input", function () {
+      if ($(this).val().trim() === "") {
+        resetSearch();
+        showRecentSearches();
+      }
+    });
 
-        const profileImg = document.createElement('img');
-        profileImg.src = '/assets/image/defaultprofile.jpg';
-        profileImg.alt = 'Profile Image';
-        recentItem.appendChild(profileImg);
+    $recentList.on("scroll", handleScroll);
+    $recentList.on("click", ".recent-item", handleResultClick);
+    $recentList.on("click", ".remove-btn", handleRemoveClick);
 
-        const nameSpan = document.createElement('span');
-        nameSpan.textContent = name;
-        recentItem.appendChild(nameSpan);
+    $backButton.on("click", function () {
+      // Backbutton function
+      console.log("Back button clicked");
+    });
+  }
 
-        const removeBtn = document.createElement('button');
-        removeBtn.classList.add('remove-btn');
-        removeBtn.innerHTML = '&times;';
-        recentItem.appendChild(removeBtn);
+  function handleSearch() {
+    const newSearchTerm = $searchInput.val().trim();
+    if (newSearchTerm !== currentSearchTerm) {
+      resetSearch();
+      currentSearchTerm = newSearchTerm;
+      if (currentSearchTerm) {
+        $recentContainer.find("h2").text("Results");
+        fetchAndDisplayResults();
+      } else {
+        $recentContainer.find("h2").text("Recent");
+        showRecentSearches();
+      }
+    }
+  }
 
-        recentContainer.appendChild(recentItem);
-    };
+  function resetSearch() {
+    currentPage = 0;
+    hasMoreResults = true;
+    currentSearchTerm = "";
+    clearResults();
+    $recentContainer.find("h2").text("Recent");
+  }
+
+  function fetchAndDisplayResults() {
+    if (isLoading || !hasMoreResults || !currentSearchTerm) return;
+
+    isLoading = true;
+    searchUsers(currentSearchTerm, currentPage)
+      .then(function (results) {
+        if (Array.isArray(results) && results.length > 0) {
+          displayResults(results);
+          currentPage++;
+          hasMoreResults = results.length === 10;
+        } else {
+          hasMoreResults = false;
+          displayNoResults();
+        }
+      })
+      .catch(function (error) {
+        console.error("Error fetching search results:", error);
+        if (error.response && error.response.status === 404) {
+          hasMoreResults = false;
+          displayNoResults();
+        } else {
+          displayError();
+        }
+      })
+      .finally(function () {
+        isLoading = false;
+      });
+  }
+
+  function displayResults(results) {
+    $.each(results, function (index, user) {
+      const listItem = $("<div>").addClass("recent-item").html(`
+          <img src="${
+            user.profileImg
+              ? `data:image/png;base64,${user.profileImg}`
+              : "/assets/image/profilePic.png"
+          }" alt="${user.name}">
+          <span>${user.name}</span>
+          <button class="remove-btn">&times;</button>
+        `);
+      listItem.data("user", user);
+      $recentList.append(listItem);
+    });
+  }
+
+  function displayNoResults() {
+    $recentList.html('<div class="recent-item">No results found</div>');
+  }
+
+  function displayError() {
+    $recentList.html(
+      '<div class="recent-item text-danger">An error occurred. Please try again.</div>'
+    );
+  }
+
+  function clearResults() {
+    $recentList.empty();
+  }
+
+  function handleScroll() {
+    const scrollTop = $recentList.scrollTop();
+    const scrollHeight = $recentList[0].scrollHeight;
+    const clientHeight = $recentList.height();
+
+    if (
+      scrollTop + clientHeight >= scrollHeight - 5 &&
+      !isLoading &&
+      hasMoreResults
+    ) {
+      console.log("Loading more results");
+      fetchAndDisplayResults();
+    }
+  }
+
+  function handleResultClick(event) {
+    const $clickedItem = $(event.currentTarget);
+    const userData = $clickedItem.data("user");
+
+    if (userData) {
+      saveRecentSearch(userData);
+      //Navigation logic to the selected users profile should implement here
+    }
+  }
+
+  function handleRemoveClick(event) {
+    event.stopPropagation();
+    const $clickedItem = $(event.target).closest(".recent-item");
+    const userData = $clickedItem.data("user");
+
+    if (userData) {
+      removeRecentSearch(userData);
+      $clickedItem.remove();
+    }
+  }
+
+  function saveRecentSearch(userData) {
+    let recentSearches = JSON.parse(
+      localStorage.getItem("recentSearches") || "[]"
+    );
+
+    const idExists = recentSearches.some((user) => user.name === userData.name);
+
+    if (!idExists) {
+      if (recentSearches.length === 5) {
+        recentSearches.shift();
+      }
+      recentSearches.push(userData);
+      localStorage.setItem("recentSearches", JSON.stringify(recentSearches));
+    }
+  }
+
+  function removeRecentSearch(userData) {
+    let recentSearches = JSON.parse(
+      localStorage.getItem("recentSearches") || "[]"
+    );
+    recentSearches = recentSearches.filter(
+      (user) => user.name !== userData.name
+    );
+    localStorage.setItem("recentSearches", JSON.stringify(recentSearches));
+  }
+
+  function showRecentSearches() {
+    const recentSearches = JSON.parse(
+      localStorage.getItem("recentSearches") || "[]"
+    );
+    clearResults();
+    if (recentSearches.length > 0) {
+      $recentContainer.find("h2").text("Recent");
+      displayResults(recentSearches.reverse());
+    } else {
+      displayNoResults();
+    }
+  }
+
+  initEventListeners();
+  showRecentSearches();
 });
+
+function getJwtToken() {
+  const cookies = document.cookie.split("; ");
+  for (let cookie of cookies) {
+    if (cookie.startsWith("jwt=")) {
+      return cookie.split("=")[1];
+    }
+  }
+  return null;
+}
