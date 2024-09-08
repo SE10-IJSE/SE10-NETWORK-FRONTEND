@@ -172,9 +172,7 @@ $(document).ready(function () {
 
     if (userData) {
       saveRecentSearch(userData);
-
       //Navigation logic to the selected users profile should implement here
-
       console.log("Clicked on user:", userData);
     }
   }
