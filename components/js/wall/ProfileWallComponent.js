@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       console.error("Error fetching user data:", error);
     }
   } else {
-    console.error("User email not found in local storage");
+    console.error("User token not found in cookies");
   }
 
   const editCoverPhotoBtn = document.getElementById("edit-cover-photo-btn");

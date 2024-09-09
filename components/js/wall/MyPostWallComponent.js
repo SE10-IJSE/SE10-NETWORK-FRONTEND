@@ -1,4 +1,43 @@
-$(document).ready(function () {
+import { getUserData } from "../../../model/UserProfileModel.js";
+
+$(document).ready(async function () {
+  const token = getJwtToken();
+  let userData;
+
+  if (token) {
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    try {
+      userData = await getUserData();
+      if (userData) {
+        // Populate profile info
+        $(".profile-info h1").text(userData.data.name);
+        $(".profile-info h3").text(`@${userData.data.userId}`);
+        $(".profile-info h4").text(userData.data.bio);
+
+        // Set cover photo
+        const coverPhotoElement = $(".profile-banner img");
+        if (userData.data.coverImg) {
+          coverPhotoElement.attr(
+            "src",
+            `data:image/jpeg;base64,${userData.data.coverImg}`
+          );
+        }
+
+        // Set profile photo
+        const profilePicElement = $(".profile-pic");
+        if (userData.data.profileImg) {
+          profilePicElement.attr(
+            "src",
+            `data:image/jpeg;base64,${userData.data.profileImg}`
+          );
+        }
+      }
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
+  } else {
+    console.error("User token not found in local storage");
+  }
   LoadCards();
   $(window).resize(function () {
     LoadCards();
@@ -132,4 +171,14 @@ function closeModal() {
   setTimeout(function () {
     $("#popupModal").css("display", "none");
   }, 300);
+}
+
+function getJwtToken() {
+  const cookies = document.cookie.split("; ");
+  for (let cookie of cookies) {
+    if (cookie.startsWith("jwt=")) {
+      return cookie.split("=")[1];
+    }
+  }
+  return null;
 }

@@ -98,9 +98,17 @@ function handleSavePost() {
   const postContentMobile = $("#createPostMobile input").val().trim();
 
   if (postContentWeb) {
-    savePost({ content: postContentWeb });
+    savePost({ content: postContentWeb }).then(() => {
+      $("#createPostWeb input")
+        .val("")
+        .attr("placeholder", "What's on your mind?");
+    });
   } else if (postContentMobile) {
-    savePost({ content: postContentMobile });
+    savePost({ content: postContentMobile }).then(() => {
+      $("#createPostMobile input")
+        .val("")
+        .attr("placeholder", "What's on your mind?");
+    });
   } else {
     console.error("Post content is empty.");
   }
@@ -171,14 +179,15 @@ async function LoadCards() {
 }
 
 const PostCard = (post) => {
+  const profileImage = post.profileImg
+    ? `data:image/png;base64,${post.profileImg}`
+    : "/assets/image/profilePic.png";
   return `
         <div id="postCard" class="p-5 mb-3 rounded-4">
             <div>
                 <div class="d-flex justify-content-between">
                     <div class="d-flex gap-3 align-items-center">
-                        <img class="profileImage" src="data:image/png;base64,${
-                          post.profileImg
-                        }" alt="Profile Image">
+                        <img class="profileImage" src="${profileImage}" alt="Profile Image">
                         <div class="d-flex flex-column">
                             <h5 class="m-0">${post.userName}</h5>
                             <h6>${formatTime(post.updatedAt)}</h6>
@@ -209,14 +218,15 @@ const PostCard = (post) => {
 };
 
 const PostCardMobile = (post) => {
+  const profileImage = post.profileImg
+    ? `data:image/png;base64,${post.profileImg}`
+    : "/assets/image/profilePic.png";
   return `
         <div id="postCardMobile" class="p-3 mb-3">
             <div>
                 <div class="d-flex justify-content-between">
                     <div class="d-flex gap-3 align-items-center">
-                        <img class="profileImage" src="data:image/png;base64,${
-                          post.profileImg
-                        }" alt="Profile Image">
+                        <img class="profileImage" src="${profileImage}" alt="Profile Image">
                         <div class="d-flex flex-column mt-1">
                             <h5>${post.userName}</h5>
                             <h6>${formatTime(post.updatedAt)}</h6>

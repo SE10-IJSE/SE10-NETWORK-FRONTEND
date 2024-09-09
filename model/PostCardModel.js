@@ -44,21 +44,21 @@ export const updatePost = (data) => {
     });
 };
 
-// --- approve a post ---
-export const approvePost = (postId, adminId) => {
+// --- approve or decline a post ---
+export const approveOrDeclinePost = (postId, status) => {
   let config = {
     method: "put",
     maxBodyLength: Infinity,
-    url: `http://localhost:8080/api/v1/post/${postId}/status?adminId=${adminId}`,
+    url: `http://localhost:8080/api/v1/post/${postId}?status=${status}`,
   };
 
   return axios(config)
     .then((response) => {
-      console.log("Post approved successfully:", response.data);
+      console.log("Post status changed successfully:", response.data);
       return response;
     })
     .catch((error) => {
-      console.error("Unable to approve the post:", error);
+      console.error("Unable to change staus of the post:", error);
       throw error;
     });
 };

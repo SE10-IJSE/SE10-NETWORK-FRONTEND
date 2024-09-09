@@ -21,6 +21,7 @@
   height: 63px;
   border: 3px solid #04ff00;
   border-radius: 50%;
+  object-fit: cover;
 }
 
 #homeWallComponent .input-group {

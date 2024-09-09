@@ -12,22 +12,23 @@
     />
     <title>Document</title>
   </head>
-  <body class="p-3 bg-transparent">
-    <div class="menu">
-      <span class="approve-text">Approve</span>
-    </div>
+  <body class="p-2 bg-transparent">
     <div id="homeWallComponent">
       <!-- create post card -->
-      <div class="card border-0 rounded-4 mb-3">
-        <div class="card-body rounded-bottom-5 d-flex align-items-center gap-3">
-          <img src="../../../assets/image/profilePic.png" alt="Profile Image" />
+      <div class="card border-0 rounded-4 mb-3" id="createPostWeb">
+        <div class="card-header rounded-top-5">Post Something</div>
+        <div class="card-body rounded-bottom-5 d-flex align-items-center gap-4">
+          <img
+            src="../../../assets/image/profilePic.png"
+            alt="Profile Image"
+            class="profile-img"
+          />
           <div class="input-group flex-nowrap d-flex align-items-center">
             <input
-              id="addon-wrapping-search"
               type="text"
               class="form-control border-0"
-              placeholder="What’s on your mind ?"
-              aria-label="What’s on your mind ?"
+              placeholder="What's on your mind ?"
+              aria-label="What's on your mind ?"
               aria-describedby="addon-wrapping"
             />
             <span
@@ -47,6 +48,7 @@
 
     <script src="/assets/jquery/jquery-3.7.1.min.js"></script>
     <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="/components/js/wall/AdminApproveWallComponent.js"></script>
+    <script src="/assets/axios/axios.min.js"></script>
+    <script type="module" src="/components/js/wall/AdminApproveWallComponent.js"></script>
   </body>
 </html>
