@@ -80,7 +80,7 @@ const MyPostCard = () => {
             <a href="#" class="list-group-item list-group-item-action d-flex align-items-center postInfoPopup ">
                 <img src="/assets/icons/info.png"> <div class="option">Post Info</div>
             </a>
-            <a href="#" class="list-group-item list-group-item-action d-flex align-items-center">
+            <a href="#" class="list-group-item list-group-item-action d-flex align-items-center postDeletePopup">
                 <img src="/assets/icons/delete.png"> <div class="option">Delete Post</div>
             </a>
         </div>
@@ -157,6 +157,14 @@ $("#myPostWallComponent").on("click", ".postInfoPopup", function () {
   showModal();
 });
 
+$("#myPostWallComponent").on("click", ".postDeletePopup", function () {
+  $('#deletePopupModal').css("display", "flex");
+  setTimeout(function () {
+    $('#deletePopupModal').addClass("active");
+  }, 10);
+});
+
+
 $("#cancelInfo").on("click", closeModal);
 
 function showModal() {
@@ -182,3 +190,10 @@ function getJwtToken() {
   }
   return null;
 }
+
+$('#cancelDelete').on('click', function (){
+  $('#deletePopupModal').removeClass("active");
+  setTimeout(function () {
+    $('#deletePopupModal').css("display", "none");
+  }, 300);
+});

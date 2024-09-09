@@ -22,6 +22,7 @@
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="/assets/css/deleteConfirmationPopup.css" />
   </head>
 
   <body class="overflow-y-scroll mx-2">
@@ -80,6 +81,19 @@
           </div>
         </div>
       </div>
+
+      <!-- delete-confirmation-popup -->
+      <div id="deletePopupModal" class="modal">
+        <div class="modal-content">
+          <p class="modal-header w-100">Are you sure you want to delete the post?</p>
+          <p class="modal-subheader">This action can’t be reversed</p>
+          <div class="modal-actions d-flex gap-3">
+            <button id="cancelDelete" class="btn-cancel">Cancel</button>
+            <button id="confirmDelete" class="btn-delete">Delete post</button>
+          </div>
+        </div>
+      </div>
+
     </div>
 
     <script src="/assets/jquery/jquery-3.7.1.min.js"></script>
