@@ -13,10 +13,8 @@
     <link rel="stylesheet" href="../assets/css/registrationForm.css" />
   </head>
   <body>
-    <div
-      class="container p-0 d-flex flex-column-reverse flex-lg-row"
-      id="container"
-    >
+    <div class="container p-0 d-flex flex-column-reverse flex-lg-row" id="container">
+		
       <div class="form-container register-container p-0">
         <form id="Register-form-01" class="px-lg-3 mx-lg-4 mx-xl-5">
           <div class="first-container">
@@ -49,12 +47,12 @@
 
           <div class="input-container">
             <input type="text" placeholder=" " class="txt-field" id="name" />
-            <label for="name" class="txt-label name">Name</label>
+            <label for="name" class="txt-label">Name</label>
           </div>
 
           <div class="input-container">
             <input type="email" placeholder=" " class="txt-field" id="email" />
-            <label for="email" class="txt-label email">Email</label>
+            <label for="email" class="txt-label">Email</label>
           </div>
 
           <div class="input-container">
@@ -66,14 +64,23 @@
               onfocus="(this.type='date')"
               onblur="(this.type='text')"
             />
-            <label for="dob" class="txt-label dob">Date Of Birth</label>
+            <label for="dob" class="txt-label">Date Of Birth</label>
+          </div>
+
+          <!-- branch comboBox added -->
+          <div id="combo-mobile" class="input-container">
+            <select class="combo" style="margin-top: 0">
+              <option>Batch</option>
+              <option>gdse 68</option>
+              <option>gdse 69</option>
+              <option>gdse 70</option>
+              <option>gdse 71</option>
+              <option>gdse 72</option>
+            </select>
           </div>
 
           <div class="password">
-            <div
-              class="input-container"
-              style="margin-top: 20px; margin-bottom: 20px"
-            >
+            <div class="input-container">
               <input
                 type="password"
                 placeholder=""
@@ -83,10 +90,7 @@
               <label for="password" class="txt-label">Password</label>
               <i class="ri-eye-off-line" id="togglePassword"></i>
             </div>
-            <div
-              class="input-container"
-              style="margin-top: 20px; margin-bottom: 20px"
-            >
+            <div class="input-container" style="margin-bottom: 20px">
               <input
                 type="password"
                 placeholder=""
@@ -106,10 +110,24 @@
           </div>
         </form>
       </div>
+      <!-- cover image section -->
       <div class="reg-bg">
-        <img src="../assets/image/registrationBg.png" alt="" />
+        <!-- destop cover image section -->
+        <img
+          class="desktop-img"
+          src="../assets/image/registrationBg.png"
+          alt=""
+        />
+        <!-- mobile cover imgae section -->
+        <div class="mobile-img-contenor">
+          <img src="../assets/image/cover-background.jpeg" alt="" />
+          <div style="position: absolute">
+            <img src="../assets/image/SE10.png" alt="" />
+            <img src="../assets/image/Learn by Doing.png" alt="" />
+          </div>
+        </div>
       </div>
-
+      <!-- Bottem Image -->
       <img
         src="../assets/image/dots.png"
         alt="Small Image"

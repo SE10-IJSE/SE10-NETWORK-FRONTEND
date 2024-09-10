@@ -75,7 +75,27 @@ body {
   align-items: center;
 }
 
-.reg-bg img {
+.reg-bg > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.reg-bg > div {
+  display: contents;
+}
+
+.reg-bg {
+  border-radius: 0 0 10px 10px;
+}
+
+.reg-bg > div > div {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.reg-bg > div > img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -89,6 +109,14 @@ form {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+}
+
+#combo-mobile {
+  display: none;
+}
+
+body > div > div {
+  overflow: hidden;
 }
 
 .container {
@@ -106,14 +134,23 @@ form {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  overflow: hidden;
+  right: 0;
+  top: 0;
 }
 
 /* Image styling */
-.reg-bg img {
+.reg-bg > img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+.reg-bg .desktop-img {
   display: block;
+}
+.reg-bg .mobile-img-contenor {
+  display: none;
 }
 
 .form-container {
@@ -208,6 +245,7 @@ select:focus {
 .input-container {
   position: relative;
   width: 100%;
+  margin-top: 16px;
 }
 
 .txt-field {
@@ -278,19 +316,24 @@ select:focus {
   top: 62%;
 }
 
-#email {
+/* #email {
   margin-top: 20px;
 }
 
 #name {
   margin-top: 20px;
-}
+} */
 
 /*Password CSS*/
 .password {
   display: flex;
   flex-direction: row;
   gap: 14px;
+}
+
+.password > .input-container:nth-child(1) {
+  margin-bottom: 16px;
+  margin-top: 16px;
 }
 
 #togglePassword {
@@ -324,9 +367,9 @@ select:focus {
 }
 /*Date-Of-Birth Containor*/
 
-#dob {
+/* #dob {
   margin-top: 20px;
-}
+} */
 
 .txt-field:focus + .dob,
 .txt-field:not(:placeholder-shown) + .dob {
@@ -370,6 +413,9 @@ input[type="date"] {
   width: 100%;
   margin-top: 20px;
 }
+.not-acc-container > p {
+  margin-top: 16px;
+}
 
 .not-acc {
   color: #949494;
@@ -389,6 +435,672 @@ input[type="date"] {
 }
 
 /* Responsive */
+
+@media only screen and (max-width: 360px) and (min-width: 320px) {
+  html,
+  body {
+    padding: 0;
+    display: block;
+    background-color: #FFFAFA;
+  }
+
+  body > div > div {
+    overflow: auto;
+  }
+
+  body > div > div > form {
+    overflow: auto;
+  }
+
+  .container {
+    flex-direction: column-reverse;
+    max-height: auto;
+    box-shadow: none;
+  }
+  .form-container {
+    margin-top: 130px;
+  }
+
+  .reg-bg {
+    height: 116px;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    object-fit: cover;
+    background-size: cover;
+    width: 100%;
+    order: 1;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+
+    position: absolute;
+  }
+
+  .password > .input-container {
+    margin-top: 0;
+  }
+
+  .reg-bg .mobile-img-contenor {
+    display: contents;
+  }
+
+  .reg-bg > .desktop-img {
+    display: none;
+  }
+
+  .form-container {
+    height: 681px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  form {
+    height: 100%;
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  #combo-mobile {
+    display: block;
+  }
+  .reg-line {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+  }
+
+  h1 {
+    font-size: 19px;
+    margin: 5px 0 0 0;
+  }
+
+  h4 {
+    font-size: 10px;
+    color: #b2b2b2;
+    margin: 0 0 20px 0;
+  }
+
+  h3 {
+    font-size: 10px;
+  }
+  .txt-field {
+    height: 48px;
+    padding-left: 20px;
+    font-weight: 300;
+    font-size: 12px;
+  }
+
+  .combo {
+    height: 48px;
+    width: 100%;
+    padding-left: 20px;
+    font-weight: 300;
+    font-size: 12px;
+    background-color: white;
+    display: block;
+  }
+
+  .txt-label {
+    left: 20px;
+    top: 55%;
+    font-size: 12px;
+  }
+
+  .txt-field:focus + .txt-label,
+  .txt-field:not(:placeholder-shown) + .txt-label {
+    top: 15px;
+    left: 15px;
+    font-size: 10px;
+  }
+
+  #togglePassword {
+    font-size: 20px;
+  }
+  #togglePasswordConfirm {
+    font-size: 20px;
+  }
+
+  .password {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+  }
+  #password-confirm {
+    width: 100%;
+  }
+
+  #password {
+    width: 100%;
+  }
+  .not-acc-container {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .remember-container {
+    right: 0;
+    top: 100%;
+    margin-top: 10px;
+    font-size: 11px;
+  }
+
+  .remember-checkbox {
+    margin-right: 5px;
+    cursor: pointer;
+    width: 11px;
+    height: 11px;
+  }
+  #batchSelect {
+    display: none;
+  }
+  #confirm {
+    margin-top: 0px;
+    margin-bottom: 10px;
+  }
+}
+
+@media only screen and (max-width: 425px) and (min-width: 361px) {
+  html,
+  body {
+    padding: 0;
+    display: block;
+    max-width: 425px;
+    background-color: #FFFAFA;
+  }
+
+  body > div > div {
+    overflow: auto;
+  }
+
+  .container {
+    flex-direction: column-reverse;
+    max-height: auto;
+    box-shadow: none;
+  }
+  .form-container {
+    margin-top: 130px;
+  }
+
+  .reg-bg {
+    height: 116px;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    object-fit: cover;
+    background-size: cover;
+    width: 100%;
+    order: 1;
+
+    position: absolute;
+  }
+
+  .reg-bg .desktop-img {
+    display: none;
+  }
+  .reg-bg .mobile-img-contenor {
+    display: contents;
+  }
+
+  .form-container {
+    height: 681px;
+  }
+
+  form {
+    height: 565px;
+    padding: 20px 20px;
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  body > div > div > form {
+    height: auto;
+  }
+  body > div > div > form > div:nth-child(1){
+    margin-top: 20px;
+  }
+
+  #combo-mobile {
+    display: block;
+  }
+
+  .reg-line {
+    display: flex;
+    flex-direction: row;
+  }
+
+  h1 {
+    font-size: 19px;
+    margin: 5px 0 0 0;
+  }
+
+  h4 {
+    font-size: 10px;
+    color: #b2b2b2;
+    margin: 0 0 20px 0;
+  }
+
+  h3 {
+    font-size: 10px;
+  }
+  .txt-field {
+    height: 48px;
+    padding-left: 20px;
+    font-weight: 500;
+    font-size: 12px;
+  }
+
+  .combo {
+    height: 48px;
+    width: 100%;
+    padding-left: 20px;
+    font-weight: 500;
+    font-size: 12px;
+    background-color: white;
+    display: block;
+  }
+
+  .txt-label {
+    left: 20px;
+    top: 55%;
+    font-size: 12px;
+  }
+
+  .password > .input-container:nth-child(2) {
+    margin-top: 0;
+  }
+
+  .txt-field:focus + .txt-label,
+  .txt-field:not(:placeholder-shown) + .txt-label {
+    top: 15px;
+    left: 15px;
+    font-size: 10px;
+  }
+
+  #togglePassword {
+    font-size: 20px;
+  }
+  #togglePasswordConfirm {
+    font-size: 20px;
+  }
+
+  .password {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+  }
+
+  #password {
+    width: 100%;
+  }
+
+  #password-confirm {
+    width: 100%;
+  }
+
+  .not-acc-container {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .remember-container {
+    right: 0;
+    top: 100%;
+    margin-top: 10px;
+    font-size: 11px;
+  }
+
+  .remember-checkbox {
+    margin-right: 5px;
+    cursor: pointer;
+    width: 11px;
+    height: 11px;
+  }
+  #batchSelect {
+    display: none;
+  }
+  #confirm {
+    margin-top: 0px;
+    margin-bottom: 10px;
+  }
+}
+
+@media only screen and (max-width: 575px) and (min-width: 426px) {
+  html,
+  body {
+    padding: 0;
+    display: block;
+    max-width: 991px;
+    background-color: #FFFAFA;
+  }
+  .form-container {
+    margin-top: 100px;
+  }
+
+  .container {
+    flex-direction: column-reverse;
+    max-height: auto;
+    box-shadow: none;
+  }
+
+  .reg-bg {
+    height: 116px;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    object-fit: cover;
+    background-size: cover;
+    width: 100%;
+    order: 1;
+
+    position: absolute;
+  }
+
+  .reg-bg .mobile-img-contenor {
+    display: contents;
+  }
+
+  .reg-bg .desktop-img {
+    display: none;
+  }
+
+  .form-container {
+    height: 681px;
+  }
+
+  form {
+    height: 565px;
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  #combo-mobile {
+    display: block;
+  }
+
+  .reg-line {
+    display: flex;
+    flex-direction: row;
+  }
+
+  h1 {
+    font-size: 19px;
+    margin: 5px 0 0 0;
+  }
+
+  h4 {
+    font-size: 10px;
+    color: #b2b2b2;
+    margin: 0 0 20px 0;
+  }
+
+  h3 {
+    font-size: 10px;
+  }
+  .txt-field {
+    height: 48px;
+    padding-left: 20px;
+    font-weight: 500;
+    font-size: 12px;
+  }
+
+  .combo {
+    height: 48px;
+    width: 100%;
+    padding-left: 20px;
+    font-weight: 500;
+    font-size: 12px;
+    background-color: white;
+    display: block;
+  }
+
+  .txt-label {
+    left: 20px;
+    top: 55%;
+    font-size: 12px;
+  }
+
+  .password > .input-container:nth-child(2) {
+    margin-top: 0;
+  }
+
+  .txt-field:focus + .txt-label,
+  .txt-field:not(:placeholder-shown) + .txt-label {
+    top: 15px;
+    left: 15px;
+    font-size: 10px;
+  }
+
+  #togglePassword {
+    font-size: 20px;
+  }
+  #togglePasswordConfirm {
+    font-size: 20px;
+  }
+
+  .password {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  #password {
+    width: 100%;
+  }
+
+  #password-confirm {
+    width: 100%;
+  }
+
+  .not-acc-container {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .remember-container {
+    right: 0;
+    top: 100%;
+    margin-top: 10px;
+    font-size: 11px;
+  }
+
+  .remember-checkbox {
+    margin-right: 5px;
+    cursor: pointer;
+    width: 11px;
+    height: 11px;
+  }
+  #batchSelect {
+    display: none;
+  }
+  #confirm {
+    margin-top: 0px;
+    margin-bottom: 10px;
+  }
+}
+
+@media only screen and (max-width: 991px) and (min-width: 576px) {
+  .container {
+    margin-left: 0;
+    margin-right: 0;
+    max-width: 100vw !important;
+  }
+  html,
+  body {
+    padding: 0;
+    display: block;
+    max-width: 991px;
+    background-color: #FFFAFA;
+  }
+  .form-container {
+    margin-top: 135px;
+    height: 100%;
+  }
+  .container {
+    flex-direction: column-reverse;
+    max-height: auto;
+    box-shadow: none;
+  }
+
+  .reg-bg {
+    height: 116px;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    object-fit: cover;
+    background-size: cover;
+    width: 100%;
+    order: 1;
+
+    overflow: hidden;
+    position: absolute;
+  }
+  .reg-bg .mobile-img550 {
+    display: none;
+  }
+
+  .reg-bg .mobile-img-contenor {
+    display: contents;
+  }
+
+  .reg-bg .desktop-img {
+    display: none;
+  }
+
+  form {
+    height: 700px;
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  #combo-mobile {
+    display: block;
+  }
+
+  .reg-line {
+    display: flex;
+    flex-direction: row;
+  }
+
+  h1 {
+    font-size: 22px;
+    margin: 5px 0 0 0;
+  }
+
+  h4 {
+    font-size: 19px;
+    color: #b2b2b2;
+    margin: 0 0 20px 0;
+  }
+
+  h3 {
+    font-size: 18px;
+  }
+  .txt-field {
+    height: 48px;
+    padding-left: 20px;
+    font-weight: 500;
+    font-size: 12px;
+  }
+
+  .password > .input-container:nth-child(2) {
+    margin-top: 0;
+  }
+
+  .combo {
+    height: 48px;
+    width: 100%;
+    padding-left: 20px;
+    font-weight: 500;
+    font-size: 15px;
+    background-color: white;
+    display: block;
+  }
+
+  .txt-label {
+    left: 20px;
+    top: 55%;
+    font-size: 18px;
+  }
+
+  .txt-field:focus + .txt-label,
+  .txt-field:not(:placeholder-shown) + .txt-label {
+    top: 15px;
+    left: 15px;
+    font-size: 15px;
+  }
+
+  #togglePassword {
+    font-size: 30px;
+  }
+  #togglePasswordConfirm {
+    font-size: 30px;
+  }
+
+  .password {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+  }
+
+  .not-acc-container {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .remember-container {
+    right: 0;
+    top: 100%;
+    margin-top: 10px;
+    font-size: 11px;
+  }
+
+  .remember-checkbox {
+    margin-right: 5px;
+    cursor: pointer;
+    width: 11px;
+    height: 11px;
+  }
+  #batchSelect {
+    display: none;
+  }
+  #confirm {
+    margin-top: 0px;
+    margin-bottom: 10px;
+  }
+}
+
+@media only screen and (max-width: 1025px) and (min-width: 992px) {
+  .reg-bg > .mobile-img-contenor {
+    display: none;
+  }
+  .reg-bg {
+    border-radius: 0;
+    position: relative;
+  }
+  .reg-bg > .desktop-img {
+    display: block;
+  }
+  body{
+    background-color: #FFFAFA;
+  };
+}
 
 @media screen and (max-width: 1320px) {
   .container {
@@ -435,7 +1147,7 @@ input[type="date"] {
     font-size: 14px;
   }
 
-  #name {
+  /* #name {
     margin-top: 15px;
   }
 
@@ -445,7 +1157,7 @@ input[type="date"] {
 
   #dob {
     margin-top: 15px;
-  }
+  } */
 
   .txt-field:focus + .email,
   .txt-field:not(:placeholder-shown) + .email {
