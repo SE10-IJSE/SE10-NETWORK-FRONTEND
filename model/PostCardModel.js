@@ -22,15 +22,14 @@ export const savePost = (data) => {
 };
 
 // --- update post ---
-export const updatePost = (data) => {
+export const updatePost = (id, content) => {
   let config = {
     method: "put",
     maxBodyLength: Infinity,
-    url: "http://localhost:8080/api/v1/post",
+    url: `http://localhost:8080/api/v1/post/${id}?content=${content}`,
     headers: {
       "Content-Type": "application/json",
     },
-    data: data,
   };
 
   return axios(config)
@@ -49,7 +48,7 @@ export const approveOrDeclinePost = (postId, status) => {
   let config = {
     method: "put",
     maxBodyLength: Infinity,
-    url: `http://localhost:8080/api/v1/post/${postId}?status=${status}`,
+    url: `http://localhost:8080/api/v1/post/${postId}/status?status=${status}`,
   };
 
   return axios(config)
@@ -125,7 +124,7 @@ export const getUnapprovedPosts = (pageNo) => {
   let config = {
     method: "get",
     maxBodyLength: Infinity,
-    url: `http://localhost:8080/api/v1/post/unapproved?pageNo=${pageNo}&postCount=20`,
+    url: `http://localhost:8080/api/v1/post/unapproved?pageNo=${pageNo}&postCount=10`,
   };
 
   return axios(config)
@@ -136,5 +135,24 @@ export const getUnapprovedPosts = (pageNo) => {
     .catch((error) => {
       console.error("Unable to find the unapproved posts:", error);
       throw error;
+    });
+};
+
+// --- delete post ---
+export const deletePost = (postId) => {
+  let config = {
+    method: "delete",
+    maxBodyLength: Infinity,
+    url: `http://localhost:8080/api/v1/post/${postId}`,
+  };
+
+  return axios(config)
+    .then((response) => {
+      console.log("Post deleted successfully:", response.data);
+      return response;
+    })
+    .catch((error) => {
+      console.log("Post delete failed:", error);
+      return error;
     });
 };
