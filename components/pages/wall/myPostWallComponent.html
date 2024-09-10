@@ -1,84 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MY-POST-PAGE</title>
-  <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="/assets/css/styles.css" />
-  <link rel="stylesheet" href="/assets/css/postMoreOptionsPopUp.css">
-  <link rel="stylesheet" href="/assets/css/postInfoPopup.css">
-  <link rel="stylesheet" href="/components/css/wall/MyPostWallComponent.css" />
-  <link rel="stylesheet" href="/components/css/PostCardComponent.css" />
-  <link rel="stylesheet" href="/components/css/CreatePostCardComponent.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link
-          href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-          rel="stylesheet"
-  />
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MY-POST-PAGE</title>
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+    <link rel="stylesheet" href="/assets/css/postMoreOptionsPopUp.css" />
+    <link rel="stylesheet" href="/assets/css/postInfoPopup.css" />
+    <link
+      rel="stylesheet"
+      href="/components/css/wall/MyPostWallComponent.css"
+    />
+    <link rel="stylesheet" href="/components/css/PostCardComponent.css" />
+    <link rel="stylesheet" href="/components/css/CreatePostCardComponent.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/assets/css/deleteConfirmationPopup.css" />
+  </head>
 
-<body class="overflow-y-scroll mx-2">
-<div class="profile-wall">
-  <section class="container-fluid p-0">
-    <div class="profile-banner position-relative d-flex align-items-center">
-      <img
-              src="/assets/image/serene-sloth-hangs-leisurely-amongst-green-leaves-eyes-closed-contentment 3.png"
-              class="img-fluid w-100 rounded-top-4"
-              alt="Cover Photo"
-      />
-    </div>
+  <body class="overflow-y-scroll mx-2">
+    <div class="profile-wall">
+      <section class="container-fluid p-0">
+        <div class="profile-banner position-relative d-flex align-items-center">
+          <img
+            src="/assets/image/serene-sloth-hangs-leisurely-amongst-green-leaves-eyes-closed-contentment 3.png"
+            class="img-fluid w-100 rounded-top-4"
+            alt="Cover Photo"
+          />
+        </div>
 
-    <div
-            class="container d-flex flex-column flex-md-row align-items-center details-container"
-            id="check"
-    >
-      <div class="position-relative">
-        <img
-                src="/assets/image/profilePic.png"
-                class="rounded-circle profile-pic"
-                alt="Profile Picture"
-        />
-      </div>
-      <div
-              class="profile-info ms-md-4 mt-3 mt-md-0 text-center text-md-start"
-      >
-        <h1>Abrahum Joe</h1>
-        <h3 class="text-muted">@st-456782</h3>
-        <h4>Passionate Software Engineering Student</h4>
-      </div>
-    </div>
-  </section>
+        <div
+          class="container d-flex flex-column flex-md-row align-items-center details-container"
+          id="check"
+        >
+          <div class="position-relative">
+            <img
+              src="/assets/image/profilePic.png"
+              class="rounded-circle profile-pic"
+              alt="Profile Picture"
+            />
+          </div>
+          <div
+            class="profile-info ms-md-4 mt-3 mt-md-0 text-center text-md-start"
+          >
+            <h1>Abrahum Joe</h1>
+            <h3 class="text-muted">@st-456782</h3>
+            <h4>Passionate Software Engineering Student</h4>
+          </div>
+        </div>
+      </section>
 
-  <section>
-    <div id="myPostWallComponent">
-      <!-- create post card -->
-      <div class="card border-0 rounded-4 mb-3"></div>
-      <div class="postCards"></div>
-    </div>
-  </section>
+      <section>
+        <div id="myPostWallComponent">
+          <!-- create post card -->
+          <div class="card border-0 rounded-4 mb-3"></div>
+          <div class="postCards"></div>
+        </div>
+      </section>
 
-  <!-- post-info-popup -->
-  <div id="popupModal" class="modal">
-    <div class="modal-content">
-        <p class="modal-header">Post Information</p>
-        <div class="modal-info">
+      <!-- post-info-popup -->
+      <div id="popupModal" class="modal">
+        <div class="modal-content">
+          <p class="modal-header">Post Information</p>
+          <div class="modal-info">
             <p><span class="modal-subheader">Posted Date:</span> 12/08/2024</p>
             <p><span class="modal-subheader">Posted Time:</span> 21:30</p>
-        </div>
-        <div class="modal-info">
+          </div>
+          <div class="modal-info">
             <p><span class="modal-subheader">Approved By:</span> John Edrick</p>
-        </div>
-        <div class="modal-actions">
+          </div>
+          <div class="modal-actions">
             <button id="cancelInfo" class="btn-cancel">Cancel</button>
+          </div>
         </div>
-    </div>
-  </div>
-</div>
+      </div>
 
-<script src="/assets/jquery/jquery-3.7.1.min.js"></script>
-<script src="/assets/bootstrap/js/bootstrap.js"></script>
-<script src="/components/js/wall/ProfileWallComponent.js"></script>
-<script src="/components/js/wall/MyPostWallComponent.js"></script>
-</body>
+      <!-- delete-confirmation-popup -->
+      <div id="deletePopupModal" class="modal">
+        <div class="modal-content">
+          <p class="modal-header w-100">
+            Are you sure you want to delete the post?
+          </p>
+          <p class="modal-subheader">This action can&apos;t be reversed</p>
+          <div class="modal-actions d-flex gap-3">
+            <button id="cancelDelete" class="btn-cancel">Cancel</button>
+            <button id="confirmDelete" class="btn-delete">Delete post</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="/assets/jquery/jquery-3.7.1.min.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap.js"></script>
+    <script src="/assets/axios/axios.min.js"></script>
+    <script
+      type="module"
+      src="/components/js/wall/MyPostWallComponent.js"
+    ></script>
+  </body>
 </html>
