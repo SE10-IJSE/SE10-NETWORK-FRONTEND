@@ -236,8 +236,10 @@ select option:checked {
 }
 
 select:focus {
-  outline: 2px solid #e90708;
-  background-color: rgb(255, 255, 255);
+  border-color: #e90708 !important;
+  outline: none !important;
+  background-color: rgb(255, 255, 255) !important;
+  box-shadow: 0 0 0 2px rgba(233, 7, 8, 0.5) !important;
 }
 
 /*First 3 Input Fields CSS*/
@@ -441,7 +443,7 @@ input[type="date"] {
   body {
     padding: 0;
     display: block;
-    background-color: #FFFAFA;
+    background-color: #fffafa;
   }
 
   body > div > div {
@@ -494,12 +496,6 @@ input[type="date"] {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-  }
-
-  form {
-    height: 100%;
-    width: 100%;
-    justify-content: flex-start;
   }
 
   #combo-mobile {
@@ -611,7 +607,7 @@ input[type="date"] {
     padding: 0;
     display: block;
     max-width: 425px;
-    background-color: #FFFAFA;
+    background-color: #fffafa;
   }
 
   body > div > div {
@@ -661,7 +657,7 @@ input[type="date"] {
   body > div > div > form {
     height: auto;
   }
-  body > div > div > form > div:nth-child(1){
+  body > div > div > form > div:nth-child(1) {
     margin-top: 20px;
   }
 
@@ -780,10 +776,11 @@ input[type="date"] {
     padding: 0;
     display: block;
     max-width: 991px;
-    background-color: #FFFAFA;
+    background-color: #fffafa;
   }
   .form-container {
-    margin-top: 100px;
+    margin-top: 135px;
+    height: 100%;
   }
 
   .container {
@@ -813,12 +810,7 @@ input[type="date"] {
     display: none;
   }
 
-  .form-container {
-    height: 681px;
-  }
-
   form {
-    height: 565px;
     width: 100%;
     justify-content: flex-start;
   }
@@ -891,13 +883,6 @@ input[type="date"] {
     display: flex;
     flex-direction: column;
     gap: 0;
-  }
-
-  #password {
-    width: 100%;
-  }
-
-  #password-confirm {
     width: 100%;
   }
 
@@ -942,7 +927,7 @@ input[type="date"] {
     padding: 0;
     display: block;
     max-width: 991px;
-    background-color: #FFFAFA;
+    background-color: #fffafa;
   }
   .form-container {
     margin-top: 135px;
@@ -1097,9 +1082,9 @@ input[type="date"] {
   .reg-bg > .desktop-img {
     display: block;
   }
-  body{
-    background-color: #FFFAFA;
-  };
+  body {
+    background-color: #fffafa;
+  }
 }
 
 @media screen and (max-width: 1320px) {
@@ -1146,18 +1131,6 @@ input[type="date"] {
     height: 55px;
     font-size: 14px;
   }
-
-  /* #name {
-    margin-top: 15px;
-  }
-
-  #email {
-    margin-top: 15px;
-  }
-
-  #dob {
-    margin-top: 15px;
-  } */
 
   .txt-field:focus + .email,
   .txt-field:not(:placeholder-shown) + .email {
