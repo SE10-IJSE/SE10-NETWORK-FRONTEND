@@ -125,7 +125,6 @@ document.addEventListener("DOMContentLoaded", function () {
       .getElementById("register-form-02")
       .addEventListener("submit", (event) => {
         event.preventDefault();
-
         let bio = document.getElementById("bio").value;
 
         if (bio !== null && bio !== "") {
@@ -169,4 +168,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       });
   }
+
+  //Validations checks
+  $("#bio").attr("required", true);
+  $('input[type="checkbox"]').attr("required", true);
 });

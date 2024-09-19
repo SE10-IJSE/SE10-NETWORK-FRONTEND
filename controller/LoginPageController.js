@@ -10,6 +10,17 @@ document.addEventListener("DOMContentLoaded", function () {
     // No token found, load the login page
     loadLoginPage();
   }
+
+  //Validations checks
+  $("#email").attr({
+    type: "email",
+    required: true,
+  });
+
+  $("#password").attr({
+    minlength: "8",
+    required: true,
+  });
 });
 
 function getJwtToken() {
@@ -45,7 +56,6 @@ function loadLoginPage() {
 
   loginForm.addEventListener("submit", function (event) {
     event.preventDefault();
-
     const email = emailField.value;
     const password = passwordInput.value;
 

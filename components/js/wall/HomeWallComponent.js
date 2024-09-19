@@ -97,20 +97,36 @@ function handleSavePost() {
   const postContentWeb = $("#createPostWeb input").val().trim();
   const postContentMobile = $("#createPostMobile input").val().trim();
 
-  if (postContentWeb) {
-    savePost({ content: postContentWeb }).then(() => {
-      $("#createPostWeb input")
-        .val("")
-        .attr("placeholder", "What's on your mind?");
-    });
-  } else if (postContentMobile) {
-    savePost({ content: postContentMobile }).then(() => {
-      $("#createPostMobile input")
-        .val("")
-        .attr("placeholder", "What's on your mind?");
-    });
+  //Validations
+  if (!(postContentWeb || postContentMobile)) {
+    $("#createPostWeb input, #createPostMobile input")[0].setCustomValidity(
+      "Post cannot be empty"
+    );
+    $("#createPostWeb input, #createPostMobile input")[0].reportValidity();
+  } else if (postContentWeb.length > 280 || postContentMobile.length > 280) {
+    $("#createPostWeb input, #createPostMobile input")[0].setCustomValidity(
+      "Post must not exceed 280 characters"
+    );
+    $("#createPostWeb input, #createPostMobile input")[0].reportValidity();
   } else {
-    console.error("Post content is empty.");
+    // Clear any previous validation messages
+    $("#createPostWeb input, #createPostMobile input")[0].setCustomValidity("");
+
+    if (postContentWeb) {
+      savePost({ content: postContentWeb }).then(() => {
+        $("#createPostWeb input")
+          .val("")
+          .attr("placeholder", "What's on your mind?");
+      });
+    } else if (postContentMobile) {
+      savePost({ content: postContentMobile }).then(() => {
+        $("#createPostMobile input")
+          .val("")
+          .attr("placeholder", "What's on your mind?");
+      });
+    } else {
+      console.error("Post content is empty.");
+    }
   }
 }
 
