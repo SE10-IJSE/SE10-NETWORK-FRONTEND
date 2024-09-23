@@ -11,7 +11,7 @@ $(document).ready(function () {
     "GDSE 74",
   ];
 
-  // Populate the select element with batch options
+  // Populate the select element with batch options(Desktop)
   $("#batchSelect").append(
     $("<option>", {
       value: "",
@@ -22,6 +22,25 @@ $(document).ready(function () {
   );
   $.each(batches, function (i, batch) {
     $("#batchSelect").append(
+      $("<option>", {
+        value: batch,
+        text: batch,
+      })
+    );
+  });
+
+  // Populate the select element with batch options(Mobile)
+  $("#batchSelectMobile").append(
+    $("<option>", {
+      value: "",
+      text: "Select Batch",
+      disabled: true,
+      selected: true,
+    })
+  );
+
+  $.each(batches, function (i, batch) {
+    $("#batchSelectMobile").append(
       $("<option>", {
         value: batch,
         text: batch,
@@ -70,12 +89,6 @@ $(document).ready(function () {
 
   $("#dob").attr("required", true);
 
-  $("#batchSelect")
-    .attr("required", true)
-    .on("invalid", function () {
-      this.setCustomValidity("Please select a batch from the list.");
-    });
-
   $("#password").attr({
     minlength: "8",
     required: true,
@@ -83,22 +96,49 @@ $(document).ready(function () {
 
   $("#password-confirm").attr("required", true);
 
+  function applyBatchValidation() {
+    const windowWidth = $(window).width();
+    const $desktopSelect = $("#batchSelect");
+    const $mobileSelect = $("#batchSelectMobile");
+
+    if (windowWidth >= 992) {
+      $desktopSelect
+        .attr("required", true)
+        .on("invalid", function () {
+          this.setCustomValidity("Please select a batch from the list.");
+        })
+        .prop("disabled", false)
+        .show();
+      $mobileSelect.removeAttr("required").prop("disabled", true).hide();
+    } else {
+      $mobileSelect
+        .attr("required", true)
+        .on("invalid", function () {
+          this.setCustomValidity("Please select a batch from the list.");
+        })
+        .prop("disabled", false)
+        .show();
+      $desktopSelect.removeAttr("required").prop("disabled", true).hide();
+    }
+  }
+
+  applyBatchValidation();
+  $(window).resize(applyBatchValidation);
+
   // Form submission
   $("#Register-form-01").submit(function (e) {
     e.preventDefault();
 
-    if (
-      this.checkValidity() &&
-      validatePasswords() &&
-      validateBatchSelection()
-    ) {
+    if (this.checkValidity() && validatePasswords()) {
       const formData = {
         studentId: $("#studentId").val(),
         name: $("#name").val(),
         email: $("#email").val(),
         dob: $("#dob").val(),
         password: $("#password").val(),
-        batch: $("#batchSelect").val(),
+        batch: $("#batchSelect").is(":visible")
+          ? $("#batchSelect").val()
+          : $("#batchSelectMobile").val(),
       };
 
       localStorage.setItem("registrationFormData", JSON.stringify(formData));
@@ -122,10 +162,14 @@ $(document).ready(function () {
   }
 
   // Add event listeners to clear custom validity
-
-  $("#batchSelect").on("input", function () {
+  $("#batchSelect").on("change", function () {
     this.setCustomValidity("");
   });
+
+  $("#batchSelectMobile").on("change", function () {
+    this.setCustomValidity("");
+  });
+
   $("#password-confirm").on("input", function () {
     this.setCustomValidity("");
   });
