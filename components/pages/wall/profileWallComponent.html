@@ -33,7 +33,6 @@
             <i class="bx bxs-camera" style="margin-right: 5px"></i> Edit Cover
             Photo
           </button>
-
           <button
             type="button"
             class="btn btn-light btn-edit-cover btn-edit-mobile"
@@ -80,13 +79,25 @@
             </div>
           </div>
           <input type="file" id="fileInput" class="d-none" accept="image/*" />
+
           <div
             class="profile-info ms-md-4 mt-3 mt-md-0 text-center text-md-start"
           >
-            <h1 id="name">Abrahum Joe</h1>
+            <input
+              id="name"
+              class="editable-input form-control mt-4"
+              value="Abrahum Joe"
+              readonly
+            />
             <h3 id="studentId" class="text-muted">@st-456782</h3>
-            <h4 id="bio">Passionate Software Engineering Student</h4>
+            <input
+              id="bio"
+              class="editable-input form-control"
+              value="Passionate Software Engineering Student"
+              readonly
+            />
           </div>
+
           <div class="button-handling ms-md-auto mt-3 mt-md-0">
             <button
               type="button"
@@ -98,7 +109,7 @@
             <button
               type="button"
               class="btn btn-light fw-bold log"
-              id="logout-btn"
+              id="logout-btn-mobile"
             >
               Log Out
             </button>
@@ -108,7 +119,7 @@
 
       <hr class="underline-bar w-auto mx-3" />
 
-      <section class="information-container">
+      <section class="information-container" id="Security">
         <div class="container mt-4">
           <h3>General Information</h3>
           <div class="row">
@@ -117,9 +128,10 @@
                 <h5>Email</h5>
                 <input
                   type="email"
+                  id="email"
                   class="form-control bg-transparent border-0 fw-bold"
-                  placeholder="Enter your email"
                   value="AbrahumJoe123@gmail.com"
+                  readonly
                 />
               </div>
               <br />
@@ -129,15 +141,17 @@
                 <h5>Date of Birth</h5>
                 <input
                   type="date"
+                  id="dob"
                   class="form-control bg-transparent border-0 fw-bold"
                   value="2024-07-27"
+                  readonly
                 />
               </div>
             </div>
           </div>
         </div>
 
-        <div class="container mt-4">
+        <div class="container mt-4" id="security-section">
           <h3>Security</h3>
           <div class="row">
             <div class="col-md-6">
@@ -149,6 +163,7 @@
                     class="form-control border-0"
                     id="currentPassword"
                     placeholder="********"
+                    disabled
                   />
                   <span
                     class="input-group-text bg-transparent border-0"
@@ -169,6 +184,7 @@
                     class="form-control border-0"
                     id="newPassword"
                     placeholder="********"
+                    disabled
                   />
                   <span
                     class="input-group-text bg-transparent border-0"
@@ -189,6 +205,7 @@
                     class="form-control border-0"
                     id="confirmPassword"
                     placeholder="********"
+                    disabled
                   />
                   <span
                     class="input-group-text bg-transparent border-0"
@@ -199,27 +216,35 @@
                 </div>
               </div>
             </div>
-
             <div class="col-md-6 d-flex align-items-end">
               <div
                 class="btn-container container mt-4 d-flex justify-content-end align-items-end"
               >
-                <button
-                  type="button"
-                  class="btn btn-custom-danger me-2"
-                  id="logout-btn-desktop"
-                >
+                <button type="button" class="btn btn-custom-danger me-2">
                   Logout
                 </button>
-                <button
-                  type="button"
-                  class="btn btn-custom-warning"
-                  id="update-btn"
-                >
-                  Edit Details
+                <button type="button" class="delete-btn btn btn-custom-warning">
+                  Delete
                 </button>
               </div>
             </div>
+          </div>
+        </div>
+
+        <div class="container mt-4 border-0" id="security-buttons">
+          <div
+            class="btn-container container mt-4 d-flex justify-content-center align-items-center"
+          >
+            <button
+              type="button"
+              class="btn btn-custom-danger me-2"
+              id="logout-btn-desktop"
+            >
+              Logout
+            </button>
+            <button type="button" class="delete-btn btn btn-custom-warning">
+              Delete Account
+            </button>
           </div>
         </div>
       </section>

@@ -20,81 +20,124 @@ function togglePassword(inputId, element) {
   }
 }
 
-// Make the function available globally
-window.togglePassword = togglePassword;
+// Initial setup on page load
+$(document).ready(function () {
+  $("#name, #bio, #email, #dob").prop("readonly", true);
+  $("#security-section").hide();
+  $("#security-section input").prop("disabled", true);
 
-document.addEventListener("DOMContentLoaded", async function () {
   const token = getJwtToken();
-  let userData;
-
   if (token) {
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-    try {
-      userData = await getUserData();
-      if (userData) {
-        // Populate profile info
-        document.querySelector(".profile-info h1").textContent =
-          userData.data.name;
-        document.querySelector(
-          ".profile-info h3"
-        ).textContent = `@${userData.data.userId}`;
-        document.querySelector(".profile-info h4").textContent =
-          userData.data.bio;
-        document.querySelector("input[type='email']").value =
-          userData.data.email;
-        document.querySelector("input[type='date']").value = userData.data.dob;
+    getUserData()
+      .then((userData) => {
+        if (userData) {
+          // Populate profile info
+          document.getElementById("name").value = userData.data.name;
+          document.getElementById(
+            "studentId"
+          ).textContent = `@${userData.data.userId}`;
+          document.getElementById("bio").value = userData.data.bio;
+          document.querySelector("input[type='email']").value =
+            userData.data.email;
+          document.querySelector("input[type='date']").value =
+            userData.data.dob;
 
-        // Set cover photo
-        const coverPhotoElement = document.querySelector(".profile-banner img");
-        if (userData.data.coverImg) {
-          coverPhotoElement.src = `data:image/jpeg;base64,${userData.data.coverImg}`;
-        }
+          // Set images
+          const coverPhotoElement = document.querySelector(
+            ".profile-banner img"
+          );
+          if (userData.data.coverImg) {
+            coverPhotoElement.src = `data:image/jpeg;base64,${userData.data.coverImg}`;
+          }
+          const profilePicElement = document.querySelector(".profile-pic");
+          if (userData.data.profileImg) {
+            profilePicElement.src = `data:image/jpeg;base64,${userData.data.profileImg}`;
+          }
 
-        // Set profile photo
-        const profilePicElement = document.querySelector(".profile-pic");
-        if (userData.data.profileImg) {
-          profilePicElement.src = `data:image/jpeg;base64,${userData.data.profileImg}`;
-        }
+          // Logout button click event
+          const isMobile = window.innerWidth <= 991;
+          const logoutBtn = isMobile
+            ? document.getElementById("logout-btn-mobile")
+            : document.getElementById("logout-btn-desktop");
 
-        // Logout button click event
-        const logoutBtn = document.getElementById("logout-btn-desktop");
-        if (logoutBtn) {
-          logoutBtn.addEventListener("click", function () {
-            // Remove the JWT token from the cookie
-            document.cookie =
-              "jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-            window.top.location.href = "/index.html";
-          });
-        }
+          if (logoutBtn) {
+            logoutBtn.addEventListener("click", function () {
+              alert("awa");
+              // Remove the JWT token from the cookie
+              document.cookie =
+                "jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+              window.top.location.href = "/index.html";
+            });
+          }
 
-        // Delete button click event
-        const deleteBtn = document.getElementById("delete-btn");
-        if (deleteBtn) {
-          deleteBtn.addEventListener("click", async function () {
-            try {
-              const response = await deleteUser(userData.data.userId);
-              if (response.status === 204) {
-                // Remove the JWT token from the cookie
-                document.cookie =
-                  "jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-                window.top.location.href = "/index.html";
+          // Delete button click event
+          const deleteBtn = document.getElementById("delete-btn");
+          if (deleteBtn) {
+            deleteBtn.addEventListener("click", async function () {
+              try {
+                const response = await deleteUser(userData.data.userId);
+                if (response.status === 204) {
+                  // Remove the JWT token from the cookie
+                  document.cookie =
+                    "jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                  window.top.location.href = "/index.html";
+                }
+              } catch (error) {
+                console.error("Error deleting user:", error);
               }
-            } catch (error) {
-              console.error("Error deleting user:", error);
-            }
-          });
+            });
+          }
         }
-      }
-    } catch (error) {
-      console.error("Error fetching user data:", error);
-    }
+      })
+      .catch((error) => console.error("Error fetching user data:", error));
   } else {
     console.error("User token not found in cookies");
   }
 
-  const editCoverPhotoBtn = document.getElementById("edit-cover-photo-btn");
-  const editCoverPhotoMobileBtn = document.getElementById("btn-Edit");
-  const editProfilePhotoBtn = document.getElementById("circle-camera");
+  // Handle Edit Info button
+  $("#edit-info-btn").click(function () {
+    const isReadOnly = $("#name").prop("readonly");
+
+    if (isReadOnly) {
+      $("#name, #bio, #email, #dob").prop("readonly", false);
+      $("#security-section input").prop("disabled", false);
+      $("#security-section").show();
+      $("#security-buttons").hide();
+      $(this).html('<i class="bx bxs-check"></i> Save Info');
+    } else {
+      $("#security-section").hide();
+      $("#security-buttons").show();
+      $("#name, #bio, #email, #dob").prop("readonly", true);
+      $("#security-section input").prop("disabled", true);
+      $(this).html('<i class="bx bxs-edit"></i> Edit Info');
+
+      const data = {
+        userId: userData.data.userId,
+        name: $("#name").val(),
+        email: $("#email").val(),
+        bio: $("#bio").val(),
+        dob: $("#dob").val(),
+      };
+
+      updateUserData(data)
+        .then((response) => {
+          if (response.status === 200) {
+            window.top.location.reload();
+          } else {
+            alert("Failed to update profile.");
+          }
+        })
+        .catch((error) => alert("Error updating profile."));
+    }
+  });
+
+  $(".editable-input").keydown(function (event) {
+    if (event.key === "Enter") {
+      $(this).prop("readonly", true).blur();
+    }
+  });
+
   const dropdownMenu = document.getElementById("cover-photo-dropdown");
   const dropdownMenuProfile = document.getElementById("profile-photo-dropdown");
 
@@ -110,32 +153,24 @@ document.addEventListener("DOMContentLoaded", async function () {
         : "none";
   }
 
-  editCoverPhotoBtn.addEventListener("click", function () {
-    toggleDropdown(dropdownMenu);
-  });
-
-  editCoverPhotoMobileBtn.addEventListener("click", function () {
-    toggleDropdown(dropdownMenu);
-  });
-
-  editProfilePhotoBtn.addEventListener("click", function () {
-    toggleDropdown(dropdownMenuProfile);
-  });
+  $("#edit-cover-photo-btn, #btn-Edit").click(() =>
+    toggleDropdown(dropdownMenu)
+  );
+  $("#circle-camera").click(() => toggleDropdown(dropdownMenuProfile));
 
   document.addEventListener("click", function (event) {
     if (
-      !editCoverPhotoBtn.contains(event.target) &&
-      !editCoverPhotoMobileBtn.contains(event.target) &&
-      !editProfilePhotoBtn.contains(event.target) &&
-      !dropdownMenu.contains(event.target) &&
-      !dropdownMenuProfile.contains(event.target)
+      !$("#edit-cover-photo-btn").is(event.target) &&
+      !$("#btn-Edit").is(event.target) &&
+      !$("#circle-camera").is(event.target) &&
+      !$(event.target).closest("#cover-photo-dropdown").length &&
+      !$(event.target).closest("#profile-photo-dropdown").length
     ) {
       dropdownMenu.style.display = "none";
       dropdownMenuProfile.style.display = "none";
     }
   });
 
-  // Event listeners for "Remove Photo" buttons
   document.querySelectorAll(".remove-photo-btn").forEach((btn) => {
     btn.addEventListener("click", async function (event) {
       const isCoverPhoto = event.target.closest("#cover-photo-dropdown");
@@ -145,7 +180,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       try {
         const response = await deleteUserPhoto({ email, type: photoType });
         if (response.status === 200) {
-          window.top.location.reload(); // Reload page on successful deletion
+          window.top.location.reload();
         } else {
           alert("Failed to remove photo.");
         }
@@ -158,88 +193,54 @@ document.addEventListener("DOMContentLoaded", async function () {
     });
   });
 
-  // Event listener for cover photo upload button
-  document
-    .querySelector("#cover-photo-dropdown #upload-photo-btn")
-    .addEventListener("click", function () {
-      const fileInput = document.getElementById("fileInput");
-      fileInput.click();
+  function setupPhotoUpload(dropdown, type) {
+    dropdown
+      .querySelector(`#upload-photo-btn`)
+      .addEventListener("click", function () {
+        const fileInput = document.getElementById("fileInput");
+        fileInput.click();
 
-      fileInput.addEventListener("change", async function () {
-        const file = fileInput.files[0];
-        if (file) {
-          if (file.size <= 7 * 1024 * 1024) {
-            const formData = new FormData();
-            formData.append("image", file);
-            formData.append("type", "cover");
-            formData.append(
-              "email",
-              document.querySelector("input[type='email']").value
-            );
+        fileInput.addEventListener("change", async function () {
+          const file = fileInput.files[0];
+          if (file) {
+            if (file.size <= 7 * 1024 * 1024) {
+              const formData = new FormData();
+              formData.append("image", file);
+              formData.append("type", type);
+              formData.append(
+                "email",
+                document.querySelector("input[type='email']").value
+              );
 
-            try {
-              const response = await updateUserPhoto(formData);
-              if (response.status === 200) {
-                window.top.location.reload();
-              } else {
-                alert("Failed to update cover photo.");
+              try {
+                const response = await updateUserPhoto(formData);
+                if (response.status === 200) {
+                  window.top.location.reload();
+                } else {
+                  alert(`Failed to update ${type} photo.`);
+                }
+              } catch (error) {
+                alert(`Error uploading ${type} photo.`);
               }
-            } catch (error) {
-              alert("Error uploading cover photo.");
+            } else {
+              alert("Image needs to be less than 7MB.");
             }
-          } else {
-            alert("Image needs to be less than 7MB.");
           }
-        }
-        fileInput.value = "";
+          fileInput.value = "";
+        });
+
+        dropdown.style.display = "none";
       });
+  }
 
-      dropdownMenu.style.display = "none";
-    });
+  setupPhotoUpload(document.getElementById("cover-photo-dropdown"), "cover");
+  setupPhotoUpload(
+    document.getElementById("profile-photo-dropdown"),
+    "profile"
+  );
 
-  // Event listener for profile photo upload button
   document
-    .querySelector("#profile-photo-dropdown .upload-photo-btn")
-    .addEventListener("click", function () {
-      const fileInput = document.getElementById("fileInput");
-      fileInput.click();
-
-      fileInput.addEventListener("change", async function () {
-        const file = fileInput.files[0];
-        if (file) {
-          if (file.size <= 7 * 1024 * 1024) {
-            // Create FormData and append file
-            const formData = new FormData();
-            formData.append("image", file);
-            formData.append("type", "profile");
-            formData.append(
-              "email",
-              document.querySelector("input[type='email']").value
-            );
-
-            try {
-              const response = await updateUserPhoto(formData);
-              if (response.status === 200) {
-                window.top.location.reload();
-              } else {
-                alert("Failed to update profile photo.");
-              }
-            } catch (error) {
-              alert("Error uploading profile photo.");
-            }
-          } else {
-            alert("Image needs to be less than 7MB.");
-          }
-        }
-        fileInput.value = "";
-      });
-
-      dropdownMenuProfile.style.display = "none";
-    });
-
-  // Adding event listener for the "Edit Details" button
-  document
-    .getElementById("update-btn")
+    .getElementById("edit-info-btn")
     .addEventListener("click", async function () {
       const newPassword = document.getElementById("newPassword").value;
       const confirmPassword = document.getElementById("confirmPassword").value;
@@ -249,41 +250,42 @@ document.addEventListener("DOMContentLoaded", async function () {
         return;
       }
 
-      // Prepare the data to be sent
       const data = {
         userId: userData.data.userId,
-        name: document.getElementById("name").textContent,
-        email: document.querySelector("input[type='email']").value,
-        bio: document.getElementById("bio").textContent,
+        name: $("#name").val(),
+        email: $("#email").val(),
+        bio: $("#bio").val(),
         password: document.getElementById("currentPassword").value,
         newPassword: newPassword,
-        dob: document.querySelector("input[type='date']").value,
+        dob: $("#dob").val(),
       };
 
       try {
-        // Delete the existing cookie named 'jwt'
-        document.cookie = "jwt=; path=/";
-
+        document.cookie = "jwt=; path=/"; // Delete existing cookie named 'jwt'
         const response = await updateUserData(data);
         if (response.status === 200) {
-          // Set the new cookie with the updated token
-          document.cookie = `jwt=${response.data.data.token}; path=/`;
           window.top.location.reload();
-        } else if (response.status === 406) {
-          alert("Current password is incorrect.");
+        } else {
+          alert("Failed to update profile.");
         }
       } catch (error) {
-        alert("Failed to update profile.");
+        alert("Error updating profile.");
       }
     });
 });
 
 function getJwtToken() {
-  const cookies = document.cookie.split("; ");
-  for (let cookie of cookies) {
-    if (cookie.startsWith("jwt=")) {
-      return cookie.split("=")[1];
+  const cookieName = "jwt=";
+  const decodedCookie = decodeURIComponent(document.cookie);
+  const cookieArray = decodedCookie.split(";");
+  for (let i = 0; i < cookieArray.length; i++) {
+    let cookie = cookieArray[i].trim();
+    if (cookie.indexOf(cookieName) === 0) {
+      return cookie.substring(cookieName.length, cookie.length);
     }
   }
   return null;
 }
+
+window.getJwtToken = getJwtToken;
+window.togglePassword = togglePassword;
