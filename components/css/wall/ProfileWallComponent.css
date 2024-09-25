@@ -54,6 +54,36 @@ body::-webkit-scrollbar {
   border-radius: 100%;
 }
 
+.editable-input {
+  border: none;
+  background-color: transparent;
+  font-size: 22px;
+  font-weight: 600;
+  font-family: inherit;
+  margin-top: 5px;
+  width: auto;
+  max-width: 100%;
+  text-align: center;
+  text-overflow: ellipsis;
+}
+
+.editable-input:focus {
+  outline: none;
+  border-bottom: 1px solid #ccc;
+}
+
+.text-center .editable-input {
+  text-align: center;
+}
+
+.text-md-start .editable-input {
+  text-align: left;
+}
+
+#studentId {
+  margin-left: 10px;
+}
+
 /* Edit Cover Photo Button Styling */
 .btn-edit-cover {
   position: absolute;
@@ -179,6 +209,10 @@ body::-webkit-scrollbar {
   box-sizing: border-box;
 }
 
+#email {
+  text-overflow: ellipsis;
+}
+
 #edit-info-btn {
   font-size: 0.8rem;
   gap: 20px;
@@ -208,8 +242,7 @@ body::-webkit-scrollbar {
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
-  filter: invert(34%) sepia(83%) saturate(7434%) hue-rotate(0deg)
-    brightness(101%) contrast(108%);
+  filter: invert(34%) sepia(83%) saturate(7434%) hue-rotate(0deg) brightness(101%) contrast(108%);
 }
 
 .btn-custom-danger {
@@ -234,15 +267,15 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   background-color: var(--btn-hover-color);
 }
 
-.btn-custom-danger + .btn-custom-danger,
-.btn-custom-warning + .btn-custom-warning {
+.btn-custom-danger+.btn-custom-danger,
+.btn-custom-warning+.btn-custom-warning {
   margin-left: 20px;
   background-color: var(--btn-bg-color);
   color: var(--second-bg-color);
 }
 
-.btn-custom-danger + .btn-custom-danger:hover,
-.btn-custom-warning + .btn-custom-warning:hover {
+.btn-custom-danger+.btn-custom-danger:hover,
+.btn-custom-warning+.btn-custom-warning:hover {
   background-color: var(--btn-hover-color);
   color: var(--second-bg-color);
 }
@@ -279,9 +312,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     width: 120px;
   }
 
-  .button-handling #logout-btn {
+  .button-handling #logout-btn-mobile {
     width: 80px !important;
   }
+
   .button-handling #edit-info-btn {
     width: 100px !important;
   }
@@ -315,7 +349,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     font-weight: 500;
   }
 
-  .security-container .row > div:last-child {
+  .security-container .row>div:last-child {
     flex-direction: column;
   }
 
@@ -344,14 +378,14 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     width: 140px !important;
   }
 
-  #logout-btn {
+  #logout-btn-mobile {
     font-size: 0.7rem;
     width: 90px !important;
     height: 36px;
     margin-top: 15px;
   }
 
-  #logout-btn:hover {
+  #logout-btn-mobile:hover {
     background-color: var(--btn-hover-color);
     color: white;
   }
@@ -520,4 +554,5 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     justify-content: flex-end;
     width: 100%;
   }
+
 }
