@@ -5,8 +5,9 @@
     color: #FFFFFF;
     position: absolute;
     right: 4.7vw;
-    margin-top: 5vh;
+    margin-top: 6vh;
     overflow: hidden;
+    margin-right: 70px;
     animation: animation 0.5s;
 }
 

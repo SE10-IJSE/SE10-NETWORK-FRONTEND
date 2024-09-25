@@ -1,4 +1,4 @@
-import { getUserData } from "../../../model/UserProfileModel.js";
+import {getUserData} from "../../../model/UserProfileModel.js";
 import {
   getAllPostsOfUser,
   deletePost,
@@ -28,8 +28,8 @@ $(document).ready(async function () {
         const coverPhotoElement = $(".profile-banner img");
         if (userData.data.coverImg) {
           coverPhotoElement.attr(
-            "src",
-            `data:image/jpeg;base64,${userData.data.coverImg}`
+              "src",
+              `data:image/jpeg;base64,${userData.data.coverImg}`
           );
         }
 
@@ -37,8 +37,8 @@ $(document).ready(async function () {
         const profilePicElement = $(".profile-pic");
         if (userData.data.profileImg) {
           profilePicElement.attr(
-            "src",
-            `data:image/jpeg;base64,${userData.data.profileImg}`
+              "src",
+              `data:image/jpeg;base64,${userData.data.profileImg}`
           );
         }
 
@@ -51,14 +51,14 @@ $(document).ready(async function () {
         $(window).on("scroll", function () {
           const currentScrollPosition = $(this).scrollTop();
           const totalScrollableHeight =
-            $(document).height() - $(window).height();
+              $(document).height() - $(window).height();
           const scrollPercentage =
-            (currentScrollPosition / totalScrollableHeight) * 100;
+              (currentScrollPosition / totalScrollableHeight) * 100;
 
           // Check if user has scrolled 70% of the page and is scrolling down
           if (
-            scrollPercentage >= 70 &&
-            currentScrollPosition > lastScrollPosition
+              scrollPercentage >= 70 &&
+              currentScrollPosition > lastScrollPosition
           ) {
             if (!isLoading && hasMorePosts) {
               LoadCards(); // Load next page when scrolled to the bottom
@@ -112,34 +112,45 @@ async function LoadCards() {
 let flag = false;
 
 $("#myPostWallComponent").on("click", ".postMore", function () {
+  alert("awaaa")
   $("#myPostWallComponent .postMoreOption").hide();
   if (flag === false) {
     $(this)
-      .closest(".postCard")
-      .find(".postMoreOption")
-      .css("display", "block");
+        .closest(".postCard")
+        .find(".postMoreOption")
+        .css("display", "block");
+    $(this)
+        .closest("#postCardMobile")
+        .find(".postMoreOption")
+        .css("display", "block");
     flag = true;
   } else {
-    $(this).closest(".postCard").find(".postMoreOption").css("display", "none");
+    $(".postMoreOption").css("display", "none");
     flag = false;
   }
 });
 
+$("#myPostWallComponent").on("click", ".postMoreOption", function () {
+  $('.postMoreOption').css("display", "none")
+})
+
 const MyPostCard = (post) => {
   const profileImage = post.profileImg
-    ? `data:image/png;base64,${post.profileImg}`
-    : "/assets/image/profilePic.png";
+      ? `data:image/png;base64,${post.profileImg}`
+      : "/assets/image/profilePic.png";
   return `
     <div class="p-5 mb-3 postCard" id="postCard" data-post='${JSON.stringify(
       post
-    )}'>
-        <div class="list-group postMoreOption">
-            <a href="#" class="list-group-item list-group-item-action d-flex align-items-center postInfoPopup ">
-                <img src="/assets/icons/info.png"> <div class="option">Post Info</div>
-            </a>
-            <a href="#" class="list-group-item list-group-item-action d-flex align-items-center postDeletePopup">
-                <img src="/assets/icons/delete.png"> <div class="option">Delete Post</div>
-            </a>
+  )}'>
+        <div class="postMoreOption position-absolute w-100 h-100">
+          <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action d-flex align-items-center postInfoPopup ">
+                    <img src="/assets/icons/info.png"> <div class="option">Post Info</div>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action d-flex align-items-center postDeletePopup">
+                    <img src="/assets/icons/delete.png"> <div class="option">Delete Post</div>
+                </a>
+            </div>
         </div>
         <div>
             <div class="d-flex justify-content-between">
@@ -160,8 +171,8 @@ const MyPostCard = (post) => {
                     <div class="d-flex gap-3 align-items-center">
                         <img src="../../../assets/icons/likeIcon.png" alt="Inspire Icon">
                         <span class="inspiration-count">${
-                          post.inspirationCount
-                        } Inspirations</span>
+      post.inspirationCount
+  } Inspirations</span>
                     </div>
                     <div class="ms-md-auto mt-3 mt-md-0">
                         <button type="button" class="btn btn-light fw-bold edit-post-btn" id="edit-info-btn" data-mode="edit">
@@ -178,12 +189,22 @@ const MyPostCard = (post) => {
 
 const PostCardMobile = (post) => {
   const profileImage = post.profileImg
-    ? `data:image/png;base64,${post.profileImg}`
-    : "/assets/image/profilePic.png";
+      ? `data:image/png;base64,${post.profileImg}`
+      : "/assets/image/profilePic.png";
   return `
     <div id="postCardMobile" class="p-3 mb-3" data-post='${JSON.stringify(
       post
-    )}'>
+  )}'>
+        <div class="postMoreOption position-absolute w-100 h-100">
+          <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action d-flex align-items-center postInfoPopup ">
+                    <img src="/assets/icons/info.png"> <div class="option">Post Info</div>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action d-flex align-items-center postDeletePopup">
+                    <img src="/assets/icons/delete.png"> <div class="option">Delete Post</div>
+                </a>
+            </div>
+        </div>
             <div>
                 <div class="d-flex justify-content-between">
                     <div class="d-flex gap-3 align-items-center">
@@ -193,27 +214,28 @@ const PostCardMobile = (post) => {
                             <h6>${formatTime(post.updatedAt)}</h6>
                         </div>
                     </div>
-                    <button class="bg-transparent border-0">
+                    <button class="bg-transparent border-0 postMore">
                         <i class='bx bx-dots-vertical-rounded' style='color:rgba(0,0,0,0.44)'  ></i>
                     </button>
                 </div>
 
-                <div class="mt-3">
+                <div class="px-3 mx-5 mt-2">
                     <p>${post.content}</p>
                     <div class="d-flex justify-content-between">
-                        <div class="d-flex gap-1 align-items-center">
+                        <div class="d-flex gap-3 align-items-center">
                             <img src="../../../assets/icons/likeIcon.png" alt="Inspire Icon">
                             <span class="inspiration-count">${
-                              post.inspirationCount
-                            } Inspirations</span>
-                        </div>
-
-                        <button class="border-0 p-2 px-3 d-flex align-items-center gap-1 btn btn-light fw-bold edit-post-btn" id="edit-info-btn" data-mode="edit">
-                            <img src="../../../assets/icons/editIcon.png" alt="Inspire Icon">
-                            <span>Edit Post</span>
-                        </button>
+      post.inspirationCount
+  } Inspirations</span>
+                            </div>
+                        <div class="ms-md-auto mt-3 mt-md-0">
+                            <button type="button" class="btn btn-light fw-bold edit-post-btn" id="edit-info-btn" data-mode="edit">
+                                <img src="../../../assets/icons/editIcon.png" alt="Inspire Icon">
+                                <span>Edit Post</span>
+                            </button>
                     </div>
                 </div>
+            </div>
             </div>
         </div>
     `;
@@ -315,19 +337,19 @@ $("#myPostWallComponent").on("click", ".postInfoPopup", function () {
 
   // Update the modal content
   $("#popupModal .modal-info")
-    .eq(0)
-    .find("p")
-    .eq(0)
-    .html(`<span class="modal-subheader">Posted Date:</span> ${postedDate}`);
+      .eq(0)
+      .find("p")
+      .eq(0)
+      .html(`<span class="modal-subheader">Posted Date:</span> ${postedDate}`);
   $("#popupModal .modal-info")
-    .eq(0)
-    .find("p")
-    .eq(1)
-    .html(`<span class="modal-subheader">Posted Time:</span> ${postedTime}`);
+      .eq(0)
+      .find("p")
+      .eq(1)
+      .html(`<span class="modal-subheader">Posted Time:</span> ${postedTime}`);
   $("#popupModal .modal-info")
-    .eq(1)
-    .find("p")
-    .html(`<span class="modal-subheader">Approved By:</span> ${approvedBy}`);
+      .eq(1)
+      .find("p")
+      .html(`<span class="modal-subheader">Approved By:</span> ${approvedBy}`);
 
   // Show the modal
   showModal();

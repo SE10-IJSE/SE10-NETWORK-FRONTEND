@@ -1,70 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NOTIFICATION-PAGE</title>
-    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/assets/css/styles.css" />
-    <link rel="stylesheet" href="/assets/css/notificationPageMobile.css" />
-  </head>
-  <body>
-    <div class="" id="Notifications">
-      <div class="data-detail p-2">
-        <div class="recent-box w-100">
-          <div class="position-sticky">
-            <h1 class="notify-title">Notifications</h1>
-          </div>
-
-          <ul class="recent-list d-flex flex-column">
-            <!-- notify card -->
-            <li>
-              <div class="notification">
-                <div class="notification-item">
-                  <div class="avatar">
-                    <img
-                      class="avatar"
-                      src="/assets/icons/reloadNotification.png"
-                      alt=""
-                    />
-                  </div>
-
-                  <div class="text">
-                    <p>
-                      Terms & Conditions updated on 25th july 2024. Checkout it.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </li>
-
-            <li>
-              <div class="notification">
-                <div class="notification-item">
-                  <div class="avatar">
-                    <img
-                      class="avatar"
-                      src="/assets/icons/sendPost.png"
-                      alt=""
-                    />
-                  </div>
-
-                  <div class="text">
-                    <p>
-                      Your friend john post “Why i am making coding easier than
-                      others.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NOTIFICATION-PAGE</title>
+  <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+  <link rel="stylesheet" href="/assets/css/notificationPageMobile.css" />
+</head>
+<body>
+<div class="" id="Notifications">
+  <div class="data-detail p-2">
+    <div class="recent-box w-100">
+      <div class="position-sticky d-flex align-items-end m-3 gap-3">
+        <h1 class="title m-0">Notifications</h1>
+        <h1 class="subtitle">Birthdays</h1>
       </div>
-    </div>
 
-    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="/assets/jquery/jquery-3.7.1.min.js"></script>
-    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
-  </body>
+      <ul class="recent-list d-flex flex-column">
+        <!-- notify card -->
+        <li>
+          <div class="notification">
+            <div class="notification-item">
+              <div class="avatar">
+                <img
+                        class="avatar"
+                        src="/assets/icons/reloadNotification.png"
+                        alt=""
+                />
+              </div>
+
+              <div class="text">
+                <p>
+                  Terms & Conditions updated on 25th july 2024. Checkout it.
+                </p>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="notification">
+            <div class="notification-item">
+              <div class="avatar">
+                <img
+                        class="avatar"
+                        src="/assets/icons/sendPost.png"
+                        alt=""
+                />
+              </div>
+
+              <div class="text">
+                <p>
+                  Your friend john post “Why i am making coding easier than
+                  others.
+                </p>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="/assets/jquery/jquery-3.7.1.min.js"></script>
+<script src="/controller/BirthdaysPageMobile.js"></script>
+</body>
 </html>
