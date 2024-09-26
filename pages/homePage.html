@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/assets/css/styles.css" />
     <link rel="stylesheet" href="/assets/css/homePage.css" />
     <link rel="stylesheet" href="/assets/css/searchPopup.css" />
+    <link rel="stylesheet" href="/assets/css/birthdayPopup.css" />
     <title>HOME</title>
   </head>
   <body>
@@ -120,6 +121,38 @@
           </div>
           <p>No one has birthdays today</p>
         </div>
+
+        <!-- birthday popup  -->
+
+        <div class="birthdayPopup">
+          <div id="birthday-container">
+            <div
+              class="bp-head d-flex align-items-center justify-content-between mb-4"
+            >
+              <h3 class="mb-0">
+                Birthdays
+                <img
+                  src="/assets/icons/birthDayIcon.png"
+                  alt="Birth Day Icon"
+                  class="ms-2"
+                />
+              </h3>
+              <img
+                id="close-birthday-icon"
+                src="/assets/icons/closeBtn.png"
+                alt="Close Birthday Popup"
+                class="cursor-pointer"
+              />
+            </div>
+            <div id="birthday-list-container">
+              <div class="mb-2">
+                <p id="birthday-txt" class="mb-3">No one has birthday today</p>
+              </div>
+              <div id="birthday-list" class="scrollable-list"></div>
+            </div>
+          </div>
+        </div>
+
         <h1>Notifications</h1>
         <div class="reloadNotification">
           <button>
