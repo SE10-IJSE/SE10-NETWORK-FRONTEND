@@ -236,6 +236,72 @@ function loadHomePage() {
     $(".searchPopUp").css("display", "flex");
   });
 
+  //  birthday popup
+
+  let birthdaysCount = 0;
+
+  $(".birthDays").click(function () {
+    let birthdayPopup = $(".birthdayPopup");
+    showBirthdayPopup(birthdayPopup[0]);
+  });
+
+  function showBirthdayPopup(birthdayPopup) {
+    birthdayPopup.style.display = "block";
+    let container = document.getElementById("birthday-container");
+    if (container) {
+      container.style.opacity = 1;
+      container.style.transform = "scale(1)";
+    }
+  }
+
+  $("#close-birthday-icon").click(function () {
+    let birthdayPopup = $(".birthdayPopup");
+    hideBirthdayPopup(birthdayPopup[0]);
+  });
+
+  function hideBirthdayPopup(birthdayPopup) {
+    let container = document.getElementById("birthday-container");
+    if (container) {
+      container.style.opacity = 0;
+      container.style.transform = "scale(0)";
+    }
+    setTimeout(() => {
+      birthdayPopup.style.display = "none";
+    }, 300);
+  }
+
+  const DesktopBirthdayCard = () => {
+    return `
+      <style>
+        @media (max-width: 1158px) {
+          .birthday-card-name, .birthday-card-role {
+            font-size: 12px !important;
+          }
+        }
+      </style>
+      <div class="row align-items-center mb-2 me-4">
+        <div class="col-auto d-flex align-items-center">
+          <img class="rounded-circle img-fluid" src="/assets/image/defaultProfileImage.png" alt="Profile Image" style="max-width: 50px;">
+        </div>
+        <div class="col d-flex justify-content-between align-items-center">
+          <div class="d-flex flex-column flex-md-row">
+            <p class="birthday-card-name mb-0 text-muted fs-6 fw-semibold">Mark Simoen Edward</p>
+          </div>
+          <p class="birthday-card-role mb-0 ms-3 text-muted fs-6 fw-semibold">GDSE 68</p>
+        </div>
+      </div>
+    `;
+  };
+
+  for (let i = 0; i < 10; i++) {
+    $("#birthday-list").append(DesktopBirthdayCard());
+    birthdaysCount++;
+  }
+
+  $("#birthday-txt").text(
+    birthdaysCount + " friends have birthdays today. Send them good thoughts"
+  );
+
   // bottom nav bar mobile start
   const clickableElements = document.querySelectorAll(".clickable-element");
 
