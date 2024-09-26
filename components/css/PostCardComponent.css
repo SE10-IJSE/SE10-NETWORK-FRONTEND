@@ -130,14 +130,25 @@
   margin-top: 0px;
 }
 
-@media screen and (min-width: 768px) and (max-width: 991px) {
+@media screen and (max-width: 400px) {
+  #edit-info-btn {
+    padding: 5px !important;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 992px) {
   #createPostWeb {
     margin: 10px;
   }
 
   #postCard {
+    margin: 0px;
     margin-left: 10px;
     margin-right: 10px;
+  }
+
+  #postCardContent {
+    padding-left: 0px !important;
   }
 }
 
@@ -157,5 +168,24 @@
 
   #postCardMobile {
     display: block;
+  }
+
+  #postCardMobile > div > :last-child button {
+    width: auto;
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 1323px) {
+  #postCardContent {
+    padding-left: 72px !important;
+  }
+
+  .postMore {
+    font-size: 20px;
+  }
+
+  .inspiration-count {
+    font-size: 11px !important;
   }
 }

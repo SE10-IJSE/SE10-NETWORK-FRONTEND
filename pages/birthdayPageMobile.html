@@ -2,20 +2,19 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NOTIFICATION-BIRTHDAY</title>
+    <title>Birthday Notification</title>
     <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/assets/css/styles.css" />
+    <link rel="stylesheet" href="/assets/css/notificationPageMobile.css" />
     <link rel="stylesheet" href="/assets/css/birthdayPageMobile.css" />
   </head>
   <body>
-    <div class="" id="Notifications-Birthdays">
+    <div class="" id="Notifications">
       <div class="data-detail p-2">
         <div class="recent-box w-100">
-          <div class="position-sticky">
-            <h1 class="notify-title">
-              <span class="notification-phrase">Notifications</span>Birthdays
-            </h1>
+          <div class="position-sticky d-flex align-items-end m-3 gap-3">
+            <h1 class="title m-0">Birthday</h1>
+            <h1 class="subtitle">Notifications</h1>
           </div>
 
           <ul class="recent-list d-flex flex-column">
@@ -70,6 +69,6 @@
 
     <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="/assets/jquery/jquery-3.7.1.min.js"></script>
-    <script src="/assets/axios/axios.min.js"></script>
+    <script src="/controller/BirthdaysPageMobile.js"></script>
   </body>
 </html>

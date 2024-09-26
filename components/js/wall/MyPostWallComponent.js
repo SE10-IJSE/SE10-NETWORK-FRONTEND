@@ -118,11 +118,19 @@ $("#myPostWallComponent").on("click", ".postMore", function () {
       .closest(".postCard")
       .find(".postMoreOption")
       .css("display", "block");
+    $(this)
+      .closest("#postCardMobile")
+      .find(".postMoreOption")
+      .css("display", "block");
     flag = true;
   } else {
-    $(this).closest(".postCard").find(".postMoreOption").css("display", "none");
+    $(".postMoreOption").css("display", "none");
     flag = false;
   }
+});
+
+$("#myPostWallComponent").on("click", ".postMoreOption", function () {
+  $(".postMoreOption").css("display", "none");
 });
 
 const MyPostCard = (post) => {
@@ -133,13 +141,15 @@ const MyPostCard = (post) => {
     <div class="p-5 mb-3 postCard" id="postCard" data-post='${JSON.stringify(
       post
     )}'>
-        <div class="list-group postMoreOption">
-            <a href="#" class="list-group-item list-group-item-action d-flex align-items-center postInfoPopup ">
-                <img src="/assets/icons/info.png"> <div class="option">Post Info</div>
-            </a>
-            <a href="#" class="list-group-item list-group-item-action d-flex align-items-center postDeletePopup">
-                <img src="/assets/icons/delete.png"> <div class="option">Delete Post</div>
-            </a>
+        <div class="postMoreOption position-absolute w-100 h-100">
+          <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action d-flex align-items-center postInfoPopup ">
+                    <img src="/assets/icons/info.png"> <div class="option">Post Info</div>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action d-flex align-items-center postDeletePopup">
+                    <img src="/assets/icons/delete.png"> <div class="option">Delete Post</div>
+                </a>
+            </div>
         </div>
         <div>
             <div class="d-flex justify-content-between">
@@ -151,10 +161,10 @@ const MyPostCard = (post) => {
                     </div>
                 </div>
                 <button class="bg-transparent border-0 postMore">
-                    <img src="../../../assets/icons/moreIcon.png" alt="More Icon">
+                    <img src="../../../assets/icons/moreIcon.png" alt="More Icon" class = "postMoreIcon">
                 </button>
             </div>
-            <div class="px-3 mx-5 mt-2">
+            <div class="mt-2" id="postCardContent">
                 <p>${post.content}</p>
                 <div class="d-flex justify-content-between">
                     <div class="d-flex gap-3 align-items-center">
@@ -184,6 +194,16 @@ const PostCardMobile = (post) => {
     <div id="postCardMobile" class="p-3 mb-3" data-post='${JSON.stringify(
       post
     )}'>
+        <div class="postMoreOption position-absolute w-100 h-100">
+          <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action d-flex align-items-center postInfoPopup ">
+                    <img src="/assets/icons/info.png"> <div class="option">Post Info</div>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action d-flex align-items-center postDeletePopup">
+                    <img src="/assets/icons/delete.png"> <div class="option">Delete Post</div>
+                </a>
+            </div>
+        </div>
             <div>
                 <div class="d-flex justify-content-between">
                     <div class="d-flex gap-3 align-items-center">
@@ -193,27 +213,28 @@ const PostCardMobile = (post) => {
                             <h6>${formatTime(post.updatedAt)}</h6>
                         </div>
                     </div>
-                    <button class="bg-transparent border-0">
-                        <i class='bx bx-dots-vertical-rounded' style='color:rgba(0,0,0,0.44)'  ></i>
+                    <button class="bg-transparent border-0 postMore">
+                        <i class='bx bx-dots-vertical-rounded' style='color:rgba(0,0,0,0.44)'></i>
                     </button>
                 </div>
 
-                <div class="mt-3">
+                <div class="pe-1 mx-1 mt-2">
                     <p>${post.content}</p>
                     <div class="d-flex justify-content-between">
-                        <div class="d-flex gap-1 align-items-center">
+                        <div class="d-flex gap-3 align-items-center">
                             <img src="../../../assets/icons/likeIcon.png" alt="Inspire Icon">
                             <span class="inspiration-count">${
                               post.inspirationCount
                             } Inspirations</span>
+                            </div>
+                        <div class="ms-md-auto mt-3 mt-md-0">
+                            <button type="button" class="btn btn-light fw-bold edit-post-btn" id="edit-info-btn" data-mode="edit">
+                                <img src="../../../assets/icons/editIcon.png" alt="Edit Image">
+                                <span>Edit Post</span>
+                            </button>
                         </div>
-
-                        <button class="border-0 p-2 px-3 d-flex align-items-center gap-1 btn btn-light fw-bold edit-post-btn" id="edit-info-btn" data-mode="edit">
-                            <img src="../../../assets/icons/editIcon.png" alt="Inspire Icon">
-                            <span>Edit Post</span>
-                        </button>
-                    </div>
                 </div>
+            </div>
             </div>
         </div>
     `;
