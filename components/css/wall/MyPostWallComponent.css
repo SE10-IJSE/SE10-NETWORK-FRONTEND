@@ -138,10 +138,6 @@ body::-webkit-scrollbar {
     margin-top: 15px;
     width: 100%;
   }
-
-  #edit-info-btn {
-    width: 140px !important;
-  }
 }
 
 @media screen and (max-width: 768px) {
