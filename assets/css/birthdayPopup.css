@@ -22,8 +22,8 @@
 
 #birthday-list {
   margin-bottom: 10px;
-  max-height: 20vh; 
-  overflow-y: auto; 
+  max-height: 20vh;
+  overflow-y: auto;
 }
 
 .birthdayPopup h3 img {
@@ -59,9 +59,14 @@
   justify-content: space-between;
 }
 
-
-
 .scrollable-list {
   scrollbar-width: thin;
   scrollbar-color: #888 #e0e0e0;
+}
+
+.profile-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover; /* Ensures the image covers the entire area */
 }

@@ -25,7 +25,25 @@ export const getBirthdayNames = () => {
 
   return axios(config)
     .then((response) => {
-      console.log("Birthdays retrieved successfully:", response.data);
+      console.log("Birthday names retrieved successfully:", response.data);
+      return response;
+    })
+    .catch((error) => {
+      console.error("Request failed:", error);
+      throw error;
+    });
+};
+
+export const getBirthdayData = () => {
+  let config = {
+    method: "get",
+    maxBodyLength: Infinity,
+    url: "http://localhost:8080/api/v1/user/birthday/data",
+  };
+
+  return axios(config)
+    .then((response) => {
+      console.log("Birthday data retrieved successfully:", response.data);
       return response;
     })
     .catch((error) => {

@@ -31,13 +31,15 @@ body {
   font-family: "Poppins", sans-serif;
   font-size: 24px;
   font-weight: 700;
+  cursor: alias;
 }
 
-.subtitle{
+.subtitle {
   font-size: 13px;
   font-weight: 700;
-  color: #948E8E;
+  color: #948e8e;
   letter-spacing: 0.5px;
+  cursor: pointer;
 }
 
 .notification-item {
