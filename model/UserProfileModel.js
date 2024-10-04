@@ -48,8 +48,14 @@ export const updateUserData = (data) => {
       return response;
     })
     .catch((error) => {
-      console.error("Update failed:", error);
-      throw error;
+      if (error.response && error.response.data) {
+        return Promise.reject({
+          code: error.response.data.code,
+          message: error.response.data.message,
+        });
+      } else {
+        return Promise.reject(error);
+      }
     });
 };
 
@@ -62,7 +68,8 @@ export const deleteUser = (id) => {
 
   return axios(config)
     .then((response) => {
-      console.log("Delete successful:", response.code);
+      console.log("Delete successful!");
+      return response;
     })
     .catch((error) => {
       console.error("Delete failed:", error);
@@ -98,7 +105,7 @@ export const deleteUserData = (id) => {
 
   return axios(config)
     .then((response) => {
-      console.log("Delete successful:", response.data);
+      console.log("Delete successful:", response);
       return response;
     })
     .catch((error) => {
