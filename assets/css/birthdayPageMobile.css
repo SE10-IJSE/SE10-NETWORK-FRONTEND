@@ -7,13 +7,15 @@ body {
   font-family: "Poppins", sans-serif;
   font-size: 24px;
   font-weight: 700;
+  cursor: alias;
 }
 
-.subtitle{
+.subtitle {
   font-size: 13px;
   font-weight: 700;
-  color: #948E8E;
+  color: #948e8e;
   letter-spacing: 0.5px;
+  cursor: pointer;
 }
 
 .recent-list {
@@ -60,20 +62,19 @@ body {
   justify-content: space-between;
 }
 
+.text p {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  font-size: 12px;
+  color: #797979;
+  font-weight: 500;
+}
+
 .username {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis; /* Show ellipsis (...) when text overflows */
   max-width: 180px;
-  font-family: "Poppins", sans-serif;
-  color: #333;
-}
-
-.text p {
-  font-family: "Poppins", sans-serif;
-  margin: 0;
-  font-size: 12px;
-  color: hsla(0, 0%, 48%, 1);
 }
 
 @media (max-width: 350px) {

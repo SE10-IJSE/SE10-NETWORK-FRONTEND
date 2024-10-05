@@ -3,6 +3,7 @@ import { getNotifications } from "../model/NotificationModel.js";
 import {
   getTokenValidation,
   getBirthdayNames,
+  getBirthdayData,
 } from "../model/HomePageModel.js";
 
 $(document).ready(async function () {
@@ -29,21 +30,18 @@ $(document).ready(async function () {
         }
 
         loadHomePage();
-      } else {
-        document.cookie =
-          "jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-        window.location.href = "/index.html";
-      }
+      } else letTokenToExpire();
     } catch (error) {
-      document.cookie = "jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       console.error("Token validation failed:", error);
-      window.location.href = "/index.html";
+      letTokenToExpire();
     }
-  } else {
-    document.cookie = "jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    window.location.href = "/index.html";
-  }
+  } else letTokenToExpire();
 });
+
+function letTokenToExpire() {
+  document.cookie = "jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  window.location.href = "/index.html";
+}
 
 function getJwtToken() {
   const cookies = document.cookie.split("; ");
@@ -238,16 +236,15 @@ function loadHomePage() {
     $(".searchPopUp").css("display", "flex");
   });
 
-  //  birthday popup
-
-  let birthdaysCount = 0;
-
+  //  ------------ birthday popup ------------
   $(".birthDays").click(function () {
     let birthdayPopup = $(".birthdayPopup");
     showBirthdayPopup(birthdayPopup[0]);
   });
 
   function showBirthdayPopup(birthdayPopup) {
+    $("#birthday-list").empty();
+    retriveBirthdayData();
     birthdayPopup.style.display = "block";
     let container = document.getElementById("birthday-container");
     if (container) {
@@ -255,6 +252,13 @@ function loadHomePage() {
       container.style.transform = "scale(1)";
     }
   }
+
+  const retriveBirthdayData = async () => {
+    const birthdayData = await getBirthdayData();
+    if (birthdayData.data.length > 0) {
+      setBirthdayData(birthdayData.data);
+    }
+  };
 
   $("#close-birthday-icon").click(function () {
     let birthdayPopup = $(".birthdayPopup");
@@ -272,7 +276,28 @@ function loadHomePage() {
     }, 300);
   }
 
-  const DesktopBirthdayCard = () => {
+  const setBirthdayData = (birthdayData) => {
+    for (let i = 0; i < birthdayData.length; i++) {
+      $("#birthday-list").append(DesktopBirthdayCard(birthdayData[i]));
+    }
+
+    if (birthdayData.length === 1) {
+      $("#birthday-txt").text(
+        "1 friend has a birthday today. Send them good thoughts"
+      );
+    } else {
+      $("#birthday-txt").text(
+        birthdayData.length +
+          " friends have birthdays today. Send them good thoughts"
+      );
+    }
+  };
+
+  const DesktopBirthdayCard = (user) => {
+    const profileImage = user.profileImg
+      ? `data:image/png;base64,${user.profileImg}`
+      : "/assets/image/profilePic.png";
+
     return `
       <style>
         @media (max-width: 1158px) {
@@ -283,26 +308,17 @@ function loadHomePage() {
       </style>
       <div class="row align-items-center mb-2 me-4">
         <div class="col-auto d-flex align-items-center">
-          <img class="rounded-circle img-fluid" src="/assets/image/defaultProfileImage.png" alt="Profile Image" style="max-width: 50px;">
+          <img class="profile-img img-fluid" src="${profileImage}" alt="Profile Image">
         </div>
         <div class="col d-flex justify-content-between align-items-center">
           <div class="d-flex flex-column flex-md-row">
-            <p class="birthday-card-name mb-0 text-muted fs-6 fw-semibold">Mark Simoen Edward</p>
+            <p class="birthday-card-name mb-0 text-muted fs-6 fw-semibold">${user.name}</p>
           </div>
-          <p class="birthday-card-role mb-0 ms-3 text-muted fs-6 fw-semibold">GDSE 68</p>
+          <p class="birthday-card-role mb-0 ms-3 text-muted fs-6 fw-semibold">${user.batch}</p>
         </div>
       </div>
     `;
   };
-
-  for (let i = 0; i < 10; i++) {
-    $("#birthday-list").append(DesktopBirthdayCard());
-    birthdaysCount++;
-  }
-
-  $("#birthday-txt").text(
-    birthdaysCount + " friends have birthdays today. Send them good thoughts"
-  );
 
   // bottom nav bar mobile start
   const clickableElements = document.querySelectorAll(".clickable-element");
@@ -366,8 +382,12 @@ function createNotificationElement(notification) {
   } else {
   }
 
-  let notificationElement = $("<button>").addClass("border-0 py-3").css("box-shadow", " 0 4px 18.3px 0 rgba(0, 0, 0, 0.05)");
-  let notificationText = $("<span>").text(notification.content).css("font-size", "13px");
+  let notificationElement = $("<button>")
+    .addClass("border-0 py-3")
+    .css("box-shadow", " 0 4px 18.3px 0 rgba(0, 0, 0, 0.05)");
+  let notificationText = $("<span>")
+    .text(notification.content)
+    .css("font-size", "13px");
   notificationElement.append(notificationIcon, notificationText);
   return $("<div>").addClass("notification mb-2").append(notificationElement);
 }

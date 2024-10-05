@@ -21,81 +21,106 @@ function togglePassword(inputId, element) {
 }
 
 // Initial setup on page load
-$(document).ready(function () {
+$(document).ready(async function () {
   $("#name, #bio, #email, #dob").prop("readonly", true);
   $("#security-section").hide();
   $("#security-section input").prop("disabled", true);
 
   const token = getJwtToken();
+  let userData;
+
   if (token) {
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-    getUserData()
-      .then((userData) => {
-        if (userData) {
-          // Populate profile info
-          document.getElementById("name").value = userData.data.name;
-          document.getElementById(
-            "studentId"
-          ).textContent = `@${userData.data.userId}`;
-          document.getElementById("bio").value = userData.data.bio;
-          document.querySelector("input[type='email']").value =
-            userData.data.email;
-          document.querySelector("input[type='date']").value =
-            userData.data.dob;
+    try {
+      userData = await getUserData();
 
-          // Set images
-          const coverPhotoElement = document.querySelector(
-            ".profile-banner img"
-          );
-          if (userData.data.coverImg) {
-            coverPhotoElement.src = `data:image/jpeg;base64,${userData.data.coverImg}`;
-          }
-          const profilePicElement = document.querySelector(".profile-pic");
-          if (userData.data.profileImg) {
-            profilePicElement.src = `data:image/jpeg;base64,${userData.data.profileImg}`;
-          }
+      if (userData) {
+        // Populate profile info
+        document.getElementById("name").value = userData.data.name;
+        document.getElementById(
+          "studentId"
+        ).textContent = `@${userData.data.userId}`;
+        document.getElementById("bio").value = userData.data.bio;
+        document.querySelector("input[type='email']").value =
+          userData.data.email;
+        document.querySelector("input[type='date']").value = userData.data.dob;
 
-          // Logout button click event
-          const isMobile = window.innerWidth <= 991;
-          const logoutBtn = isMobile
-            ? document.getElementById("logout-btn-mobile")
-            : document.getElementById("logout-btn-desktop");
-
-          if (logoutBtn) {
-            logoutBtn.addEventListener("click", function () {
-              alert("awa");
-              // Remove the JWT token from the cookie
-              document.cookie =
-                "jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-              window.top.location.href = "/index.html";
-            });
-          }
-
-          // Delete button click event
-          const deleteBtn = document.getElementById("delete-btn");
-          if (deleteBtn) {
-            deleteBtn.addEventListener("click", async function () {
-              try {
-                const response = await deleteUser(userData.data.userId);
-                if (response.status === 204) {
-                  // Remove the JWT token from the cookie
-                  document.cookie =
-                    "jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-                  window.top.location.href = "/index.html";
-                }
-              } catch (error) {
-                console.error("Error deleting user:", error);
-              }
-            });
-          }
+        // Set images
+        const coverPhotoElement = document.querySelector(".profile-banner img");
+        if (userData.data.coverImg) {
+          coverPhotoElement.src = `data:image/jpeg;base64,${userData.data.coverImg}`;
         }
-      })
-      .catch((error) => console.error("Error fetching user data:", error));
+        const profilePicElement = document.querySelector(".profile-pic");
+        if (userData.data.profileImg) {
+          profilePicElement.src = `data:image/jpeg;base64,${userData.data.profileImg}`;
+        }
+
+        // Add event listener to all logout buttons
+        document.querySelectorAll(".logout-btn").forEach((btn) => {
+          btn.addEventListener("click", function () {
+            removeJwtToken();
+          });
+        });
+
+        // Delete button click event
+        const deleteBtns = document.querySelectorAll(".delete-btn");
+        deleteBtns.forEach((deleteBtn) => {
+          deleteBtn.addEventListener("click", function () {
+            // Show the delete confirmation popup
+            showModal();
+
+            if (deleteBtn) {
+              $("#confirmDelete").on("click", async function () {
+                try {
+                  const response = await deleteUser(userData.data.userId);
+                  if (response.status === 204) {
+                    removeJwtToken();
+                  } else {
+                    closeDeleteModal();
+                    alert("Failed to delete account.");
+                  }
+                } catch (error) {
+                  closeDeleteModal();
+                  console.error("Error deleting user:", error);
+                  alert("Error deleting account.");
+                }
+              });
+
+              $("#cancelDelete").on("click", function () {
+                closeDeleteModal();
+              });
+
+              function closeDeleteModal() {
+                $("#deletePopupModal").removeClass("active");
+                setTimeout(function () {
+                  $("#deletePopupModal").css("display", "none");
+                }, 300);
+              }
+            }
+
+            function showModal() {
+              $("#deletePopupModal").css("display", "flex");
+              setTimeout(function () {
+                $("#deletePopupModal").addClass("active");
+              }, 10);
+            }
+          });
+        });
+      }
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
   } else {
     console.error("User token not found in cookies");
   }
 
-  // Handle Edit Info button
+  // Function to remove the JWT token from the cookie
+  const removeJwtToken = () => {
+    document.cookie = "jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    window.top.location.href = "/index.html";
+  };
+
+  // Handle Edit Info button click
   $("#edit-info-btn").click(function () {
     const isReadOnly = $("#name").prop("readonly");
 
@@ -106,6 +131,26 @@ $(document).ready(function () {
       $("#security-buttons").hide();
       $(this).html('<i class="bx bxs-check"></i> Save Info');
     } else {
+      // Validate passwords before saving info
+      const currentPassword = document.getElementById("currentPassword").value;
+      const newPassword = document.getElementById("newPassword").value;
+      const confirmPassword = document.getElementById("confirmPassword").value;
+
+      if (currentPassword === "") {
+        alert("Current password is required!");
+        return;
+      }
+
+      if (
+        newPassword !== confirmPassword ||
+        newPassword === "" ||
+        confirmPassword === ""
+      ) {
+        alert("New password and confirm password do not match or are empty!");
+        return;
+      }
+
+      // Save info
       $("#security-section").hide();
       $("#security-buttons").show();
       $("#name, #bio, #email, #dob").prop("readonly", true);
@@ -118,17 +163,28 @@ $(document).ready(function () {
         email: $("#email").val(),
         bio: $("#bio").val(),
         dob: $("#dob").val(),
+        password: document.getElementById("currentPassword").value,
+        newPassword: newPassword,
       };
 
       updateUserData(data)
         .then((response) => {
           if (response.status === 200) {
+            // Delete the existing cookie named 'jwt'
+            document.cookie = "jwt=; path=/";
+            // Set the new cookie with the updated token
+            document.cookie = `jwt=${response.data.data.token}; path=/`;
             window.top.location.reload();
-          } else {
-            alert("Failed to update profile.");
-          }
+          } else alert("Failed to update profile.");
         })
-        .catch((error) => alert("Error updating profile."));
+        .catch((error) => {
+          if (error.code === 406) {
+            alert("Current password is incorrect.");
+          } else {
+            console.error("Error updating profile:", error);
+            alert("Error updating profile.");
+          }
+        });
     }
   });
 
@@ -171,6 +227,7 @@ $(document).ready(function () {
     }
   });
 
+  // Event listeners for "Remove Photo" buttons
   document.querySelectorAll(".remove-photo-btn").forEach((btn) => {
     btn.addEventListener("click", async function (event) {
       const isCoverPhoto = event.target.closest("#cover-photo-dropdown");
@@ -193,10 +250,11 @@ $(document).ready(function () {
     });
   });
 
-  function setupPhotoUpload(dropdown, type) {
-    dropdown
-      .querySelector(`#upload-photo-btn`)
-      .addEventListener("click", function () {
+  function setupPhotoUpload() {
+    const uploadButtons = document.querySelectorAll(".upload-photo-btn");
+
+    uploadButtons.forEach((button) => {
+      button.addEventListener("click", function () {
         const fileInput = document.getElementById("fileInput");
         fileInput.click();
 
@@ -206,6 +264,10 @@ $(document).ready(function () {
             if (file.size <= 7 * 1024 * 1024) {
               const formData = new FormData();
               formData.append("image", file);
+
+              // Determine the type of photo based on the parent element
+              const isCoverPhoto = button.closest("#cover-photo-dropdown");
+              const type = isCoverPhoto ? "cover" : "profile";
               formData.append("type", type);
               formData.append(
                 "email",
@@ -229,49 +291,18 @@ $(document).ready(function () {
           fileInput.value = "";
         });
 
-        dropdown.style.display = "none";
+        // Hide the dropdown menu after clicking the upload button
+        const dropdownMenu = button.closest(
+          ".dropdown-menu, .dropdown-menu-profile"
+        );
+        if (dropdownMenu) {
+          dropdownMenu.style.display = "none";
+        }
       });
+    });
   }
 
-  setupPhotoUpload(document.getElementById("cover-photo-dropdown"), "cover");
-  setupPhotoUpload(
-    document.getElementById("profile-photo-dropdown"),
-    "profile"
-  );
-
-  document
-    .getElementById("edit-info-btn")
-    .addEventListener("click", async function () {
-      const newPassword = document.getElementById("newPassword").value;
-      const confirmPassword = document.getElementById("confirmPassword").value;
-
-      if (newPassword !== confirmPassword) {
-        alert("New password and confirm password do not match!");
-        return;
-      }
-
-      const data = {
-        userId: userData.data.userId,
-        name: $("#name").val(),
-        email: $("#email").val(),
-        bio: $("#bio").val(),
-        password: document.getElementById("currentPassword").value,
-        newPassword: newPassword,
-        dob: $("#dob").val(),
-      };
-
-      try {
-        document.cookie = "jwt=; path=/"; // Delete existing cookie named 'jwt'
-        const response = await updateUserData(data);
-        if (response.status === 200) {
-          window.top.location.reload();
-        } else {
-          alert("Failed to update profile.");
-        }
-      } catch (error) {
-        alert("Error updating profile.");
-      }
-    });
+  setupPhotoUpload();
 });
 
 function getJwtToken() {

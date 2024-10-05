@@ -224,6 +224,7 @@ body {
   border-radius: 15px;
   padding: 16px 18px;
   box-shadow: 0 4px 18.3px 0 rgba(0, 0, 0, 0.05);
+  cursor: pointer;
 }
 
 #homePage .birthDays h3 {

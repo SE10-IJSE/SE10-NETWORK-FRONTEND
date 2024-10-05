@@ -1,51 +1,92 @@
 .btn-cancel {
-    background-color: #f8d7da;
-    color: #d9534f;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    height: auto;
+  background-color: #f8d7da;
+  color: #d9534f;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  height: auto;
 }
 
 .btn-cancel:hover {
-    background-color: #f5c6cb;
+  background-color: #f5c6cb;
 }
 
 .btn-delete {
-    background-color: #d9534f;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
+  background-color: #d9534f;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
 }
 
 .btn-delete:hover {
-    background-color: #c9302c;
+  background-color: #c9302c;
 }
 
-.modal-header{
-    font-size: 16px;
-    font-weight: 700;
-    color: #000000;
-    font-family: "Poppins", sans-serif;
-    border: none;
+.modal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
 }
 
-.modal-subheader{
-    font-family: "Poppins", sans-serif;
-    font-size: 14px;
-    color: #A8A8A8;
-    font-weight: 400;
-    padding: 0;
-    margin-left: 16px;
+.modal.active .modal-content {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
 }
 
-button{
-    font-family: "Poppins", sans-serif;
-    font-size: 10px;
-    font-weight: 600;
+.modal-content {
+  background-color: #fff;
+  width: 483px;
+  height: 185px;
+  padding: 20px;
+  border-radius: 15px;
+  border: 1px solid rgba(236, 236, 236, 1);
+  text-align: left;
+  box-shadow: 0px 4px 18.3px rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 300ms ease-in-out, opacity 300ms ease-in-out;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.modal-header {
+  width: 267px;
+  height: 30px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.modal-subheader {
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  color: #a8a8a8;
+  font-weight: 400;
+  padding: 0;
+  margin-left: 16px;
+}
+.modal-actions {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  width: auto;
+  display: flex;
+  justify-content: flex-end;
+}
+
+button {
+  font-family: "Poppins", sans-serif;
+  font-size: 10px;
+  font-weight: 600;
 }
