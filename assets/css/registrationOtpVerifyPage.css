@@ -6,10 +6,11 @@ body {
   align-items: center;
   justify-content: center;
   font-family: "Poppins", sans-serif;
-  height: 100vh;
   margin: 0;
+  height: 100vh;
   overflow-x: scroll;
-  width: -webkit-fill-available;
+  width: 100%;
+  padding: 0;
 }
 
 .container {
@@ -25,8 +26,8 @@ body {
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 150px;
-  height: auto;
+  width: 120px;
+  height: 58px;
 }
 
 .reg-bg {
@@ -39,9 +40,6 @@ body {
 .form-container {
   flex: 1;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 45px;
 }
 
 .reg-bg img {
@@ -66,16 +64,17 @@ form {
   background-color: #fffafa;
   padding: 0 20px;
   width: 100%;
-  max-width: 494px;
+  max-width: 640px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  margin: 0 0 0 55px;
 }
 
 .reg-line {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 5px;
 }
@@ -87,44 +86,46 @@ form {
 }
 
 h1 {
-  font-size: 31px;
-  margin: 20px 0 0 0;
-  font-weight: bold;
+  font-size: 32px;
+  font-weight: 600;
+  margin-top: 22px;
 }
 
 h3 {
   font-size: 14px;
   color: #7b7b7b;
+  font-weight: 600;
 }
 
 h4 {
   font-size: 15px;
   color: #b2b2b2;
-  margin: 0 0 35px 0;
+  font-weight: 600;
+  margin-top: -7px;
 }
 
 p.otp-info {
-  color: #444;
-  margin-bottom: 15px;
-  font-weight: bold;
-  font-size: x-small;
+  color: #000;
+  margin-top: 40px;
+  font-weight: 600;
+  font-size: 14px;
 }
 
 .otp-input {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 30px;
+  column-gap: 2.8%;
+  margin-top: 21px;
 }
 
 .otp-input input {
-  width: 50px;
-  height: 60px;
+  width: 63px;
+  height: 66px;
   font-size: 20px;
   text-align: center;
   border: 1px solid white;
-  border-radius: 5px;
+  border-radius: 8px;
   background-color: white;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.233);
+  box-shadow: 0 1px 4px rgb(0 0 0 / 8%);
   transition: box-shadow 0.2s;
 }
 .otp-input input:focus {
@@ -132,10 +133,19 @@ p.otp-info {
   border-color: #ff0004;
 }
 
+.otp-input > input:nth-child(3) {
+  margin-right: 4px;
+}
+
+.otp-input > input:nth-child(4) {
+  margin-left: 4px;
+}
+
 .resend-info {
-  margin-bottom: 45px;
-  font-size: xx-small;
-  font-weight: bold;
+  margin-top: 32px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #7b7b7b;
 }
 
 .resend-info a {
@@ -148,10 +158,9 @@ button.create-account-btn {
   width: 190px;
   background-color: #e90708;
   color: white;
-  padding: 12px;
   border: none;
   border-radius: 28px;
-  font-size: small;
+  font-size: 15px;
   font-weight: 600;
   cursor: pointer;
 }
@@ -160,9 +169,274 @@ button.create-account-btn:hover {
   background-color: #c62929;
 }
 
-.btnDiv {
-  padding-top: 30px;
-  padding-bottom: 100px;
+@media screen and (max-width: 299px) {
+  .line {
+    width: 12vw;
+  }
+
+  .small-image {
+    width: 39vw;
+    height: 17vw;
+  }
+
+  h1 {
+    font-size: 5.3vw;
+  }
+
+  h3 {
+    font-size: 3.6vw;
+  }
+
+  h4 {
+    font-size: 3.6vw;
+  }
+
+  p.otp-info {
+    font-size: 3.3vw;
+  }
+
+  .resend-info {
+    font-size: 3vw;
+  }
+
+  button.create-account-btn {
+    height: 12vw;
+    width: 52vw;
+    font-size: 4vw;
+    padding: 4%;
+  }
+
+  .otp-input {
+    margin-top: 23px;
+    column-gap: 2vw;
+  }
+
+  .otp-input input {
+    font-size: 6vw;
+  }
+
+  .otp-input > input:nth-child(3) {
+    margin-right: 3vw;
+  }
+
+  .otp-input > input:nth-child(4) {
+    margin-left: 3vw;
+  }
+}
+
+@media screen and (min-width: 300px) and (max-width: 600px) {
+  p.otp-info {
+    font-size: 12px;
+    margin-top: 37px;
+  }
+
+  .resend-info {
+    font-size: 11px;
+    margin-top: 20px;
+  }
+
+  .otp-input {
+    margin-top: 23px;
+    column-gap: 6px;
+  }
+
+  .otp-input input {
+    font-size: 16px;
+  }
+
+  .otp-input > input:nth-child(3) {
+    margin-right: 10px;
+  }
+
+  .otp-input > input:nth-child(4) {
+    margin-left: 10px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  body {
+    display: block;
+  }
+
+  .container {
+    align-items: center;
+    height: 681px;
+  }
+
+  .form-container {
+    height: auto;
+    width: 100%;
+    padding: 0 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  form {
+    position: relative;
+    height: auto;
+    width: max-content;
+    margin: 0 10px;
+  }
+
+  .reg-line {
+    margin-top: 43px;
+  }
+
+  h1 {
+    font-size: 5vw;
+    margin-top: 37px;
+  }
+
+  h4 {
+    font-size: 3.6vw;
+    margin-top: -7px;
+  }
+
+  .otp-input input {
+    width: 11.7vw;
+    height: 14vw;
+  }
+
+  .reg-bg {
+    width: 100vw;
+    max-height: 116px;
+  }
+
+  .reg-bg .mobile-img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .reg-bg .tab-img {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 601px) and (max-width: 991px) {
+  body {
+    display: block;
+  }
+
+  .container {
+    align-items: center;
+    height: 765px;
+  }
+
+  .form-container {
+    height: auto;
+    width: 100%;
+    padding: 0 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  form {
+    height: auto;
+    width: max-content;
+    margin: 0 10px;
+    position: relative;
+  }
+
+  .reg-line {
+    margin-top: 43px;
+    margin-left: 0;
+  }
+
+  h1 {
+    font-size: 32px;
+    margin-top: 30px;
+  }
+
+  h4 {
+    font-size: 15px;
+    margin-top: -7px;
+  }
+
+  p.otp-info {
+    font-size: 12px;
+    margin-top: 50px;
+  }
+
+  .otp-input {
+    margin-top: 20px;
+    column-gap: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .otp-input input {
+    font-size: 20px;
+  }
+
+  .otp-input > input:nth-child(3) {
+    margin-right: 10px;
+  }
+
+  .otp-input > input:nth-child(4) {
+    margin-left: 10px;
+  }
+
+  .resend-info {
+    font-size: 11px;
+    margin-top: 20px;
+  }
+
+  .reg-bg {
+    width: 100%;
+    max-height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .reg-bg .mobile-img {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .reg-bg .tab-img {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .otp-input input {
+    max-width: 63px;
+    max-height: 66px;
+  }
+
+  button.create-account-btn {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    margin-top: 57px;
+  }
+
+  .btnDiv {
+    margin-bottom: 190px;
+  }
+
+  .reg-bg img {
+    object-fit: cover;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .reg-line {
+    margin-top: 26%;
+  }
+
+  p.otp-info {
+    margin-top: 68px;
+  }
+
+  button.create-account-btn {
+    margin-top: 54px;
+    margin-bottom: 177px;
+  }
 }
 
 @media screen and (max-width: 1320px) {
@@ -171,473 +445,43 @@ button.create-account-btn:hover {
   }
 }
 
-@media screen and (max-width: 1250px) {
+@media screen and (min-width: 992px) and (max-width: 1200px) {
   .container {
-    max-width: 1100px;
-  }
-
-  .line {
-    width: 35px;
-  }
-
-  h1 {
-    font-size: 25px;
-    margin-bottom: 5px;
-    font-weight: bold;
-  }
-
-  h3 {
-    font-size: 12px;
-    font-weight: bold;
-  }
-
-  h4 {
-    font-size: 13px;
-    font-weight: bold;
-    margin-bottom: 50px;
-  }
-
-  .create-account-btn {
-    height: 40px;
-    width: 170px;
-    font-size: 15px;
-  }
-}
-
-@media screen and (max-width: 1200px) {
-  .container {
-    max-width: 1050px;
-  }
-
-  .create-account-btn {
-    height: 37px;
-    width: 150px;
-    font-size: 13px;
-    margin-bottom: 20px;
-  }
-
-  .small-image {
-    width: 140px;
-  }
-}
-
-@media screen and (max-width: 1100px) {
-  .container {
-    max-width: 950px;
-  }
-
-  .small-image {
-    width: 130px;
-  }
-
-  .create-account-btn {
-    height: 33px;
-    width: 140px;
-    font-size: 12px;
-    margin-bottom: 20px;
-  }
-}
-
-@media screen and (max-width: 360px) {
-  html,
-  body {
-    padding: 0;
-    display: inline-table;
-    overflow: hidden;
-  }
-
-  .reg-bg {
-    height: 10px;
-    justify-content: center;
-    align-items: center;
-    z-index: 10;
-    width: 100%;
-    margin-bottom: 25px;
-  }
-
-  .reg-bg .mobile-img {
-    height: 116px;
-    border-radius: 0 0px 10px 10px;
-    display: block;
-  }
-
-  .reg-bg .desktop-img {
-    display: none;
-  }
-
-  .reg-bg .tablet-img {
-    display: none;
-  }
-
-  .form-container {
-    height: 100%;
+    max-width: 95vw;
   }
 
   form {
-    height: 100%;
-    padding: 0px 20px;
-    width: 100%;
-    max-width: 304px;
-    justify-content: flex-start;
-  }
-
-  #register-form-03 {
-    position: relative;
-    height: 100%;
-    width: 100%;
-    display: inline-flex;
-    padding-bottom: 80px;
-  }
-
-  .reg-line {
-    margin-top: 60px;
+    margin: 0 0 0 4vw;
   }
 
   h1 {
-    font-size: 25px;
-    margin: 60px 0 0 0;
-    width: 100%;
+    font-size: 26px;
   }
 
   h4 {
-    font-size: 14px;
-    color: #b2b2b2;
-    margin: 5px 0 50px 0;
-    width: 100%;
+    font-size: 11px;
   }
 
   p.otp-info {
-    font-size: smaller;
-  }
-
-  .otp-input {
-    margin: 30px 0 20px 0;
+    font-size: 11px;
   }
 
   .resend-info {
-    font-size: x-small;
+    font-size: 10px;
+  }
+
+  .otp-input {
+    column-gap: 1vw;
   }
 
   .otp-input input {
-    width: 30px;
-    height: 40px;
-  }
-
-  button.create-account-btn {
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-  }
-
-  .small-image {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100px;
-    height: auto;
-  }
-
-  .reg-bg .tab-img {
-    display: none;
-  }
-}
-
-@media screen and (min-width: 361px) and (max-width: 550px) {
-  html,
-  body {
-    padding: 0;
-    display: inline-table;
-  }
-
-  .reg-bg {
-    height: 10px;
-    justify-content: center;
-    align-items: center;
-    z-index: 10;
-    width: 100%;
-    margin-bottom: 25px;
-  }
-
-  .reg-bg .tab-img {
-    height: 120px;
-    border-radius: 0 0 10px 10px;
-    display: block;
-  }
-
-  .reg-bg .desktop-img {
-    display: none;
-  }
-
-  .form-container {
-    height: 840px;
-    padding: 0 20px;
-    flex-direction: column;
-    justify-content: center;
-    margin-bottom: 35px;
-  }
-
-  #register-form-03 {
-    position: relative;
-    height: 100%;
-    width: 100%;
-    display: inline-flex;
-    padding-bottom: 80px;
-  }
-
-  form {
-    height: 100%;
-    padding: 0 20px;
-    width: 100%;
-    max-width: 600px;
-    justify-content: flex-start;
-  }
-
-  .reg-line {
-    margin-top: 60px;
-  }
-
-  h1 {
-    font-size: 25px;
-    margin: 60px 0 0 0;
-    width: 100%;
-  }
-
-  h4 {
+    width: 5vw;
+    height: 5.5vw;
     font-size: 14px;
-    color: #b2b2b2;
-    margin: 5px 0 50px 0;
-    width: 100%;
-  }
-
-  p.otp-info {
-    font-size: smaller;
-  }
-
-  .otp-input {
-    margin: 30px 0 20px 0;
-  }
-
-  .otp-input input {
-    width: 40px;
-    height: 50px;
-  }
-
-  .resend-info {
-    font-size: x-small;
   }
 
   button.create-account-btn {
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-  }
-
-  .small-image {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 120px;
-    height: auto;
-  }
-}
-
-@media screen and (min-width: 551px) and (max-width: 700px) {
-  html,
-  body {
-    padding: 0;
-    display: inline-table;
-  }
-
-  .reg-bg {
-    height: 10px;
-    justify-content: center;
-    align-items: center;
-    z-index: 10;
-    width: 100%;
-    margin-bottom: 25px;
-  }
-
-  .reg-bg .tab-img {
-    height: 150px;
-    border-radius: 0 0 10px 10px;
-    display: block;
-  }
-
-  .reg-bg .desktop-img {
-    display: none;
-  }
-
-  .form-container {
-    height: 840px;
-    padding: 0 20px;
-    flex-direction: column;
-    justify-content: center;
-    margin-bottom: 15px;
-  }
-
-  form {
-    height: 100%;
-    padding: 0 20px;
-    width: 100%;
-    max-width: 600px;
-    justify-content: flex-start;
-  }
-
-  #register-form-03 {
-    position: relative;
-    height: 100%;
-    width: 100%;
-    display: inline-flex;
-    padding-bottom: 80px;
-  }
-
-  .reg-line {
-    margin-top: 60px;
-  }
-
-  h1 {
-    font-size: 25px;
-    margin: 60px 0 0 0;
-    width: 100%;
-  }
-
-  h4 {
-    font-size: 14px;
-    color: #b2b2b2;
-    margin: 5px 0 50px 0;
-    width: 100%;
-  }
-
-  p.otp-info {
-    font-size: smaller;
-  }
-
-  .otp-input {
-    margin: 30px 0 20px 0;
-  }
-
-  .resend-info {
-    font-size: x-small;
-  }
-
-  button.create-account-btn {
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-  }
-
-  .small-image {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 120px;
-    height: auto;
-  }
-}
-
-@media screen and (min-width: 701px) and (max-width: 991px) {
-  html,
-  body {
-    padding: 0;
-    display: inline-table;
-  }
-
-  #register-form-03 {
-    position: relative;
-    height: 100%;
-    width: 100%;
-    display: inline-flex;
-    padding-bottom: 80px;
-  }
-
-  .reg-bg {
-    height: 10px;
-    justify-content: center;
-    align-items: center;
-    z-index: 10;
-    width: 100%;
-    margin-bottom: 25px;
-  }
-
-  .reg-bg .tab-img {
-    height: 180px;
-    border-radius: 0 0 10px 10px;
-    display: block;
-  }
-
-  .reg-bg .desktop-img {
-    display: none;
-  }
-
-  .form-container {
-    display: flex;
-    height: 840px;
-    padding: 0 20px;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center !important;
-  }
-
-  form {
-    height: 100%;
-    padding: 0 20px;
-    width: 100%;
-    max-width: 992px;
-    justify-content: flex-start;
-  }
-
-  .reg-line {
-    margin-top: 60px;
-  }
-
-  h1 {
-    font-size: 25px;
-    margin: 60px 0 0 0;
-    width: 100%;
-  }
-
-  h4 {
-    font-size: 14px;
-    color: #b2b2b2;
-    margin: 5px 0 50px 0;
-    width: 100%;
-  }
-
-  p.otp-info {
-    font-size: smaller;
-  }
-
-  .otp-input {
-    margin: 30px 0 20px 0;
-  }
-
-  .resend-info {
-    font-size: x-small;
-  }
-
-  button.create-account-btn {
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-  }
-
-  .small-image {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 120px;
-    height: auto;
-  }
-}
-
-@media screen and (max-width: 991px) {
-  .container {
-    height: 100%;
-    box-shadow: none;
-    align-items: center;
+    height: 4vw;
+    width: 16vw;
   }
 }
