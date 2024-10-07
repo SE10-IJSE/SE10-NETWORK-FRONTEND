@@ -63,7 +63,7 @@ body {
   max-height: 832px;
   max-width: 1280px;
   box-shadow: 0px 0px 22.9px -6px rgba(0, 0, 0, 0.1);
-  background-color: #fffafa;
+  background-color: var(--bg-color);
   position: relative;
 }
 
@@ -96,7 +96,7 @@ body {
 }
 
 form {
-  background-color: #fffafa;
+  background-color: var(--bg-color);
   padding: 0 20px;
   width: 100%;
   max-width: 494px;
@@ -114,7 +114,7 @@ form {
 }
 
 .line {
-  background-color: #e90708;
+  background-color: var(--btn-bg-color);
   width: 43px;
   height: 2px;
 }
@@ -156,13 +156,20 @@ h4 {
   transform: translateY(-50%);
   cursor: pointer;
   font-size: 22px;
-  color: #e90708;
+  color: var(--btn-bg-color);
 }
 
 .remember-container {
+  display: flex;
   position: absolute;
-  right: 0;
   top: 100%;
+  width: 100%;
+  font-size: 14px;
+}
+
+.remember-container a {
+  text-decoration: none;
+  color: #949494;
   font-size: 14px;
 }
 
@@ -176,11 +183,11 @@ h4 {
 }
 
 input[type="checkbox"] {
-  accent-color: #e90708;
+  accent-color: var(--btn-bg-color);
 }
 
 .btn {
-  background-color: #e90708;
+  background-color: var(--btn-bg-color);
   border-radius: 28px;
   height: 44px;
   width: 190px;
@@ -204,7 +211,7 @@ input[type="checkbox"] {
 }
 
 .not-acc span {
-  color: #e90708;
+  color: var(--btn-bg-color);
   cursor: pointer;
 }
 
@@ -223,7 +230,7 @@ input[type="checkbox"] {
 }
 
 .txt-field:focus {
-  outline: 2px solid #e90708;
+  outline: 2px solid var(--btn-bg-color);
   background-color: white;
 }
 
@@ -234,7 +241,7 @@ input[type="checkbox"] {
 }
 
 .txt-field:focus::placeholder {
-  color: #e90708;
+  color: var(--btn-bg-color);
 }
 
 .txt-label {
@@ -257,7 +264,7 @@ input[type="checkbox"] {
   top: 18px;
   left: 25px;
   font-size: 12px;
-  color: #e90708;
+  color: var(--btn-bg-color);
   z-index: 10;
 }
 
@@ -269,11 +276,11 @@ input[type="checkbox"] {
   transform: translateY(-50%);
   cursor: pointer;
   font-size: 24px;
-  color: #e90708;
+  color: var(--btn-bg-color);
 }
 
 #togglePassword:hover {
-  color: #e90708;
+  color: var(--btn-bg-color);
 }
 
 @media screen and (max-width: 1320px) {
@@ -320,6 +327,10 @@ input[type="checkbox"] {
     font-size: 12px;
   }
 
+  .remember-container a {
+    font-size: 12px;
+  }
+
   .btn {
     width: 160px;
     font-size: 13px;
@@ -336,7 +347,6 @@ input[type="checkbox"] {
   form {
     padding: 0 30px;
   }
-
 }
 
 @media screen and (max-width: 991px) {
@@ -358,7 +368,7 @@ input[type="checkbox"] {
     font-size: 13px;
   }
 
-  .container{
+  .container {
     height: 100%;
   }
 }
@@ -412,6 +422,10 @@ input[type="checkbox"] {
     font-size: 12px;
   }
 
+  .remember-container a {
+    font-size: 12px;
+  }
+
   .txt-field:focus + .txt-label,
   .txt-field:not(:placeholder-shown) + .txt-label {
     left: 16px;
@@ -421,7 +435,6 @@ input[type="checkbox"] {
   #togglePassword {
     font-size: 20px;
   }
-
 }
 
 @media screen and (max-width: 768px) and (min-width: 500px) {
