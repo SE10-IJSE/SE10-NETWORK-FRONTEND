@@ -1,8 +1,4 @@
-import { postRegisterData } from "../model/RegistrationFormModel.js";
-
-// =============== Profile picture ===============
-
-// Uploading
+// ====== Profile Picture Upload ======
 const profileDropArea = document.getElementById("propic-drop-area");
 const profileInputFile = document.getElementById("profile-input-file");
 const profileImgView = document.getElementById("profile-img-view");
@@ -36,9 +32,7 @@ document.addEventListener("click", function (event) {
   }
 });
 
-// =============== Cover picture ===============
-
-// Uploading
+// ====== Cover Picture Upload ======
 const coverDropArea = document.getElementById("coverpic-drop-area");
 const coverInputFile = document.getElementById("cover-input-file");
 const coverImgView = document.getElementById("cover-img-view");
@@ -128,43 +122,39 @@ document.addEventListener("DOMContentLoaded", function () {
         let bio = document.getElementById("bio").value;
 
         if (bio !== null && bio !== "") {
-          const formDataToSend = new FormData();
-          formDataToSend.append("userId", formData.studentId);
-          formDataToSend.append("name", formData.name);
-          formDataToSend.append("email", formData.email);
-          formDataToSend.append("password", formData.password);
-          formDataToSend.append("dob", formData.dob);
-          formDataToSend.append("batch", formData.batch);
-          formDataToSend.append("bio", bio);
+          formData.bio = bio;
 
           // Append profile and cover pictures if they exist
           if (profileInputFile.files[0]) {
-            formDataToSend.append("profilePic", profileInputFile.files[0]);
+            const reader = new FileReader();
+            reader.onloadend = function () {
+              formData.profilePic = reader.result;
+              localStorage.setItem(
+                "registrationFormData",
+                JSON.stringify(formData)
+              );
+            };
+            reader.readAsDataURL(profileInputFile.files[0]);
           }
 
           if (coverInputFile.files[0]) {
-            formDataToSend.append("coverPic", coverInputFile.files[0]);
+            const reader = new FileReader();
+            reader.onloadend = function () {
+              formData.coverPic = reader.result;
+              localStorage.setItem(
+                "registrationFormData",
+                JSON.stringify(formData)
+              );
+            };
+            reader.readAsDataURL(coverInputFile.files[0]);
           }
 
-          postRegisterData(formDataToSend)
-            .then((response) => {
-              if (response.status === 201) {
-                // Remove form data from localStorage
-                localStorage.removeItem("registrationFormData");
+          localStorage.setItem(
+            "registrationFormData",
+            JSON.stringify(formData)
+          );
 
-                // Set the JWT token in a cookie
-                document.cookie = `jwt=${response.data.data.token}; path=/`;
-
-                // Redirect to the homepage
-                window.location.href = "/pages/homePage.html";
-              } else {
-                alert("SignUp failed. Please check your details.");
-              }
-            })
-            .catch((error) => {
-              console.error("SignUp error:", error);
-              alert("An error occurred during SignUp. Please try again later.");
-            });
+          window.location.href = "/pages/registrationOtpVerifyPage.html";
         }
       });
   }

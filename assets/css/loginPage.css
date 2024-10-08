@@ -167,10 +167,11 @@ h4 {
   font-size: 14px;
 }
 
-.remember-container a {
+.remember-container span {
   text-decoration: none;
   color: #949494;
   font-size: 14px;
+  cursor: pointer;
 }
 
 .remember-container label {
@@ -327,7 +328,7 @@ input[type="checkbox"] {
     font-size: 12px;
   }
 
-  .remember-container a {
+  .remember-container span {
     font-size: 12px;
   }
 
@@ -422,7 +423,7 @@ input[type="checkbox"] {
     font-size: 12px;
   }
 
-  .remember-container a {
+  .remember-container span {
     font-size: 12px;
   }
 
