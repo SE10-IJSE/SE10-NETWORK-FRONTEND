@@ -148,9 +148,10 @@ p.otp-info {
   color: #7b7b7b;
 }
 
-.resend-info a {
+.resend-info span {
   color: #e90708;
   text-decoration: none;
+  cursor: pointer;
 }
 
 button.create-account-btn {

@@ -1,6 +1,7 @@
 import { postLoginData } from "../model/LoginFormModel.js";
 
 document.addEventListener("DOMContentLoaded", function () {
+  localStorage.removeItem("email");
   const jwtToken = getJwtToken();
 
   if (jwtToken) {
@@ -76,4 +77,19 @@ function loadLoginPage() {
         alert("An error occurred during login. Please try again later.");
       });
   });
+
+  document
+    .getElementById("forgot-password-link")
+    .addEventListener("click", function () {
+      if (!emailField.value) {
+        alert("Please enter your email address.");
+        return;
+      } else if (!emailField.checkValidity()) {
+        alert("Please enter a valid email address.");
+        return;
+      } else {
+        localStorage.setItem("email", emailField.value);
+        window.location.href = "/pages/forgotPasswordOtpVerifyPage.html";
+      }
+    });
 }

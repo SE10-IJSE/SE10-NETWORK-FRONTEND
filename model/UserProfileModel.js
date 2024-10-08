@@ -96,6 +96,24 @@ export const updateUserPhoto = (formData) => {
     });
 };
 
+export const updateUserPassword = (email, password) => {
+  let config = {
+    method: "put",
+    maxBodyLength: Infinity,
+    url: `http://localhost:8080/api/v1/auth/update_password?email=${email}&password=${password}`,
+  };
+
+  return axios(config)
+    .then((response) => {
+      console.log("Password update successful:", response.status);
+      return response;
+    })
+    .catch((error) => {
+      console.error("Password update failed:", error);
+      throw error;
+    });
+};
+
 export const deleteUserData = (id) => {
   let config = {
     method: "delete",
