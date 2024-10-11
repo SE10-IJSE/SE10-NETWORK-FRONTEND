@@ -1,5 +1,5 @@
 body {
-  background: #fffafa;
+  background: var(--bg-color);
 }
 
 #navBar {
@@ -9,7 +9,7 @@ body {
 }
 
 #navBar h1 {
-  color: #e90708;
+  color: var(--btn-bg-color);
   font-family: "Poppins", sans-serif;
   font-size: 32px;
   font-style: normal;
@@ -35,8 +35,8 @@ body {
 
 #navBar input:focus {
   outline: none;
-  border: 1px solid #e90708;
-  color: rgb(233, 7, 8);
+  border: 1px solid var(--btn-bg-color);
+  color: var(--btn-bg-color);
 }
 
 #navBar .searchIcon {
@@ -72,7 +72,7 @@ body {
   padding: 34px 100px 0 100px;
 }
 
-#homePage > :first-child {
+#homePage> :first-child {
   width: 15vw;
 }
 
@@ -117,6 +117,7 @@ body {
 #homePage .profile * {
   text-align: center;
   line-height: 10px;
+
 }
 
 #homePage .profile h4 {
@@ -124,6 +125,8 @@ body {
   font-family: "Poppins", sans-serif;
   font-size: 18px;
   font-weight: 700;
+  line-height: 18px;
+  /* text-overflow: ellipsis; */
 }
 
 #homePage .profile h5 {
@@ -132,6 +135,7 @@ body {
   font-size: 14px;
   font-weight: 500;
   margin-bottom: 14px;
+
 }
 
 #homePage .profile h6 {
@@ -141,6 +145,7 @@ body {
   padding: 0 15px;
   font-weight: 500;
   line-height: 18px;
+
 }
 
 #homePage .profile .profileDetails {
@@ -195,13 +200,13 @@ body {
   background: #fff;
 }
 
-#homePage > .homeWallComponent {
+#homePage>.homeWallComponent {
   width: 58vw;
   height: 83vh;
   /*margin: 0 16px;*/
 }
 
-#homePage .homeWallComponent > iframe {
+#homePage .homeWallComponent>iframe {
   width: 100%;
   height: 100%;
   max-height: 100%;
@@ -209,11 +214,11 @@ body {
   overflow-y: scroll;
 }
 
-#homePage .homeWallComponent > iframe::-webkit-scrollbar {
+#homePage .homeWallComponent>iframe::-webkit-scrollbar {
   width: 0 !important;
 }
 
-#homePage > :last-child {
+#homePage> :last-child {
   width: 15vw;
 }
 
@@ -253,7 +258,7 @@ body {
   margin-top: 5px;
 }
 
-#homePage .birthDays + h1 {
+#homePage .birthDays+h1 {
   color: #000;
   font-family: "Poppins", sans-serif;
   font-size: 24px;
@@ -262,7 +267,7 @@ body {
   margin-bottom: 26px;
 }
 
-#homePage > :last-child button {
+#homePage> :last-child button {
   border-radius: 15px;
   border: 1px solid #e7e7e7;
   background: #fff;
@@ -273,12 +278,12 @@ body {
   width: 100%;
 }
 
-#homePage > :last-child button img {
+#homePage> :last-child button img {
   width: 23px;
   height: 23px;
 }
 
-#homePage > :last-child button span {
+#homePage> :last-child button span {
   color: #797979;
   font-family: "Poppins", sans-serif;
   font-size: 12px;
@@ -294,26 +299,27 @@ body {
 /* bottom nav bar mobile start */
 .img-box {
   border-bottom: 3px solid transparent;
-
   padding: 1px !important;
   height: 30px;
 }
 
 .red-border-bottom {
-  border-bottom: 3px solid red; /* Red border when clicked */
+  border-bottom: 3px solid var(--btn-bg-color);
 }
+
 /* bottom nav bar mobile end */
 
 @media screen and (max-width: 1440px) {
   #homePage {
     padding: 34px 75px 0 75px;
   }
+
   #navBar {
     padding: 25px 75px;
   }
 }
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 991px) {
   #navBar {
     padding: 0;
   }
@@ -326,13 +332,68 @@ body {
     justify-content: space-between !important;
     padding: 32px 30px 12px 30px;
   }
+
   #navBar h1 {
     color: #000;
     font-size: 20px;
     font-weight: 700;
   }
-  #homePage > .homeWallComponent {
+
+  #homePage>.homeWallComponent {
     width: 100%;
     margin: 0;
+  }
+}
+
+
+@media (min-width: 992px) and (max-width: 1800px) {
+  #homePage .wall {
+    margin-right: 70px;
+  }
+
+  #homePage .notifi {
+    margin-left: 60px;
+  }
+
+  #homePage .profile h5 {
+    line-height: 20px;
+  }
+
+  #homePage .homeButton button,
+  #homePage .myPostButton button,
+  #homePage .approveButton button {
+    font-size: 14px;
+  }
+
+  .profile {
+    width: 130%;
+  }
+
+  #homePage .myPostButton,
+  #homePage .homeButton,
+  #homePage .approveButton {
+    width: 130%;
+  }
+
+  #homePage .homeButton button,
+  #homePage .myPostButton button,
+  #homePage .approveButton button {
+    padding-left: 25%;
+  }
+
+  #homePage .birthDays {
+    width: 130%;
+    margin-left: -24%;
+
+  }
+
+  #notifications {
+    width: 130%;
+    margin-left: -24%;
+
+  }
+
+  .notify-title {
+    margin-left: -20%;
   }
 }

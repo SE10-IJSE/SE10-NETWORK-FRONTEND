@@ -1,226 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="shortcut icon"
-      href="/assets/image/profilePic.png"
-      type="image"
-    />
-    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/assets/css/styles.css" />
-    <link rel="stylesheet" href="/assets/css/homePage.css" />
-    <link rel="stylesheet" href="/assets/css/searchPopup.css" />
-    <link rel="stylesheet" href="/assets/css/birthdayPopup.css" />
-    <title>HOME</title>
-  </head>
-  <body>
-    <div
-      id="searchPopUp"
-      class="searchPopUp position-absolute w-100 justify-content-center"
-    >
-      <div class="searchPopupList" id="searchPopupList">
-        <div class="search-popup p-2">
-          <div class="recent-box w-100">
-            <div>
-              <h3 id="search-title" class="">Recent</h3>
-              <hr />
-            </div>
-            <ul
-              id="recent-list"
-              class="recent-list d-flex flex-column gap-3 m-0"
-            ></ul>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="/assets/image/profilePic.png" type="image" />
+  <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+  <link rel="stylesheet" href="/assets/css/homePage.css" />
+  <link rel="stylesheet" href="/assets/css/searchPopup.css" />
+  <link rel="stylesheet" href="/assets/css/birthdayPopup.css" />
+  <title>HOME</title>
+</head>
+
+<body>
+  <div id="searchPopUp" class="searchPopUp position-absolute w-100 justify-content-center">
+    <div class="searchPopupList" id="searchPopupList">
+      <div class="search-popup p-2">
+        <div class="recent-box w-100">
+          <div>
+            <h3 id="search-title" class="">Recent</h3>
+            <hr />
           </div>
+          <ul id="recent-list" class="recent-list d-flex flex-column gap-3 m-0"></ul>
         </div>
       </div>
     </div>
+  </div>
 
-    <section id="navBar" class="w-100">
-      <nav class="d-flex w-100 justify-content-between align-items-center">
-        <h1>SE10</h1>
-        <div class="d-flex align-items-center d-none d-lg-block">
-          <img
-            src="/assets/icons/searchIcon.png"
-            alt="Search Icon"
-            class="searchIcon position-relative"
-          />
-          <input
-            id="search-for-friends"
-            type="text"
-            class="fs-6"
-            placeholder="Search for friends"
-          />
+  <section id="navBar" class="w-100">
+    <nav class="d-flex w-100 justify-content-between align-items-center">
+      <h1>SE10</h1>
+      <div class="d-flex align-items-center d-none d-lg-block">
+        <img src="/assets/icons/searchIcon.png" alt="Search Icon" class="searchIcon position-relative" />
+        <input id="search-for-friends" type="text" class="fs-6" placeholder="Search for friends" />
+      </div>
+      <div class="profile d-none d-lg-block">
+        <img src="/assets/image/defaultProfileImage.png" alt="Default Profile Image" />
+      </div>
+      <div class="notification d-lg-none">
+        <img src="/assets/icons/notificationIcon.png" alt="Notification Icon" />
+      </div>
+    </nav>
+  </section>
+  <section id="homePage" class="d-flex justify-content-around flex-column flex-lg-row">
+    <div class="d-none d-lg-block wall">
+      <div class="profile">
+        <div class="banner">
+          <img src="../assets/image/profileBanner.png" alt="Profile Banner" />
         </div>
-        <div class="profile d-none d-lg-block">
-          <img
-            src="/assets/image/defaultProfileImage.png"
-            alt="Default Profile Image"
-          />
+        <div class="profileImage">
+          <img src="../assets/image/profilePic.png" alt="Profile Image" />
         </div>
-        <div class="notification d-lg-none">
-          <img
-            src="/assets/icons/notificationIcon.png"
-            alt="Notification Icon"
-          />
+        <div class="profileDetails">
+          <h4>Abrahum Joe</h4>
+          <h5>@st-456782</h5>
+          <h6>Passionate Software engineering student</h6>
         </div>
-      </nav>
-    </section>
-    <section
-      id="homePage"
-      class="d-flex justify-content-around flex-column flex-lg-row"
-    >
-      <div class="d-none d-lg-block">
-        <div class="profile">
-          <div class="banner">
-            <img src="../assets/image/profileBanner.png" alt="Profile Banner" />
-          </div>
-          <div class="profileImage">
-            <img src="../assets/image/profilePic.png" alt="Profile Image" />
-          </div>
-          <div class="profileDetails">
-            <h4>Abrahum Joe</h4>
-            <h5>@st-456782</h5>
-            <h6>Passionate Software engineering student</h6>
-          </div>
-          <div>
-            <button class="w-100 myProfileBtn">My Profile</button>
-          </div>
-        </div>
-        <div class="homeButton">
-          <button class="w-100">
-            <img src="/assets/icons/homeIcon.png" alt="Home Icon" />
-            Home
-          </button>
-        </div>
-        <div class="myPostButton">
-          <button class="w-100">
-            <img src="/assets/icons/myPostIcon.png" alt="My Post Icon" />
-            My Post
-          </button>
-        </div>
-        <div class="approveButton d-none">
-          <button class="w-100">
-            <img src="/assets/icons/approve.png" alt="Approve Icon" />
-            Approve
-          </button>
+        <div>
+          <button class="w-100 myProfileBtn">My Profile</button>
         </div>
       </div>
+      <div class="homeButton">
+        <button class="w-100">
+          <img src="/assets/icons/homeIcon.png" alt="Home Icon" />
+          Home
+        </button>
+      </div>
+      <div class="myPostButton">
+        <button class="w-100">
+          <img src="/assets/icons/myPostIcon.png" alt="My Post Icon" />
+          My Post
+        </button>
+      </div>
+      <div class="approveButton d-none">
+        <button class="w-100">
+          <img src="/assets/icons/approve.png" alt="Approve Icon" />
+          Approve
+        </button>
+      </div>
+    </div>
 
-      <div class="homeWallComponent">
-        <iframe src="../components/pages/wall/homeWallComponent.html"></iframe>
+    <div class="homeWallComponent">
+      <iframe src="../components/pages/wall/homeWallComponent.html"></iframe>
+    </div>
+
+    <!-- birthday section -->
+    <div class="d-none d-lg-block notifi">
+      <div class="birthDays">
+        <div class="d-flex justify-content-between">
+          <h3>
+            Birthdays
+            <img src="/assets/icons/birthDayIcon.png" alt="Birth Day Icon" />
+          </h3>
+        </div>
+        <p>No one has birthdays today</p>
       </div>
 
-      <!-- birthday section -->
-      <div class="d-none d-lg-block">
-        <div class="birthDays">
-          <div class="d-flex justify-content-between">
-            <h3>
+      <!-- birthday popup -->
+      <div class="birthdayPopup">
+        <div id="birthday-container">
+          <div class="bp-head d-flex align-items-center justify-content-between mb-4">
+            <h3 class="mb-0">
               Birthdays
-              <img src="/assets/icons/birthDayIcon.png" alt="Birth Day Icon" />
+              <img src="/assets/icons/birthDayIcon.png" alt="Birth Day Icon" class="ms-2" />
             </h3>
+            <img id="close-birthday-icon" src="/assets/icons/closeBtn.png" alt="Close Birthday Popup"
+              class="cursor-pointer" />
           </div>
-          <p>No one has birthdays today</p>
-        </div>
-
-        <!-- birthday popup -->
-        <div class="birthdayPopup">
-          <div id="birthday-container">
-            <div
-              class="bp-head d-flex align-items-center justify-content-between mb-4"
-            >
-              <h3 class="mb-0">
-                Birthdays
-                <img
-                  src="/assets/icons/birthDayIcon.png"
-                  alt="Birth Day Icon"
-                  class="ms-2"
-                />
-              </h3>
-              <img
-                id="close-birthday-icon"
-                src="/assets/icons/closeBtn.png"
-                alt="Close Birthday Popup"
-                class="cursor-pointer"
-              />
+          <div id="birthday-list-container">
+            <div class="mb-2">
+              <p id="birthday-txt" class="mb-3">No one has birthday today</p>
             </div>
-            <div id="birthday-list-container">
-              <div class="mb-2">
-                <p id="birthday-txt" class="mb-3">No one has birthday today</p>
-              </div>
-              <div id="birthday-list" class="scrollable-list"></div>
-            </div>
+            <div id="birthday-list" class="scrollable-list"></div>
           </div>
         </div>
-
-        <!-- notification section -->
-        <h1 class="mt-4 ms-1 mb-3">Notifications</h1>
-        <div id="notifications"></div>
-      </div>
-    </section>
-    <!-- bottom nav bar start -->
-    <section
-      class="bottom-nav-bar pt-3 pb-3 bg-white fixed-bottom d-flex justify-content-around d-lg-none"
-    >
-      <div
-        class="home-nav img-box clickable-element d-flex justify-content-center align-items-center"
-      >
-        <img
-          class="d-block d-lg-none"
-          style="height: 20px; width: 20px"
-          src="/assets/icons/home_Icon.png"
-          alt=""
-        />
       </div>
 
-      <div
-        class="search-nav img-box clickable-element d-flex justify-content-center align-items-center"
-      >
-        <img
-          class="clickable-element mt-4 mb-4 d-block d-lg-none"
-          style="height: 20px; width: 20px"
-          src="/assets/icons/search_Icon.png"
-          alt=""
-        />
-      </div>
+      <!-- notification section -->
+      <h1 class="mt-4 fs-3 notify-title mb-3 ">Notifications</h1>
+      <div id="notifications"></div>
+    </div>
+  </section>
+  <!-- bottom nav bar start -->
+  <section class="bottom-nav-bar pt-3 pb-3 bg-white fixed-bottom d-flex justify-content-around d-lg-none">
+    <div class="home-nav img-box clickable-element d-flex justify-content-center align-items-center">
+      <img class="d-block d-lg-none" style="height: 20px; width: 20px" src="/assets/icons/home_Icon.png" alt="" />
+    </div>
 
-      <div class="img-box d-flex justify-content-center align-items-center">
-        <img
-          class="mt-3 mb-3 d-block d-lg-none"
-          style="height: 40px; width: 37px"
-          src="/assets/icons/add_Icon.png"
-          alt=""
-        />
-      </div>
+    <div class="search-nav img-box clickable-element d-flex justify-content-center align-items-center">
+      <img class="clickable-element mt-4 mb-4 d-block d-lg-none" style="height: 20px; width: 20px"
+        src="/assets/icons/search_Icon.png" alt="" />
+    </div>
 
-      <div
-        class="myPost-nav img-box clickable-element d-flex justify-content-center align-items-center"
-      >
-        <img
-          class="clickable-element mt-4 mb-4 d-block d-lg-none"
-          style="height: 20px; width: 20px"
-          src="/assets/icons/bookmark_Icon.png"
-          alt=""
-        />
-      </div>
+    <div class="img-box d-flex justify-content-center align-items-center">
+      <img class="mt-3 mb-3 d-block d-lg-none" style="height: 40px; width: 37px" src="/assets/icons/add_Icon.png"
+        alt="" />
+    </div>
 
-      <div
-        class="profile-nav img-box clickable-element d-flex justify-content-center align-items-center"
-      >
-        <img
-          class="mt-4 mb-4 rounded-circle border border-primary d-block d-lg-none"
-          style="height: 20px; width: 20px"
-          src="/assets/image/pikaso_texttoimage_adorable-cartoon-style-A-smiling-sloth-with-large-.jpeg"
-          alt=""
-        />
-      </div>
-    </section>
-    <!-- bottom nav bar end -->
+    <div class="myPost-nav img-box clickable-element d-flex justify-content-center align-items-center">
+      <img class="clickable-element mt-4 mb-4 d-block d-lg-none" style="height: 20px; width: 20px"
+        src="/assets/icons/bookmark_Icon.png" alt="" />
+    </div>
 
-    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="../assets/jquery/jquery-3.7.1.min.js"></script>
-    <script src="../assets/axios/axios.min.js"></script>
-    <script type="module" src="/controller/HomePageController.js"></script>
-    <script type="module" src="/controller/SearchPopupController.js"></script>
-  </body>
+    <div class="profile-nav img-box clickable-element d-flex justify-content-center align-items-center">
+      <img class="mt-4 mb-4 rounded-circle border border-primary d-block d-lg-none" style="height: 20px; width: 20px"
+        src="/assets/image/pikaso_texttoimage_adorable-cartoon-style-A-smiling-sloth-with-large-.jpeg" alt="" />
+    </div>
+  </section>
+  <!-- bottom nav bar end -->
+
+  <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+  <script src="../assets/jquery/jquery-3.7.1.min.js"></script>
+  <script src="../assets/axios/axios.min.js"></script>
+  <script type="module" src="/controller/HomePageController.js"></script>
+  <script type="module" src="/controller/SearchPopupController.js"></script>
+</body>
+
 </html>
