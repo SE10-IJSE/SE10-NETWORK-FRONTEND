@@ -1,83 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SE10-NETWORK REGISTRATION FORM 3</title>
-    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/assets/css/styles.css" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Rubik+One&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="/assets/css/registrationOtpVerifyPage.css" />
-  </head>
 
-  <body>
-    <div
-      class="container p-0 d-flex flex-column-reverse flex-lg-row"
-      id="container"
-    >
-      <div class="form-container register-container">
-        <form id="register-form-03">
-          <!-- Registration form 03 -->
-          <div class="reg-line">
-            <div class="line"></div>
-            <h3 class="mb-0">Registration Form 03</h3>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SE10-NETWORK REGISTRATION FORM 3</title>
+  <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik+One&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/registrationOtpVerifyPage.css" />
+</head>
+
+<body>
+  <div class="container p-0 d-flex flex-column-reverse flex-lg-row" id="container">
+    <div class="form-container register-container border">
+      <form id="register-form-03">
+        <!-- Registration form 03 -->
+        <div class="reg-line">
+          <div class="line"></div>
+          <h3 class="mb-0">Registration Form 03</h3>
+        </div>
+
+        <!-- Title & the content -->
+        <h1 class="font-bold w-full">verify your email to complete</h1>
+        <h4>verify email</h4>
+
+        <div class="form-body">
+          <p class="otp-info">
+            An OTP has been sent to your email. Please enter it in the text
+            field.
+          </p>
+          <div class="otp-input">
+            <input type="text" maxlength="1" class="otp-field" />
+            <input type="text" maxlength="1" class="otp-field" />
+            <input type="text" maxlength="1" class="otp-field" />
+            <input type="text" maxlength="1" class="otp-field" />
+            <input type="text" maxlength="1" class="otp-field" />
+            <input type="text" maxlength="1" class="otp-field" />
           </div>
-
-          <!-- Title & the content -->
-          <h1 class="font-bold w-full">verify your email to complete</h1>
-          <h4>verify email</h4>
-
-          <div class="form-body">
-            <p class="otp-info">
-              An OTP has been sent to your email. Please enter it in the text
-              field.
-            </p>
-            <div class="otp-input">
-              <input type="text" maxlength="1" class="otp-field" />
-              <input type="text" maxlength="1" class="otp-field" />
-              <input type="text" maxlength="1" class="otp-field" />
-              <input type="text" maxlength="1" class="otp-field" />
-              <input type="text" maxlength="1" class="otp-field" />
-              <input type="text" maxlength="1" class="otp-field" />
-            </div>
-            <div class="resend-info">
-              <p>Did not receive an email? <span id="resend-otp">Resend</span> now.</p>
-            </div>
-            <div class="btnDiv">
-              <button class="create-account-btn">Create Account</button>
-            </div>
+          <div class="resend-info">
+            <p>Did not receive an email? <a href="#">Resend</a> now.</p>
           </div>
-        </form>
-      </div>
-      <div class="reg-bg align-items-start">
-        <img
-          src="/assets/image/registrationBg.png"
-          alt=""
-          class="desktop-img d-none d-lg-block"
-        />
-        <img
-          src="/assets/image/mobilebg.png"
-          alt=""
-          class="mobile-img d-block rounded-bottom-4 d-lg-none"
-        />
-      </div>
-
-      <img src="/assets/image/dots.png" alt="Small Image" class="small-image" />
+          <div class="btnDiv">
+            <button class="create-account-btn">Create Account</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="reg-bg">
+      <img src="../assets/image/registrationBg.png" alt="Registrationform background" class="desktop-img" />
     </div>
 
-    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="/assets/jquery/jquery-3.7.1.min.js"></script>
-    <script src="/assets/axios/axios.min.js"></script>
-    <script
-      type="module"
-      src="/controller/RegistrationOtpVerifyPageController.js"
-    ></script>
-  </body>
+    <div class="banner">
+      <img src="/assets/image/cover-background.jpeg" class="fluid" alt="cover-background" />
+      <div class="overlay-text">
+        <img src="/assets/image/SE10.png" alt="" /><br />
+        <img src="/assets/image/Learn by Doing.png" alt="" />
+      </div>
+    </div>
+
+    <img src="/assets/image/dots.png" alt="Small Image" class="small-image" />
+  </div>
+
+  <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+  <script src="/assets/jquery/jquery-3.7.1.min.js"></script>
+  <script src="/assets/axios/axios.min.js"></script>
+  <script type="module" src="/controller/RegistrationOtpVerifyPage.js"></script>
+</body>
+
 </html>

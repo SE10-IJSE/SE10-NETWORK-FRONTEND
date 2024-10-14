@@ -8,7 +8,7 @@ body {
   font-family: "Poppins", sans-serif;
   height: 100vh;
   margin: 0;
-  overflow-x: scroll;
+  overflow-x: hidden;
 }
 
 .container {
@@ -35,6 +35,16 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+}
+
+.overlay-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
 }
 
 .form-container {
@@ -196,8 +206,15 @@ h5 {
   align-items: center;
   justify-content: center;
   position: absolute;
-  top: 7.5%;
+  top: 7%;
   left: -5%;
+}
+
+.reg-bg>div {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .profilePic {
@@ -330,6 +347,10 @@ input[type="checkbox"] {
   cursor: pointer;
 }
 
+.banner {
+  display: none;
+}
+
 /* Responsive - Desktop*/
 
 @media screen and (max-width: 1320px) {
@@ -433,6 +454,10 @@ input[type="checkbox"] {
   .small-image {
     width: 140px;
   }
+
+  .banner {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 1100px) {
@@ -481,8 +506,17 @@ input[type="checkbox"] {
     margin-bottom: 20px;
   }
 
+  .banner {
+    display: none;
+  }
+
 }
 
+@media screen and (min-width: 300px) and (max-width: 360px) {
+  #container {
+    margin-top: 26%;
+  }
+}
 
 @media screen and (max-width: 360px) {
 
@@ -490,7 +524,6 @@ input[type="checkbox"] {
   body {
     padding: 0;
     display: block;
-    overflow: hidden;
   }
 
   .container {
@@ -648,7 +681,7 @@ input[type="checkbox"] {
     position: relative;
     top: 30px;
     left: -20px;
-    height: 50px;
+    height: 40px;
   }
 
   #profile-img-view {
@@ -717,9 +750,6 @@ input[type="checkbox"] {
   }
 
   .not-acc-container {
-    /* flex-direction: column;
-        gap: 20px;
-        width: 100%; */
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -744,6 +774,19 @@ input[type="checkbox"] {
 
   .reg-bg .tab-img {
     display: none;
+  }
+
+  .banner {
+    display: block;
+    position: relative;
+    text-align: center;
+    height: 20vh;
+  }
+
+  .fluid {
+    width: 100%;
+    height: 20vh;
+    object-fit: cover;
   }
 }
 
@@ -925,7 +968,6 @@ input[type="checkbox"] {
     font-size: 7px;
   }
 
-
   .covercontent {
     position: relative;
     top: -10px;
@@ -991,6 +1033,19 @@ input[type="checkbox"] {
     left: 0;
     width: 120px;
     height: auto;
+  }
+
+  .banner {
+    display: block;
+    position: relative;
+    text-align: center;
+    height: 20vh;
+  }
+
+  .fluid {
+    width: 100%;
+    height: 20vh;
+    object-fit: cover;
   }
 }
 
@@ -1225,6 +1280,19 @@ input[type="checkbox"] {
     left: 0;
     width: 120px;
     height: auto;
+  }
+
+  .banner {
+    display: block;
+    position: relative;
+    text-align: center;
+    height: 20vh;
+  }
+
+  .fluid {
+    width: 100%;
+    height: 20vh;
+    object-fit: cover;
   }
 }
 
@@ -1467,5 +1535,18 @@ input[type="checkbox"] {
     left: 0;
     width: 120px;
     height: auto;
+  }
+
+  .banner {
+    display: block;
+    position: relative;
+    text-align: center;
+    height: 20vh;
+  }
+
+  .fluid {
+    width: 100%;
+    height: 20vh;
+    object-fit: cover;
   }
 }
