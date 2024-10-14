@@ -53,7 +53,6 @@ body {
   align-items: center;
   justify-content: center;
   font-family: "Poppins", sans-serif;
-  overflow: hidden;
   height: 100vh;
   margin: 0;
 }
@@ -75,13 +74,13 @@ body {
   align-items: center;
 }
 
-.reg-bg > img {
+.reg-bg>img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.reg-bg > div {
+.reg-bg>div {
   display: contents;
 }
 
@@ -89,13 +88,14 @@ body {
   border-radius: 0 0 10px 10px;
 }
 
-.reg-bg > div > div {
+.reg-bg>div>div {
   position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.reg-bg > div > img {
+
+.reg-bg>div>img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -115,16 +115,11 @@ form {
   display: none;
 }
 
-body > div > div {
-  overflow: hidden;
-}
-
 .container {
   background-color: #fffafa;
   box-shadow: 0px 0px 22.9px -6px rgba(0, 0, 0, 0.1);
   position: relative;
   max-width: 1280px;
-  /* max-width: 100%; */
   max-height: 832px;
   display: flex;
 }
@@ -134,21 +129,21 @@ body > div > div {
   display: flex;
   justify-content: center;
   align-items: center;
-
-  overflow: hidden;
   right: 0;
   top: 0;
 }
 
 /* Image styling */
-.reg-bg > img {
+.reg-bg>img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
+
 .reg-bg .desktop-img {
   display: block;
 }
+
 .reg-bg .mobile-img-contenor {
   display: none;
 }
@@ -199,8 +194,8 @@ h4 {
 /*Batch Combo Box CSS*/
 
 select {
-  height: 30px;
-  width: 140px;
+  height: 40px;
+  width: 120px;
   margin-top: 9px;
   border-radius: 5px;
   color: #7b7b7b;
@@ -231,8 +226,10 @@ select option {
 }
 
 select option:checked {
-  background-color: #fcc0c0; /* Change this to your desired color */
-  color: #000; /* Change this to your desired text color */
+  background-color: #fcc0c0;
+  /* Change this to your desired color */
+  color: #000;
+  /* Change this to your desired text color */
 }
 
 select:focus {
@@ -278,8 +275,8 @@ select:focus {
   color: #e90708;
 }
 
-.txt-field:focus + .txt-label,
-.txt-field:not(:placeholder-shown) + .txt-label {
+.txt-field:focus+.txt-label,
+.txt-field:not(:placeholder-shown)+.txt-label {
   top: 18px;
   left: 25px;
   font-size: 12px;
@@ -287,13 +284,13 @@ select:focus {
   z-index: 10;
 }
 
-.txt-field:focus + .name,
-.txt-field:not(:placeholder-shown) + .name {
+.txt-field:focus+.name,
+.txt-field:not(:placeholder-shown)+.name {
   top: 38px;
 }
 
-.txt-field:focus + .email,
-.txt-field:not(:placeholder-shown) + .email {
+.txt-field:focus+.email,
+.txt-field:not(:placeholder-shown)+.email {
   top: 38px;
 }
 
@@ -318,14 +315,6 @@ select:focus {
   top: 62%;
 }
 
-/* #email {
-  margin-top: 20px;
-}
-
-#name {
-  margin-top: 20px;
-} */
-
 /*Password CSS*/
 .password {
   display: flex;
@@ -333,7 +322,7 @@ select:focus {
   gap: 14px;
 }
 
-.password > .input-container:nth-child(1) {
+.password>.input-container:nth-child(1) {
   margin-bottom: 16px;
   margin-top: 16px;
 }
@@ -367,14 +356,9 @@ select:focus {
 #togglePasswordConfirm:hover {
   color: #e90708;
 }
-/*Date-Of-Birth Containor*/
 
-/* #dob {
-  margin-top: 20px;
-} */
-
-.txt-field:focus + .dob,
-.txt-field:not(:placeholder-shown) + .dob {
+.txt-field:focus+.dob,
+.txt-field:not(:placeholder-shown)+.dob {
   top: 38px;
 }
 
@@ -415,7 +399,8 @@ input[type="date"] {
   width: 100%;
   margin-top: 20px;
 }
-.not-acc-container > p {
+
+.not-acc-container>p {
   margin-top: 16px;
 }
 
@@ -438,7 +423,8 @@ input[type="date"] {
 
 /* Responsive */
 
-@media only screen and (max-width: 360px) and (min-width: 320px) {
+@media only screen and (max-width: 360px) and (min-width: 300px) {
+
   html,
   body {
     padding: 0;
@@ -446,19 +432,12 @@ input[type="date"] {
     background-color: #fffafa;
   }
 
-  body > div > div {
-    overflow: auto;
-  }
-
-  body > div > div > form {
-    overflow: auto;
-  }
-
   .container {
     flex-direction: column-reverse;
     max-height: auto;
     box-shadow: none;
   }
+
   .form-container {
     margin-top: 130px;
   }
@@ -478,7 +457,7 @@ input[type="date"] {
     position: absolute;
   }
 
-  .password > .input-container {
+  .password>.input-container {
     margin-top: 0;
   }
 
@@ -486,7 +465,7 @@ input[type="date"] {
     display: contents;
   }
 
-  .reg-bg > .desktop-img {
+  .reg-bg>.desktop-img {
     display: none;
   }
 
@@ -501,6 +480,7 @@ input[type="date"] {
   #combo-mobile {
     display: block;
   }
+
   .reg-line {
     margin-top: 10px;
     display: flex;
@@ -521,6 +501,7 @@ input[type="date"] {
   h3 {
     font-size: 10px;
   }
+
   .txt-field {
     height: 48px;
     padding-left: 20px;
@@ -544,8 +525,8 @@ input[type="date"] {
     font-size: 12px;
   }
 
-  .txt-field:focus + .txt-label,
-  .txt-field:not(:placeholder-shown) + .txt-label {
+  .txt-field:focus+.txt-label,
+  .txt-field:not(:placeholder-shown)+.txt-label {
     top: 15px;
     left: 15px;
     font-size: 10px;
@@ -554,6 +535,7 @@ input[type="date"] {
   #togglePassword {
     font-size: 20px;
   }
+
   #togglePasswordConfirm {
     font-size: 20px;
   }
@@ -564,6 +546,7 @@ input[type="date"] {
     gap: 0;
     width: 100%;
   }
+
   #password-confirm {
     width: 100%;
   }
@@ -571,6 +554,7 @@ input[type="date"] {
   #password {
     width: 100%;
   }
+
   .not-acc-container {
     flex-direction: column;
     justify-content: flex-start;
@@ -592,9 +576,11 @@ input[type="date"] {
     width: 11px;
     height: 11px;
   }
+
   #batchSelect {
     display: none;
   }
+
   #confirm {
     margin-top: 0px;
     margin-bottom: 10px;
@@ -602,6 +588,7 @@ input[type="date"] {
 }
 
 @media only screen and (max-width: 425px) and (min-width: 361px) {
+
   html,
   body {
     padding: 0;
@@ -610,15 +597,12 @@ input[type="date"] {
     background-color: #fffafa;
   }
 
-  body > div > div {
-    overflow: auto;
-  }
-
   .container {
     flex-direction: column-reverse;
     max-height: auto;
     box-shadow: none;
   }
+
   .form-container {
     margin-top: 130px;
   }
@@ -639,6 +623,7 @@ input[type="date"] {
   .reg-bg .desktop-img {
     display: none;
   }
+
   .reg-bg .mobile-img-contenor {
     display: contents;
   }
@@ -654,10 +639,11 @@ input[type="date"] {
     justify-content: flex-start;
   }
 
-  body > div > div > form {
+  body>div>div>form {
     height: auto;
   }
-  body > div > div > form > div:nth-child(1) {
+
+  body>div>div>form>div:nth-child(1) {
     margin-top: 20px;
   }
 
@@ -684,6 +670,7 @@ input[type="date"] {
   h3 {
     font-size: 10px;
   }
+
   .txt-field {
     height: 48px;
     padding-left: 20px;
@@ -707,12 +694,12 @@ input[type="date"] {
     font-size: 12px;
   }
 
-  .password > .input-container:nth-child(2) {
+  .password>.input-container:nth-child(2) {
     margin-top: 0;
   }
 
-  .txt-field:focus + .txt-label,
-  .txt-field:not(:placeholder-shown) + .txt-label {
+  .txt-field:focus+.txt-label,
+  .txt-field:not(:placeholder-shown)+.txt-label {
     top: 15px;
     left: 15px;
     font-size: 10px;
@@ -721,6 +708,7 @@ input[type="date"] {
   #togglePassword {
     font-size: 20px;
   }
+
   #togglePasswordConfirm {
     font-size: 20px;
   }
@@ -761,16 +749,19 @@ input[type="date"] {
     width: 11px;
     height: 11px;
   }
+
   #batchSelect {
     display: none;
   }
+
   #confirm {
     margin-top: 0px;
     margin-bottom: 10px;
   }
 }
 
-@media only screen and (max-width: 575px) and (min-width: 426px) {
+@media only screen and (max-width: 575px) and (min-width: 425px) {
+
   html,
   body {
     padding: 0;
@@ -778,6 +769,7 @@ input[type="date"] {
     max-width: 991px;
     background-color: #fffafa;
   }
+
   .form-container {
     margin-top: 135px;
     height: 100%;
@@ -838,6 +830,7 @@ input[type="date"] {
   h3 {
     font-size: 10px;
   }
+
   .txt-field {
     height: 48px;
     padding-left: 20px;
@@ -861,12 +854,12 @@ input[type="date"] {
     font-size: 12px;
   }
 
-  .password > .input-container:nth-child(2) {
+  .password>.input-container:nth-child(2) {
     margin-top: 0;
   }
 
-  .txt-field:focus + .txt-label,
-  .txt-field:not(:placeholder-shown) + .txt-label {
+  .txt-field:focus+.txt-label,
+  .txt-field:not(:placeholder-shown)+.txt-label {
     top: 15px;
     left: 15px;
     font-size: 10px;
@@ -875,6 +868,7 @@ input[type="date"] {
   #togglePassword {
     font-size: 20px;
   }
+
   #togglePasswordConfirm {
     font-size: 20px;
   }
@@ -907,9 +901,11 @@ input[type="date"] {
     width: 11px;
     height: 11px;
   }
+
   #batchSelect {
     display: none;
   }
+
   #confirm {
     margin-top: 0px;
     margin-bottom: 10px;
@@ -922,6 +918,7 @@ input[type="date"] {
     margin-right: 0;
     max-width: 100vw !important;
   }
+
   html,
   body {
     padding: 0;
@@ -929,10 +926,12 @@ input[type="date"] {
     max-width: 991px;
     background-color: #fffafa;
   }
+
   .form-container {
     margin-top: 135px;
     height: 100%;
   }
+
   .container {
     flex-direction: column-reverse;
     max-height: auto;
@@ -948,10 +947,9 @@ input[type="date"] {
     background-size: cover;
     width: 100%;
     order: 1;
-
-    overflow: hidden;
     position: absolute;
   }
+
   .reg-bg .mobile-img550 {
     display: none;
   }
@@ -993,6 +991,7 @@ input[type="date"] {
   h3 {
     font-size: 18px;
   }
+
   .txt-field {
     height: 48px;
     padding-left: 20px;
@@ -1000,7 +999,7 @@ input[type="date"] {
     font-size: 12px;
   }
 
-  .password > .input-container:nth-child(2) {
+  .password>.input-container:nth-child(2) {
     margin-top: 0;
   }
 
@@ -1020,8 +1019,8 @@ input[type="date"] {
     font-size: 18px;
   }
 
-  .txt-field:focus + .txt-label,
-  .txt-field:not(:placeholder-shown) + .txt-label {
+  .txt-field:focus+.txt-label,
+  .txt-field:not(:placeholder-shown)+.txt-label {
     top: 15px;
     left: 15px;
     font-size: 15px;
@@ -1030,6 +1029,7 @@ input[type="date"] {
   #togglePassword {
     font-size: 30px;
   }
+
   #togglePasswordConfirm {
     font-size: 30px;
   }
@@ -1062,9 +1062,11 @@ input[type="date"] {
     width: 11px;
     height: 11px;
   }
+
   #batchSelect {
     display: none;
   }
+
   #confirm {
     margin-top: 0px;
     margin-bottom: 10px;
@@ -1072,16 +1074,19 @@ input[type="date"] {
 }
 
 @media only screen and (max-width: 1025px) and (min-width: 992px) {
-  .reg-bg > .mobile-img-contenor {
+  .reg-bg>.mobile-img-contenor {
     display: none;
   }
+
   .reg-bg {
     border-radius: 0;
     position: relative;
   }
-  .reg-bg > .desktop-img {
+
+  .reg-bg>.desktop-img {
     display: block;
   }
+
   body {
     background-color: #fffafa;
   }
@@ -1132,18 +1137,18 @@ input[type="date"] {
     font-size: 14px;
   }
 
-  .txt-field:focus + .email,
-  .txt-field:not(:placeholder-shown) + .email {
+  .txt-field:focus+.email,
+  .txt-field:not(:placeholder-shown)+.email {
     top: 30px;
   }
 
-  .txt-field:focus + .name,
-  .txt-field:not(:placeholder-shown) + .name {
+  .txt-field:focus+.name,
+  .txt-field:not(:placeholder-shown)+.name {
     top: 30px;
   }
 
-  .txt-field:focus + .dob,
-  .txt-field:not(:placeholder-shown) + .dob {
+  .txt-field:focus+.dob,
+  .txt-field:not(:placeholder-shown)+.dob {
     top: 30px;
   }
 }
