@@ -126,6 +126,15 @@ body::-webkit-scrollbar {
   color: #000;
 }
 
+#popupModal {
+  transition: opacity 0.3s ease, top 0.3s ease;
+  opacity: 0;
+}
+
+#popupModal.active {
+  opacity: 1;
+}
+
 @media screen and (max-width: 576px) {
   .profile-info h4 {
     font-size: 15px;
