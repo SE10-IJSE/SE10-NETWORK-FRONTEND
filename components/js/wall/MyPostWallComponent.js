@@ -307,7 +307,10 @@ $("#myPostWallComponent").on("keyup", ".edit-input", function (e) {
 
 // --------------------------- post-info-popup ---------------------------
 
-$("#myPostWallComponent").on("click", ".postInfoPopup", function () {
+$("#myPostWallComponent").on("click", ".postInfoPopup", function (event) {
+  event.preventDefault(); // Prevent default scrolling
+  event.stopPropagation(); // Stop event bubbling
+
   const postCard = $(this).closest(".postCard");
   const post = JSON.parse(postCard.attr("data-post"));
 
@@ -324,8 +327,6 @@ $("#myPostWallComponent").on("click", ".postInfoPopup", function () {
   });
 
   let approvedBy = "--"; // Default value
-  let approvalStatus = "";
-
   if (post.verifiedBy === "APPROVED") {
     approvedBy = `${post.verifiedBy} <span style="color:green;">(Approved)</span>`;
   } else if (post.verifiedBy === "DECLINED") {
@@ -350,18 +351,25 @@ $("#myPostWallComponent").on("click", ".postInfoPopup", function () {
     .find("p")
     .html(`<span class="modal-subheader">Approved By:</span> ${approvedBy}`);
 
-  // Show the modal
-  showModal();
-});
+  // Calculate position of the clicked post
+  const postOffset = postCard.offset();
+  const postHeight = postCard.outerHeight();
 
-$("#cancelInfo").on("click", closeModal);
+  // Show the modal at the calculated position
+  $("#popupModal").css({
+    top: postOffset.top + postHeight + -116 + "px",
+    // left: postOffset.left + "px",
+    display: "flex",
+    position: "absolute",
+    zIndex: 10000,
+  });
 
-function showModal() {
-  $("#popupModal").css("display", "flex");
   setTimeout(function () {
     $("#popupModal").addClass("active");
   }, 10);
-}
+});
+
+$("#cancelInfo").on("click", closeModal);
 
 function closeModal() {
   $("#popupModal").removeClass("active");
@@ -374,14 +382,28 @@ function closeModal() {
 
 let postIdToDelete = null;
 
-$("#myPostWallComponent").on("click", ".postDeletePopup", function () {
+$("#myPostWallComponent").on("click", ".postDeletePopup", function (event) {
+  event.preventDefault(); // Prevent default scrolling
+  event.stopPropagation(); // Stop event bubbling
+
   // Get the postId of the post to be deleted
   const postCard = $(this).closest(".postCard");
   const post = JSON.parse(postCard.attr("data-post"));
   postIdToDelete = post.postId;
 
-  // Show the delete confirmation modal
-  $("#deletePopupModal").css("display", "flex");
+  // Calculate position of the clicked post
+  const postOffset = postCard.offset();
+  const postHeight = postCard.outerHeight();
+
+  // Show the delete confirmation modal at the calculated position
+  $("#deletePopupModal").css({
+    top: postOffset.top + postHeight + -116 + "px",
+    // left: postOffset.left + "px",
+    display: "flex",
+    position: "absolute",
+    zIndex: 10000,
+  });
+
   setTimeout(function () {
     $("#deletePopupModal").addClass("active");
   }, 10);
@@ -412,9 +434,9 @@ function closeDeleteModal() {
   }, 300);
 }
 
-$("#cancelDelete").on("click", function () {
-  $("#deletePopupModal").removeClass("active");
-  setTimeout(function () {
-    $("#deletePopupModal").css("display", "none");
-  }, 300);
+$("#cancelDelete").on("click", function (event) {
+  event.preventDefault(); // Prevent default scrolling
+  event.stopPropagation(); // Stop event bubbling
+
+  closeDeleteModal();
 });
