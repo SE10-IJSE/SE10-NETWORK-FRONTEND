@@ -93,6 +93,14 @@ function setUserProfileDetails(user) {
 function approveButtonVisibility(role) {
   const approveButton = document.querySelector(".approveButton");
   if (role === "ADMIN") {
+    if (window.innerWidth < 991) {
+      $("#homePage .homeWallComponent iframe").attr(
+        "src",
+        "mobileHomePage.html"
+      );
+      $(".bottom-nav-bar .home-nav").addClass("red-border-bottom");
+    }
+
     approveButton.classList.remove("d-none");
   } else {
     approveButton.classList.add("d-none");
@@ -192,14 +200,14 @@ function loadHomePage() {
       });
   });
 
-  $(".bottom-nav-bar .home-nav").click(function () {
-    $("#homePage .homeWallComponent iframe")
-      .attr("src", "/components/pages/wall/homeWallComponent.html")
-      .css({
-        "border-radius": "0",
-        "box-shadow": "none",
-      });
-  });
+ $(".bottom-nav-bar .home-nav").click(function () {
+   $("#homePage .homeWallComponent iframe")
+     .attr("src", "mobileHomePage.html")
+     .css({
+       "border-radius": "0",
+       "box-shadow": "none",
+     });
+ });
 
   $(".bottom-nav-bar .profile-nav").click(function () {
     $("#homePage .homeWallComponent iframe")
