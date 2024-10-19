@@ -254,7 +254,12 @@ function formatTime(timestamp) {
 
 // Toggle edit mode for post content
 $("#myPostWallComponent").on("click", ".edit-post-btn", async function () {
-  const postCard = $(this).closest(".postCard");
+  let postCard;
+  if (window.innerWidth <= 767) {
+    postCard = $(this).closest("#postCardMobile");
+  } else {
+    postCard = $(this).closest(".postCard");
+  }
   const postContentElement = postCard.find("p");
   const editBtn = $(this);
   const mode = editBtn.data("mode");
@@ -311,8 +316,17 @@ $("#myPostWallComponent").on("click", ".postInfoPopup", function (event) {
   event.preventDefault(); // Prevent default scrolling
   event.stopPropagation(); // Stop event bubbling
 
-  const postCard = $(this).closest(".postCard");
-  const post = JSON.parse(postCard.attr("data-post"));
+  let postCard;
+  let post;
+
+  if (window.innerWidth <= 767) {
+    postCard = $(this).closest("#postCardMobile");
+  } else {
+    postCard = $(this).closest(".postCard");
+  }
+  post = JSON.parse(postCard.attr("data-post"));
+
+  console.log("aletPost", post);
 
   // Set Posted Date and Time
   const createdAt = new Date(post.createdAt);
@@ -387,8 +401,15 @@ $("#myPostWallComponent").on("click", ".postDeletePopup", function (event) {
   event.stopPropagation(); // Stop event bubbling
 
   // Get the postId of the post to be deleted
-  const postCard = $(this).closest(".postCard");
-  const post = JSON.parse(postCard.attr("data-post"));
+  let postCard;
+  let post;
+
+  if (window.innerWidth <= 767) {
+    postCard = $(this).closest("#postCardMobile");
+  } else {
+    postCard = $(this).closest(".postCard");
+  }
+  post = JSON.parse(postCard.attr("data-post"));
   postIdToDelete = post.postId;
 
   // Calculate position of the clicked post
