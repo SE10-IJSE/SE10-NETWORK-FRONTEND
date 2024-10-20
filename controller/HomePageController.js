@@ -245,20 +245,24 @@ function loadHomePage() {
   });
 
   //  ------------ birthday popup ------------
-  $(".birthDays").click(function () {
-    let birthdayPopup = $(".birthdayPopup");
-    showBirthdayPopup(birthdayPopup[0]);
+  $(document).on('click', function(event) {
+    if(!$(event.target).closest("#birthday-container, .birthDays").length){
+      hideBirthdayPopup();
+    }
   });
 
-  function showBirthdayPopup(birthdayPopup) {
+  $(".birthDays").click(function() {
+    showBirthdayPopup();
+  });
+
+  function showBirthdayPopup() {
     $("#birthday-list").empty();
-    retriveBirthdayData();
-    birthdayPopup.style.display = "block";
-    let container = document.getElementById("birthday-container");
-    if (container) {
-      container.style.opacity = 1;
-      container.style.transform = "scale(1)";
-    }
+    retriveBirthdayData(); 
+    $(".birthdayPopup").show();
+    $("#birthday-container").css({
+      'opacity': 1,
+      'transform': 'scale(1)'
+    });
   }
 
   const retriveBirthdayData = async () => {
@@ -268,19 +272,19 @@ function loadHomePage() {
     }
   };
 
-  $("#close-birthday-icon").click(function () {
-    let birthdayPopup = $(".birthdayPopup");
-    hideBirthdayPopup(birthdayPopup[0]);
+  $("#close-birthday-icon").click(function() {
+    hideBirthdayPopup();
   });
 
-  function hideBirthdayPopup(birthdayPopup) {
-    let container = document.getElementById("birthday-container");
-    if (container) {
-      container.style.opacity = 0;
-      container.style.transform = "scale(0)";
-    }
-    setTimeout(() => {
-      birthdayPopup.style.display = "none";
+  function hideBirthdayPopup() {
+    var $container = $("#birthday-container");
+    $container.css({
+      'opacity': 0,
+      'transform': 'scale(0)'
+    });
+    
+    setTimeout(function() {
+      $(".birthdayPopup").hide();
     }, 300);
   }
 
