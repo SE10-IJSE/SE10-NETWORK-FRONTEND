@@ -1,54 +1,24 @@
-.btn-cancel {
-  background-color: #f8d7da;
-  color: #d9534f;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 14px;
-  height: auto;
-}
-
-.btn-cancel:hover {
-  background-color: #f5c6cb;
-}
-
-.btn-delete {
-  background-color: #d9534f;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.btn-delete:hover {
-  background-color: #c9302c;
-}
-
+/* General Modal Styling */
 .modal {
-  display: none;
+  display: none; /* Hidden by default */
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1000;
+  width: 100vw; /* Full viewport width */
+  height: 100vh; /* Full viewport height */
+  overflow: auto; /* Enable scrolling if content is too tall */
 }
 
-.modal.active .modal-content {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
-}
-
+/* Modal Content Styling */
 .modal-content {
   background-color: #fff;
-  width: 483px;
-  height: 185px;
+  width: 90%;
+  max-width: 483px; /* Limit the maximum width */
   padding: 20px;
   border-radius: 15px;
   border: 1px solid rgba(236, 236, 236, 1);
-  text-align: left;
   box-shadow: 0px 4px 18.3px rgba(0, 0, 0, 0.25);
   opacity: 0;
   transform: translate(-50%, -50%) scale(0);
@@ -58,35 +28,123 @@
   left: 50%;
 }
 
-.modal-header {
-  width: 267px;
-  height: 30px;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 24px;
-  text-align: left;
-  margin-bottom: 10px;
+/* Show Modal When Active */
+.modal.active .modal-content {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
 }
 
+/* Modal Header Styling */
+.modal-header {
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+/* Modal Subheader Styling */
 .modal-subheader {
   font-family: "Poppins", sans-serif;
   font-size: 14px;
   color: #a8a8a8;
   font-weight: 400;
-  padding: 0;
   margin-left: 16px;
 }
+
+/* Modal Actions Styling */
 .modal-actions {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  width: auto;
   display: flex;
   justify-content: flex-end;
+  margin-top: 20px;
 }
 
+/* Button Styles */
 button {
   font-family: "Poppins", sans-serif;
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 600;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Cancel Button */
+.cancel-btn {
+  background-color: #f8d7da;
+  color: #d9534f;
+  padding: 10px 20px;
+}
+
+.cancel-btn:hover {
+  background-color: #f5c6cb;
+}
+
+/* Delete Button */
+.delete-btn {
+  background-color: #d9534f;
+  color: #fff;
+  padding: 10px 20px;
+ 
+}
+
+.delete-btn:hover {
+  background-color: #c9302c;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .modal-content {
+    width: 90%;
+    max-width: 400px;
+    padding: 15px;
+  }
+
+  .modal-header {
+    font-size: 16px;
+  }
+
+  button {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 576px) {
+  .modal-content {
+    width: 95%;
+    padding: 10px;
+  }
+
+  .modal-header {
+    font-size: 15px;
+  }
+
+  .modal-subheader {
+    font-size: 12px;
+  }
+
+  button {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 400px) {
+  .modal-content {
+    width: 100%;
+    max-width: 300px;
+    padding: 10px;
+  }
+
+  .modal-header {
+    font-size: 14px;
+  }
+
+  .modal-subheader {
+    font-size: 11px;
+  }
+
+  button {
+    font-size: 12px;
+    padding: 8px 16px;
+  }
 }
