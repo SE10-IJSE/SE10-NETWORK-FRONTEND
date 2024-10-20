@@ -1,3 +1,4 @@
+
 .modal {
   display: none;
   position: fixed;
@@ -5,12 +6,17 @@
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1000;
+  width: 100vw; 
+  height: 100vh;
+  overflow: auto;
 }
+
 
 .modal-content {
   background-color: #fff;
-  width: 483px;
-  height: 185px;
+  width: 90%;
+  max-width: 480px;
+  height: auto; 
   padding: 20px;
   border-radius: 15px;
   border: 1px solid rgba(236, 236, 236, 1);
@@ -24,71 +30,101 @@
   left: 50%;
 }
 
+
 .modal.active .modal-content {
   transform: translate(-50%, -50%) scale(1);
   opacity: 1;
 }
 
+
 .modal-info {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column; 
   margin-bottom: 10px;
 }
 
 .modal-info p {
-  margin: 0;
-  flex: 1;
+  margin: 5px 0;
+  font-size: 14px;
 }
 
+
 .modal-header {
-  width: 267px;
-  height: 30px;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 700;
-  line-height: 24px;
-  text-align: left;
   margin-bottom: 10px;
 }
 
 .modal-subheader {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
-  line-height: 10px;
   color: #939393;
-  padding: 2px 4px;
-  border-radius: 3px;
-  margin-left: 22px;
+  margin-left: 10px;
 }
+
 
 .modal-actions {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  width: auto;
   display: flex;
   justify-content: flex-end;
+  margin-top: 20px;
 }
 
+
 .btn-cancel {
-  width: 91px;
-  height: 30px;
+  padding: 8px 16px;
   background-color: rgba(234, 23, 23, 0.28);
   color: #ea1717;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 12px;
-  font-weight: 450;
+  font-size: 14px;
 }
 
 .btn-cancel:hover {
   background-color: #f5c6cb;
 }
 
+
+@media (max-width: 768px) {
+  .modal-content {
+    width: 80%;
+    max-width: 400px;
+    padding: 15px;
+  }
+
+  .modal-header {
+    font-size: 16px;
+  }
+
+  .modal-info p {
+    font-size: 13px;
+  }
+}
+
 @media (max-width: 576px) {
   .modal-content {
-    width: 85%;
-    height: 163px;
+    width: 60%;
+    max-width: 300px; 
+    padding: 10px;
+  }
+
+  .modal-header {
+    font-size: 15px;
+  }
+
+  .modal-info p {
+    font-size: 12px;
+  }
+
+  .btn-cancel {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 400px) {
+  .modal-content {
+    width: 50%; 
+    max-width: 300px;
     padding: 10px;
   }
 
@@ -96,22 +132,12 @@
     font-size: 14px;
   }
 
-  .modal-subheader {
-    font-size: 10px;
-    margin-left: 10px;
-  }
-
   .modal-info p {
-    font-size: 10px;
-  }
-}
-
-@media (max-width: 328px) {
-  .modal-subheader {
-    font-size: 9px;
+    font-size: 11px;
   }
 
-  .modal-info p {
-    font-size: 9px;
+  .btn-cancel {
+    font-size: 12px;
+    padding: 6px 12px;
   }
 }
