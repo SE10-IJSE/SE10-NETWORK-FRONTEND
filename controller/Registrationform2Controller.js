@@ -75,7 +75,7 @@ function displayProfilePicture() {
       alert("Please select a profile photo smaller than 7MB.");
       profileInputFile.value = ""; // Reset the file input
       profileImgView.style.backgroundImage = ""; // Clear any previous image
-    } else {
+    } else if (file.type.startsWith("image/") && file.type !== "image/gif") {
       const reader = new FileReader();
       reader.onloadend = function () {
         const profilePicBase64 = reader.result;
@@ -83,6 +83,12 @@ function displayProfilePicture() {
         profileImgView.textContent = "";
       };
       reader.readAsDataURL(file);
+    }else{
+      alert(
+        "Please select a valid image file (JPEG, PNG, etc.). GIFs are not allowed."
+      );
+      profileInputFile.value = "";
+      profileImgView.style.backgroundImage = "";
     }
   }
 }
@@ -96,7 +102,7 @@ function displayCoverPicture() {
       alert("Please select a cover photo smaller than 7MB.");
       coverInputFile.value = ""; // Reset the file input
       coverImgView.style.backgroundImage = ""; // Clear any previous image
-    } else {
+    }else if (file.type.startsWith("image/") && file.type !== "image/gif") {
       const reader = new FileReader();
       reader.onloadend = function () {
         const coverPicBase64 = reader.result;
@@ -104,6 +110,12 @@ function displayCoverPicture() {
         coverImgView.textContent = "";
       };
       reader.readAsDataURL(file);
+    }else {
+      alert(
+        "Please select a valid image file (JPEG, PNG, etc.). GIFs are not allowed."
+      );
+      coverInputFile.value = "";
+      coverImgView.style.backgroundImage = "";
     }
   }
 }
@@ -161,5 +173,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   //Validations checks
   $("#bio").attr("required", true);
+  $("#bio").attr({
+    pattern: ".{1,30}",
+    title: "Please enter between 1 and 30 characters.",
+    required: true,
+  });
   $('input[type="checkbox"]').attr("required", true);
 });

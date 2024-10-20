@@ -22,6 +22,59 @@ function togglePassword(inputId, element) {
 
 // Initial setup on page load
 $(document).ready(async function () {
+
+  //Validation Checks
+
+  $("#name").attr("required", true);
+
+  $("#dob").attr("required", true);
+
+  $("#dob").on("blur", function () {
+    //To Get Current Date
+    const currentDate = new Date();
+    const currentYear = currentDate.getFullYear();
+
+    const dob = new Date(this.value);
+    const dobYear = dob.getFullYear();
+    console.log(dobYear);
+
+    if (dobYear > currentYear) {
+      this.value = currentDate.toISOString().split("T")[0];  
+    }
+    
+    if(dobYear < 1900){
+      this.value = "1900-01-01";
+    } 
+  });
+
+  $("#email").attr({
+    type: "email",
+    required: true,
+  });
+
+  $("#currentPassword").attr({
+    minlength: "8",
+    required: true,
+  });
+
+  $("#bio").attr({
+    pattern: ".{1,30}",
+    title: "Please enter between 1 and 30 characters.",
+    required: true,
+  });
+
+  $("#newtPassword").attr({
+    minlength: "8",
+    required: true,
+  });
+
+  $("#confirmPassword").attr({
+    minlength: "8",
+    required: true,
+  });
+
+
+
   $("#name, #bio, #email, #dob").prop("readonly", true);
   $("#security-section").hide();
   $("#security-section input").prop("disabled", true);
@@ -124,6 +177,16 @@ $(document).ready(async function () {
   $("#edit-info-btn").click(function () {
     const isReadOnly = $("#name").prop("readonly");
 
+    //Check for validity
+    $("#name,#email,#dob,#currentPassword,#newPassword,#confirmPassword,#bio").each(
+      function () {       
+        if (!this.checkValidity()) {
+          $(this).get(0).reportValidity();
+          return false; 
+        }
+      }
+    );
+
     if (isReadOnly) {
       $("#name, #bio, #email, #dob").prop("readonly", false);
       $("#security-section input").prop("disabled", false);
@@ -136,17 +199,12 @@ $(document).ready(async function () {
       const newPassword = document.getElementById("newPassword").value;
       const confirmPassword = document.getElementById("confirmPassword").value;
 
-      if (currentPassword === "") {
-        alert("Current password is required!");
-        return;
-      }
-
       if (
         newPassword !== confirmPassword ||
         newPassword === "" ||
         confirmPassword === ""
       ) {
-        alert("New password and confirm password do not match or are empty!");
+        $("#confirmPassword")[0].setCustomValidity("Passwords do not match");
         return;
       }
 

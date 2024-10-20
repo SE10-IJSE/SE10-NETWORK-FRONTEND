@@ -89,6 +89,24 @@ $(document).ready(function () {
 
   $("#dob").attr("required", true);
 
+  $("#dob").on("blur", function () {
+    //To Get Current Date
+    const currentDate = new Date();
+    const currentYear = currentDate.getFullYear();
+
+    const dob = new Date(this.value);
+    const dobYear = dob.getFullYear();
+    console.log(dobYear);
+
+    if (dobYear > currentYear) {
+      this.value = currentDate.toISOString().split("T")[0];  
+    }
+    
+    if(dobYear < 1900){
+      this.value = "1900-01-01";
+    } 
+  });
+
   $("#password").attr({
     minlength: "8",
     required: true,
