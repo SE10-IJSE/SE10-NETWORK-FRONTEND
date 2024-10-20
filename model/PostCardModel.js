@@ -156,3 +156,24 @@ export const deletePost = (postId) => {
       return error;
     });
 };
+
+
+// --- get all posts of a friend ---
+export const getAllFriendPosts = (pageNo,email) => {
+  let config = {
+    method: "get",
+    maxBodyLength: Infinity,
+    url: `http://localhost:8080/api/v1/post/userPosts?pageNo=${pageNo}&postCount=10&email=${email}`,
+  };
+
+  return axios(config)
+    .then((response) => {
+      console.log("Posts fetched successfully:", response.data);
+      return response;
+    })
+    .catch((error) => {
+      console.error("Unable to find the posts:", error);
+      throw error;
+    });
+};
+

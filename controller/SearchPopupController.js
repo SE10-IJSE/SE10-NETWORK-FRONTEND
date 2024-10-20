@@ -41,6 +41,7 @@ $(document).ready(function () {
 
     $recentList.on("scroll", handleScroll);
     $recentList.on("click", ".search-result", handleResultClick);
+    $recentList.on("click", ".remove-btn", handleRemoveClick);
   }
 
   function showSearchPopup() {
@@ -172,9 +173,34 @@ $(document).ready(function () {
 
     if (userData) {
       saveRecentSearch(userData);
-      //Navigation logic to the selected users profile should implement here
-      console.log("Clicked on user:", userData);
+  
+      localStorage.setItem('selectedFriendEmail', userData.email);
+      const $iframe = $("#homePage .homeWallComponent iframe");
+      $iframe.attr('src', '../components/pages/wall/myFriendPostWallComponent.html');
     }
+  }
+
+  function handleRemoveClick(event) {
+    event.stopPropagation();
+    const $clickedItem = $(event.target).closest("li");
+    const userData = $clickedItem.data("user");
+
+    if (userData) {
+        removeRecentSearch(userData);
+        $clickedItem.remove();
+    }
+}
+
+// Add click event listener
+$(document).on('click', '.remove-btn', handleRemoveClick);
+  function removeRecentSearch(userData) {
+    let recentSearches = JSON.parse(
+      localStorage.getItem("recentSearches") || "[]"
+    );
+    recentSearches = recentSearches.filter(
+      (user) => user.name !== userData.name
+    );
+    localStorage.setItem("recentSearches", JSON.stringify(recentSearches));
   }
 
   function saveRecentSearch(userData) {

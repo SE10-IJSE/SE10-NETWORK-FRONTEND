@@ -143,7 +143,17 @@ $(document).ready(function () {
 
     if (userData) {
       saveRecentSearch(userData);
-      //Navigation logic to the selected users profile should implement here
+      localStorage.setItem('selectedFriendEmail', userData.email);
+
+        
+      const $iframe = $(window.parent.document).find(
+        "#homePage .homeWallComponent iframe"
+      );
+
+      $iframe.attr(
+        "src",
+        "../components/pages/wall/myFriendPostWallComponent.html"
+      );
     }
   }
 
