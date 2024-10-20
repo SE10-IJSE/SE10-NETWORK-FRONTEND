@@ -2,6 +2,11 @@ import { postRegisterData } from "../model/RegistrationFormModel.js";
 import { postDataForOtp, verifyOtp } from "../model/VerificationFormModel.js";
 
 $(document).ready(function () {
+  //Add validation
+  $(".otp-field").each(function () {
+    $(this).attr("required", true);
+  });
+
   const storedData = localStorage.getItem("registrationFormData");
   const formData = JSON.parse(storedData);
 
@@ -22,6 +27,7 @@ $(document).ready(function () {
 
   $(".create-account-btn").on("click", async function (event) {
     event.preventDefault();
+    if (this.checkValidity()){ 
     let otpValues = [];
     $(".otp-field").each(function () {
       otpValues.push($(this).val().trim());
@@ -85,6 +91,9 @@ $(document).ready(function () {
         $(this).val("");
       });
     } else alert("No OTP values entered.");
+  }else{
+    this.reportValidity();
+  }
   });
 
   $("#resend-otp").on("click", function (event) {

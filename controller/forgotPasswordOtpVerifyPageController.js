@@ -1,6 +1,11 @@
 import { postDataForOtp, verifyOtp } from "../model/VerificationFormModel.js";
 
 $(document).ready(function () {
+  //Add validation
+  $(".otp-input").each(function () {
+    $(this).attr("required", true);
+  });
+
   const email = localStorage.getItem("email");
   if (!postData("", email)) alert("Failed to send data. Please try again.");
 
@@ -16,9 +21,9 @@ $(document).ready(function () {
     });
   });
 
-  $(".btn-submit").on("click", async function (event) {
+  $(".btn-submit").submit(async function (event) {
     event.preventDefault();
-
+    if (this.checkValidity()){ 
     let otpValues = [];
     $(".otp-input").each(function () {
       otpValues.push($(this).val().trim());
@@ -36,8 +41,11 @@ $(document).ready(function () {
         $(this).val("");
       });
     } else alert("No OTP values entered.");
+  }else{
+    this.reportValidity();
+  }
   });
-
+  
   $("#resend").on("click", function (event) {
     event.preventDefault();
 
