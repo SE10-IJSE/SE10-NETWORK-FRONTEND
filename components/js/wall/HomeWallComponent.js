@@ -97,6 +97,20 @@ function handleSavePost() {
   const postContentWeb = $("#createPostWeb input").val().trim();
   const postContentMobile = $("#createPostMobile input").val().trim();
 
+
+  function hasLongWord(text) {
+    const words = text.split(/\s+/);
+    return words.some(word => word.length > 45);
+  }
+
+  // To find the longest word for error message
+  function getLongestWord(text) {
+    const words = text.split(/\s+/);
+    return words.reduce((longest, current) => 
+      current.length > longest.length ? current : longest
+    );
+  }
+
   //Validations
   if (!(postContentWeb || postContentMobile)) {
     $("#createPostWeb input, #createPostMobile input")[0].setCustomValidity(
@@ -108,8 +122,14 @@ function handleSavePost() {
       "Post must not exceed 280 characters"
     );
     $("#createPostWeb input, #createPostMobile input")[0].reportValidity();
+  } else if (hasLongWord(postContentWeb) || hasLongWord(postContentMobile)) {
+    const content = postContentWeb || postContentMobile;
+    const longWord = getLongestWord(content);   
+    $("#createPostWeb input, #createPostMobile input")[0].setCustomValidity(
+      `Word "${longWord}" is too long. Maximum word length is 45 characters`
+    );
+    $("#createPostWeb input, #createPostMobile input")[0].reportValidity();
   } else {
-    // Clear any previous validation messages
     $("#createPostWeb input, #createPostMobile input")[0].setCustomValidity("");
 
     if (postContentWeb) {
