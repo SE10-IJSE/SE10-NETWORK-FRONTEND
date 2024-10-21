@@ -1,67 +1,80 @@
-import { savePost, getAllPosts } from "../../../model/PostCardModel.js";
-import { getUserProfilePhoto } from "../../../model/UserProfileModel.js";
-import {
-  saveInspiration,
-  deleteInspiration,
-} from "../../../model/InspireModel.js";
+import { getFriendData  } from "../../../model/UserProfileModel.js";
+import {getAllFriendPosts} from "../../../model/PostCardModel.js";
+import { saveInspiration,deleteInspiration } from "../../../model/InspireModel.js";
 
 let currentPage = 0;
-let isLoading = false; // To prevent multiple calls during loading
-let hasMorePosts = true; // Flag to stop loading when no more data
-let lastScrollPosition = 0; // To track the last scroll position
+let isLoading = false;
+let hasMorePosts = true;
+let lastScrollPosition = 0;
+let friendUserName = '';
 
-$(document).ready(function () {
-  const token = getJwtToken();
 
+$(document).ready(async function () {
+  const token = getJwtToken()
+  const selectedFriendEmail = localStorage.getItem('selectedFriendEmail');
+  friendUserName = selectedFriendEmail;
+ 
+  let userData;
   if (token) {
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-    setProfileDetails();
 
-    // Load initial cards and set up resize handler
-    LoadCards();
-    $(window).resize(function () {
-      LoadCards();
-    });
+    try {
+      userData = await getFriendData(friendUserName);
+      if (userData) {
+        // Populate profile info
+        $(".profile-info h1").text(userData.data.name);
+        $(".profile-info h3").text(`@${userData.data.batch}`);
+        $(".profile-info h4").text(userData.data.bio);
 
-    // Scroll event listener to load more data when reaching the bottom
-    $(window).on("scroll", function () {
-      const currentScrollPosition = $(this).scrollTop();
-      const totalScrollableHeight = $(document).height() - $(window).height();
-      const scrollPercentage =
-        (currentScrollPosition / totalScrollableHeight) * 100;
-
-      // Check if user has scrolled 70% of the page and is scrolling down
-      if (
-        scrollPercentage >= 70 &&
-        currentScrollPosition > lastScrollPosition
-      ) {
-        if (!isLoading && hasMorePosts) {
-          LoadCards(); // Load next page when scrolled to the bottom
+        // Set cover photo
+        const coverPhotoElement = $(".profile-banner img");
+        if (userData.data.coverImg) {
+          coverPhotoElement.attr(
+            "src",
+            `data:image/jpeg;base64,${userData.data.coverImg}`
+          );
         }
-      }
 
-      lastScrollPosition = currentScrollPosition; // Update last scroll position
-    });
-
-    // Add event listener for the send post button
-    $("#createPostWeb #addon-wrapping, #createPostMobile #addon-wrapping").on(
-      "click",
-      function () {
-        handleSavePost();
-      }
-    );
-
-    // Add event listener for pressing Enter to trigger savePost
-    $("#createPostWeb input, #createPostMobile input").on(
-      "keypress",
-      function (e) {
-        if (e.which === 13) {
-          handleSavePost();
+        // Set profile photo
+        const profilePicElement = $(".profile-pic");
+        if (userData.data.profileImg) {
+          profilePicElement.attr(
+            "src",
+            `data:image/jpeg;base64,${userData.data.profileImg}`
+          );
         }
+
+        LoadCards();
+        $(window).resize(function () {
+          LoadCards();
+        });
+
+        // Scroll event listener to load more data when reaching the bottom
+        $(window).on("scroll", function () {
+          const currentScrollPosition = $(this).scrollTop();
+          const totalScrollableHeight =
+            $(document).height() - $(window).height();
+          const scrollPercentage =
+            (currentScrollPosition / totalScrollableHeight) * 100;
+
+          // Check if user has scrolled 70% of the page and is scrolling down
+          if (
+            scrollPercentage >= 70 &&
+            currentScrollPosition > lastScrollPosition
+          ) {
+            if (!isLoading && hasMorePosts) {
+              LoadCards(); // Load next page when scrolled to the bottom
+            }
+          }
+          lastScrollPosition = currentScrollPosition; // Update last scroll position
+        });
       }
-    );
+    } catch (error) {
+      showNotFoundPage()
+      console.error("Error fetching data:", error);
+    }
   } else {
-    console.error("JWT token not found in cookies");
+    console.error("User token not found in cookie");
   }
 });
 
@@ -75,81 +88,6 @@ function getJwtToken() {
   return null;
 }
 
-function setProfileDetails() {
-  getUserProfilePhoto()
-    .then((profilePhoto) => {
-      if (profilePhoto) {
-        $(".card-body .profile-img").attr(
-          "src",
-          `data:image/png;base64,${profilePhoto}`
-        );
-      } else {
-        console.error("Profile picture not found in user data.");
-      }
-    })
-    .catch((error) => {
-      console.error("Error fetching profile picture:", error);
-    });
-}
-
-// Function to save post content
-function handleSavePost() {
-  const postContentWeb = $("#createPostWeb input").val().trim();
-  const postContentMobile = $("#createPostMobile input").val().trim();
-
-
-  function hasLongWord(text) {
-    const words = text.split(/\s+/);
-    return words.some(word => word.length > 45);
-  }
-
-  // To find the longest word for error message
-  function getLongestWord(text) {
-    const words = text.split(/\s+/);
-    return words.reduce((longest, current) => 
-      current.length > longest.length ? current : longest
-    );
-  }
-
-  //Validations
-  if (!(postContentWeb || postContentMobile)) {
-    $("#createPostWeb input, #createPostMobile input")[0].setCustomValidity(
-      "Post cannot be empty"
-    );
-    $("#createPostWeb input, #createPostMobile input")[0].reportValidity();
-  } else if (postContentWeb.length > 280 || postContentMobile.length > 280) {
-    $("#createPostWeb input, #createPostMobile input")[0].setCustomValidity(
-      "Post must not exceed 280 characters"
-    );
-    $("#createPostWeb input, #createPostMobile input")[0].reportValidity();
-  } else if (hasLongWord(postContentWeb) || hasLongWord(postContentMobile)) {
-    const content = postContentWeb || postContentMobile;
-    const longWord = getLongestWord(content);   
-    $("#createPostWeb input, #createPostMobile input")[0].setCustomValidity(
-      `Word "${longWord}" is too long. Maximum word length is 45 characters`
-    );
-    $("#createPostWeb input, #createPostMobile input")[0].reportValidity();
-  } else {
-    $("#createPostWeb input, #createPostMobile input")[0].setCustomValidity("");
-
-    if (postContentWeb) {
-      savePost({ content: postContentWeb }).then(() => {
-        $("#createPostWeb input")
-          .val("")
-          .attr("placeholder", "What's on your mind?");
-      });
-    } else if (postContentMobile) {
-      savePost({ content: postContentMobile }).then(() => {
-        $("#createPostMobile input")
-          .val("")
-          .attr("placeholder", "What's on your mind?");
-      });
-    } else {
-      console.error("Post content is empty.");
-    }
-  }
-}
-
 async function LoadCards() {
   if (isLoading) return; // Prevent multiple calls
   isLoading = true;
@@ -157,14 +95,16 @@ async function LoadCards() {
   const isMobile = window.innerWidth <= 767;
 
   try {
-    const response = await getAllPosts(currentPage);
+    const response = await getAllFriendPosts(currentPage,friendUserName);
     const posts = response.data;
 
     posts.forEach((post) => {
-      const postHtml = isMobile ? PostCardMobile(post) : PostCard(post);
-      $("#homeWallComponent").append(postHtml);
+      const postHtml = isMobile ? PostCardMobile(post) : MyPostCard(post);
+      $("#myPostWallComponent").append(postHtml);
     });
+    $(".postMoreOption").css("display", "none");
     currentPage++;
+
 
     // Adding the Inspire Button Logic
     $(document).on("click", ".inspire-btn", function () {
@@ -206,6 +146,7 @@ async function LoadCards() {
           });
       }
     });
+    
   } catch (error) {
     hasMorePosts = false;
     console.error("Error loading posts:", error);
@@ -214,7 +155,31 @@ async function LoadCards() {
   isLoading = false; // Reset the loading state
 }
 
-const PostCard = (post) => {
+let flag = false;
+
+$("#myPostWallComponent").on("click", ".postMore", function () {
+  $("#myPostWallComponent .postMoreOption").hide();
+  if (flag === false) {
+    $(this)
+      .closest(".postCard")
+      .find(".postMoreOption")
+      .css("display", "block");
+    $(this)
+      .closest("#postCardMobile")
+      .find(".postMoreOption")
+      .css("display", "block");
+    flag = true;
+  } else {
+    $(".postMoreOption").css("display", "none");
+    flag = false;
+  }
+});
+
+$("#myPostWallComponent").on("click", ".postMoreOption", function () {
+  $(".postMoreOption").css("display", "none");
+});
+
+const MyPostCard = (post) => {
   const profileImage = post.profileImg
     ? `data:image/png;base64,${post.profileImg}`
     : "/assets/image/profilePic.png";
@@ -291,6 +256,37 @@ const PostCardMobile = (post) => {
         </div>
       `;
 };
+
+
+function showNotFoundPage() {
+    document.body.innerHTML = `
+    <div class="container text-center my-5">
+      <div class="row w-100 text-center">
+        <!-- Content Section -->
+        <div class="col-lg-6 d-flex align-items-center order-lg-1 order-2">
+          <div class="content-container p-4 mx-auto">
+            <h1 class="display-1 fw-bolder">404</h1>
+            <h3 class="mb-3 fw-bolder">Page Not Found!</h3>
+            <p class="lead fw-semibold">
+              It looks like the page you're trying to reach doesn't
+              <br />
+              exist or has been moved.
+            </p>
+  
+          </div>
+        </div>
+        <!-- Image Section -->
+        <div class="col-lg-6 d-flex align-items-center justify-content-center order-lg-2 order-1">
+          <img
+            src="/assets/image/Error404pageImage.png"
+            alt="Error 404"
+            class="img-fluid responsive-image"
+          />
+        </div>
+      </div>
+    </div>`;
+  }
+  
 
 function formatTime(timestamp) {
   const date = new Date(timestamp);

@@ -150,3 +150,25 @@ export const deleteUserPhoto = (data) => {
       throw error;
     });
 };
+
+
+
+
+export const getFriendData = (email) => {
+  let config = {
+    method: "get",
+    maxBodyLength: Infinity,
+    url: `http://localhost:8080/api/v1/user/${email}`,
+  };
+
+  return axios(config)
+    .then((response) => {
+      console.log("Data Retrieved successfully:", response.data);
+      return response;
+    })
+    .catch((error) => {
+      console.error("Data Retrieval failed:", error);
+      throw error;
+    });
+};
+
