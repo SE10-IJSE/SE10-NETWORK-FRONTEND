@@ -19,9 +19,10 @@
 #homeWallComponent .card .card-body > img {
   width: 63px;
   height: 63px;
-  border: 3px solid #04ff00;
+  border: 3px solid #c0c0c0;
   border-radius: 50%;
   object-fit: cover;
+  aspect-ratio: 1 / 1;
 }
 
 #homeWallComponent .input-group {
@@ -79,9 +80,9 @@ body::-webkit-scrollbar {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  font-size: 18px; /* Adjust font size as needed */
-  font-weight: bold; /* Ensure text is bold */
-  color: #6b6b6b; /* Adjust color to a medium gray */
+  font-size: 18px;
+  font-weight: bold;
+  color: #6b6b6b;
   padding: 8px;
 }
 
@@ -89,9 +90,7 @@ body::-webkit-scrollbar {
   #homeWallComponent .card .card-body > img {
     width: 30px;
     height: 30px;
-    border: 1px solid #04ff00;
-    border-radius: 50%;
-    float: left; /* This will float the image to the left */
+    float: left;
     margin-right: 1px;
   }
 
@@ -155,9 +154,7 @@ body::-webkit-scrollbar {
   #homeWallComponent .card .card-body > img {
     width: 50px;
     height: 50px;
-    border: 1px solid #04ff00;
-    border-radius: 50%;
-    float: left; /* This will float the image to the left */
+    float: left;
     margin-right: 1px;
   }
 
@@ -221,9 +218,7 @@ body::-webkit-scrollbar {
   #homeWallComponent .card .card-body > img {
     width: 50px;
     height: 50px;
-    border: 1px solid #04ff00;
-    border-radius: 50%;
-    float: left; /* This will float the image to the left */
+    float: left;
     margin-right: 1px;
   }
 
@@ -287,9 +282,7 @@ body::-webkit-scrollbar {
   #homeWallComponent .card .card-body > img {
     width: 50px;
     height: 50px;
-    border: 1px solid #04ff00;
-    border-radius: 50%;
-    float: left; /* This will float the image to the left */
+    float: left;
     margin-right: 1px;
   }
 

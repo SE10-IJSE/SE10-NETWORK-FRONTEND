@@ -11,7 +11,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/SE10-IJSE/SE10-NETWORK-FRONTEND">
-    <img src="/assests/ico/SE10-Readme-Logo.png" alt="SE10 Logo" width="90" height="90">
+    <img src="/assets/icons/readmeIcon/SE10-Readme-Logo.png" alt="SE10 Logo" width="90" height="90">
   </a>
 
   <h2 align="center">SE10 NETWORK FRONTEND</h2>

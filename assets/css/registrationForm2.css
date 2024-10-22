@@ -172,8 +172,8 @@ h5 {
   z-index: 1;
 }
 
-.txt-field:focus+.txt-label,
-.txt-field:not(:placeholder-shown)+.txt-label {
+.txt-field:focus + .txt-label,
+.txt-field:not(:placeholder-shown) + .txt-label {
   top: 18px;
   left: 25px;
   font-size: 12px;
@@ -210,7 +210,7 @@ h5 {
   left: -5%;
 }
 
-.reg-bg>div {
+.reg-bg > div {
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -309,7 +309,6 @@ h5 {
   user-select: none;
 }
 
-
 input[type="checkbox"] {
   accent-color: #e90708;
   left: 0;
@@ -402,8 +401,8 @@ input[type="checkbox"] {
     font-size: 14px;
   }
 
-  .txt-field:focus+.txt-label,
-  .txt-field:not(:placeholder-shown)+.txt-label {
+  .txt-field:focus + .txt-label,
+  .txt-field:not(:placeholder-shown) + .txt-label {
     font-size: 10px;
   }
 
@@ -436,7 +435,6 @@ input[type="checkbox"] {
     width: 170px;
     font-size: 15px;
   }
-
 }
 
 @media screen and (max-width: 1200px) {
@@ -509,7 +507,6 @@ input[type="checkbox"] {
   .banner {
     display: none;
   }
-
 }
 
 @media screen and (min-width: 300px) and (max-width: 360px) {
@@ -519,7 +516,6 @@ input[type="checkbox"] {
 }
 
 @media screen and (max-width: 360px) {
-
   html,
   body {
     padding: 0;
@@ -604,8 +600,8 @@ input[type="checkbox"] {
     top: 50%;
   }
 
-  .txt-field:focus+.txt-label,
-  .txt-field:not(:placeholder-shown)+.txt-label {
+  .txt-field:focus + .txt-label,
+  .txt-field:not(:placeholder-shown) + .txt-label {
     max-width: 304px;
     max-height: 200px;
     top: 10px;
@@ -791,7 +787,6 @@ input[type="checkbox"] {
 }
 
 @media screen and (min-width: 361px) and (max-width: 550px) {
-
   html,
   body {
     padding: 0;
@@ -868,11 +863,10 @@ input[type="checkbox"] {
     left: 15px;
     top: 50%;
     width: 120%;
-
   }
 
-  .txt-field:focus+.txt-label,
-  .txt-field:not(:placeholder-shown)+.txt-label {
+  .txt-field:focus + .txt-label,
+  .txt-field:not(:placeholder-shown) + .txt-label {
     max-width: 600px;
     max-height: 200px;
     top: 10px;
@@ -958,7 +952,6 @@ input[type="checkbox"] {
     right: -12px;
     bottom: 24px;
     font-size: 7px;
-
   }
 
   #profile-img-view span {
@@ -995,7 +988,6 @@ input[type="checkbox"] {
     right: -12px;
     bottom: 24px;
     font-size: 8px;
-
   }
 
   #cover-img-view span {
@@ -1004,7 +996,6 @@ input[type="checkbox"] {
     bottom: 37px;
     font-size: 7px;
   }
-
 
   .btn {
     width: 180px;
@@ -1050,7 +1041,6 @@ input[type="checkbox"] {
 }
 
 @media screen and (min-width: 551px) and (max-width: 700px) {
-
   html,
   body {
     padding: 0;
@@ -1128,8 +1118,8 @@ input[type="checkbox"] {
     top: 50%;
   }
 
-  .txt-field:focus+.txt-label,
-  .txt-field:not(:placeholder-shown)+.txt-label {
+  .txt-field:focus + .txt-label,
+  .txt-field:not(:placeholder-shown) + .txt-label {
     max-width: 600px;
     max-height: 200px;
     top: 10px;
@@ -1297,7 +1287,6 @@ input[type="checkbox"] {
 }
 
 @media screen and (min-width: 701px) and (max-width: 991px) {
-
   html,
   body {
     padding: 0;
@@ -1378,8 +1367,8 @@ input[type="checkbox"] {
     top: 50%;
   }
 
-  .txt-field:focus+.txt-label,
-  .txt-field:not(:placeholder-shown)+.txt-label {
+  .txt-field:focus + .txt-label,
+  .txt-field:not(:placeholder-shown) + .txt-label {
     max-width: 600px;
     max-height: 300px;
     top: 10px;
@@ -1510,7 +1499,6 @@ input[type="checkbox"] {
     height: 50px;
     font-size: 16px;
     margin-left: 0;
-
   }
 
   .not-acc-container {

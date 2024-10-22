@@ -12,7 +12,7 @@
 #postCard .profileImage {
   width: 55px;
   height: 55px;
-  border: 2px solid rgb(255, 0, 0);
+  border: 2px solid #c0c0c0;
   border-radius: 50%;
 }
 
@@ -66,7 +66,6 @@
 
 @media (max-width: 320px) {
   #decline {
-    /* Adjust position if necessary */
     height: 25px;
   }
 
@@ -79,17 +78,17 @@
   }
 
   #approve {
-    /* Adjust position if necessary */
     right: 5px;
   }
+
   #profile-img {
     width: 10px;
   }
+
   #postCard .profileImage {
     width: 30px;
     height: 30px;
-    border: 1px solid #f00;
-    border-radius: 50%;
+    border: 1px solid #c0c0c0;
   }
 
   #postCard p {
@@ -112,7 +111,6 @@
 
 @media (max-width: 375px) {
   #decline {
-    /* Adjust position if necessary */
     width: 90px;
     height: 35px;
   }
@@ -135,8 +133,7 @@
   #postCard .profileImage {
     width: 45px;
     height: 45px;
-    border: 1px solid #f00;
-    border-radius: 50%;
+    border: 1px solid #c0c0c0;
   }
 
   #postCard p {
@@ -159,7 +156,6 @@
 
 @media (max-width: 425px) {
   #decline {
-    /* Adjust position if necessary */
     width: 90px;
     height: 35px;
   }
@@ -176,14 +172,15 @@
   #approve {
     right: 80px;
   }
+
   #profile-img {
     width: 15px;
   }
+
   #postCard .profileImage {
     width: 45px;
     height: 45px;
-    border: 1px solid #f00;
-    border-radius: 50%;
+    border: 1px solid #c0c0c0;
   }
 
   #postCard p {
@@ -204,13 +201,12 @@
   }
 
   #more-icon img {
-    transform: rotate(90deg); /* Adjust the angle as needed */
+    transform: rotate(90deg);
   }
 }
 
 @media (min-width: 426px) {
   #decline {
-    /* Adjust position if necessary */
     width: 90px;
     height: 35px;
   }
@@ -233,8 +229,7 @@
   #postCard .profileImage {
     width: 45px;
     height: 45px;
-    border: 1px solid #f00;
-    border-radius: 50%;
+    border: 1px solid #c0c0c0;
   }
 
   #postCard p {
@@ -257,12 +252,12 @@
 
 @media (min-width: 2559px) {
   #decline {
-    position: absolute; /* Adjust position if necessary */
+    position: absolute;
     right: 190px;
   }
 
   #approve {
-    position: absolute; /* Adjust position if necessary */
+    position: absolute;
     right: 58px;
   }
 

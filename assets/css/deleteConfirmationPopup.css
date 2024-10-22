@@ -6,9 +6,9 @@
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1000;
-  width: 100vw; /* Full viewport width */
-  height: 100vh; /* Full viewport height */
-  overflow: auto; /* Enable scrolling if content is too tall */
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
 }
 
 /* Modal Content Styling */
@@ -134,18 +134,20 @@ button {
   }
 
   .modal-header {
-   
     padding-bottom: 10px;
     font-size: 12px;
   }
-.delete-header{
-   margin-top: 15px;
+
+  .delete-header {
+    margin-top: 15px;
     padding-bottom: 22px;
-}
+  }
+
   .modal-subheader {
     margin-top: 2px;
     font-size: 11px;
   }
+
   .modal-actions {
     margin-top: 4px;
     justify-content: space-around;

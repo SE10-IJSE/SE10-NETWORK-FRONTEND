@@ -22,9 +22,7 @@ function togglePassword(inputId, element) {
 
 // Initial setup on page load
 $(document).ready(async function () {
-
   //Validation Checks
-
   $("#name").attr("required", true);
 
   $("#dob").attr("required", true);
@@ -39,12 +37,12 @@ $(document).ready(async function () {
     console.log(dobYear);
 
     if (dobYear > currentYear) {
-      this.value = currentDate.toISOString().split("T")[0];  
+      this.value = currentDate.toISOString().split("T")[0];
     }
-    
-    if(dobYear < 1900){
+
+    if (dobYear < 1900) {
       this.value = "1900-01-01";
-    } 
+    }
   });
 
   $("#email").attr({
@@ -59,7 +57,7 @@ $(document).ready(async function () {
 
   $("#bio").attr({
     pattern: ".{1,30}",
-    title: "Please enter between 1 and 30 characters.",
+    title: "Please enter between 1 to 30 characters.",
     required: true,
   });
 
@@ -72,8 +70,6 @@ $(document).ready(async function () {
     minlength: "8",
     required: true,
   });
-
-
 
   $("#name, #bio, #email, #dob").prop("readonly", true);
   $("#security-section").hide();
@@ -178,14 +174,14 @@ $(document).ready(async function () {
     const isReadOnly = $("#name").prop("readonly");
 
     //Check for validity
-    $("#name,#email,#dob,#currentPassword,#newPassword,#confirmPassword,#bio").each(
-      function () {       
-        if (!this.checkValidity()) {
-          $(this).get(0).reportValidity();
-          return false; 
-        }
+    $(
+      "#name,#email,#dob,#currentPassword,#newPassword,#confirmPassword,#bio"
+    ).each(function () {
+      if (!this.checkValidity()) {
+        $(this).get(0).reportValidity();
+        return false;
       }
-    );
+    });
 
     if (isReadOnly) {
       $("#name, #bio, #email, #dob").prop("readonly", false);

@@ -11,8 +11,8 @@
   flex-direction: column;
 }
 
-.search-result{
-    cursor: pointer;
+.search-result {
+  cursor: pointer;
 }
 
 .recent-list {

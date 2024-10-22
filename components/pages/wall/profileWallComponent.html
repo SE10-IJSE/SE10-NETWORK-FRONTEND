@@ -10,7 +10,7 @@
       rel="stylesheet"
       href="/components/css/wall/ProfileWallComponent.css"
     />
-     <link rel="stylesheet" href="/assets/css/postInfoPopup.css" />
+    <link rel="stylesheet" href="/assets/css/postInfoPopup.css" />
     <link rel="stylesheet" href="/assets/css/deleteConfirmationPopup.css" />
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
@@ -91,10 +91,10 @@
               value="Abrahum Joe"
               readonly
             />
-            <h3 id="studentId" class="text-muted">@st-456782</h3>
+            <h3 id="studentId" class="text-muted"></h3>
             <input
               id="bio"
-              class="editable-input form-control"
+              class="editable-input form-control fs-6"
               value="Passionate Software Engineering Student"
               readonly
             />
@@ -246,7 +246,7 @@
         </div>
       </section>
 
-           <!-- delete-confirmation-popup -->
+      <!-- delete-confirmation-popup -->
       <div id="deletePopupModal" class="modal">
         <div class="modal-content">
           <p class="modal-header w-100 delete-header">
@@ -255,11 +255,12 @@
           <p class="modal-subheader">This action can&apos;t be reversed</p>
           <div class="modal-actions d-flex gap-3">
             <button id="cancelDelete" class="cancel-btn">Cancel</button>
-            <button id="confirmDelete" class="delete-btn">Delete post</button>
+            <button id="confirmDelete" class="delete-btn">
+              Delete Account
+            </button>
           </div>
         </div>
       </div>
-    </div>
     </div>
 
     <script src="/assets/bootstrap/js/bootstrap.js"></script>
