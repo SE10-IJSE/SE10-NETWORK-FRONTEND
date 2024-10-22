@@ -200,14 +200,14 @@ function loadHomePage() {
       });
   });
 
- $(".bottom-nav-bar .home-nav").click(function () {
-   $("#homePage .homeWallComponent iframe")
-     .attr("src", "mobileHomePage.html")
-     .css({
-       "border-radius": "0",
-       "box-shadow": "none",
-     });
- });
+  $(".bottom-nav-bar .home-nav").click(function () {
+    $("#homePage .homeWallComponent iframe")
+      .attr("src", "mobileHomePage.html")
+      .css({
+        "border-radius": "0",
+        "box-shadow": "none",
+      });
+  });
 
   $(".bottom-nav-bar .profile-nav").click(function () {
     $("#homePage .homeWallComponent iframe")
@@ -245,23 +245,23 @@ function loadHomePage() {
   });
 
   //  ------------ birthday popup ------------
-  $(document).on('click', function(event) {
-    if(!$(event.target).closest("#birthday-container, .birthDays").length){
+  $(document).on("click", function (event) {
+    if (!$(event.target).closest("#birthday-container, .birthDays").length) {
       hideBirthdayPopup();
     }
   });
 
-  $(".birthDays").click(function() {
+  $(".birthDays").click(function () {
     showBirthdayPopup();
   });
 
   function showBirthdayPopup() {
     $("#birthday-list").empty();
-    retriveBirthdayData(); 
+    retriveBirthdayData();
     $(".birthdayPopup").show();
     $("#birthday-container").css({
-      'opacity': 1,
-      'transform': 'scale(1)'
+      opacity: 1,
+      transform: "scale(1)",
     });
   }
 
@@ -272,18 +272,18 @@ function loadHomePage() {
     }
   };
 
-  $("#close-birthday-icon").click(function() {
+  $("#close-birthday-icon").click(function () {
     hideBirthdayPopup();
   });
 
   function hideBirthdayPopup() {
     var $container = $("#birthday-container");
     $container.css({
-      'opacity': 0,
-      'transform': 'scale(0)'
+      opacity: 0,
+      transform: "scale(0)",
     });
-    
-    setTimeout(function() {
+
+    setTimeout(function () {
       $(".birthdayPopup").hide();
     }, 300);
   }
@@ -403,3 +403,37 @@ function createNotificationElement(notification) {
   notificationElement.append(notificationIcon, notificationText);
   return $("<div>").addClass("notification mb-2").append(notificationElement);
 }
+
+$(".bottom-nav-bar .add-btn").click(function () {
+  const iframe = $("#homePage .homeWallComponent iframe")[0];
+
+  if (iframe) {
+    try {
+      var iframeContent = iframe.contentWindow || iframe.contentDocument;
+      if (iframeContent && iframeContent.document) {
+        iframeContent.scrollTo(0, 0);
+
+        const inputGroup = iframeContent.document.querySelector(".input-group");
+
+        if (inputGroup) {
+          $(inputGroup).css("border", "2px solid #ff9191");
+
+          $(iframeContent).on("scroll", function () {
+            if (iframeContent.scrollY > 0) {
+              $(inputGroup).css("border", "none");
+            }
+          });
+        } else {
+          console.error("Input group not found inside the iframe.");
+        }
+      } else {
+        throw new Error("Iframe content is not accessible.");
+      }
+    } catch (e) {
+      console.error(e.message);
+      alert("Could not access iframe content due to security restrictions.");
+    }
+  } else {
+    alert("Iframe not found.");
+  }
+});

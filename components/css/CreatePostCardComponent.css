@@ -41,7 +41,7 @@
   font-weight: 500;
 }
 
-#homeWallComponent .input-group input:focus {
+#homeWallComponent .input-group input:focus{
   box-shadow: none !important;
 }
 

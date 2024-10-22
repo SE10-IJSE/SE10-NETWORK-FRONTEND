@@ -6,7 +6,7 @@
 #postCard .profileImage {
   width: 55px;
   height: 55px;
-  border: 2px solid #c0c0c0;
+  border: 2px solid #c0c0c0 !important;
   border-radius: 50%;
   object-fit: cover;
 }
