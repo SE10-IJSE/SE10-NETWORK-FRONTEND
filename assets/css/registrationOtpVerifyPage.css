@@ -137,11 +137,11 @@ p.otp-info {
   border-color: #ff0004;
 }
 
-.otp-input>input:nth-child(3) {
+.otp-input > input:nth-child(3) {
   margin-right: 4px;
 }
 
-.otp-input>input:nth-child(4) {
+.otp-input > input:nth-child(4) {
   margin-left: 4px;
 }
 
@@ -173,6 +173,7 @@ button.create-account-btn:hover {
   background-color: #c62929;
 }
 
+/* Responsive Adjustments */
 @media screen and (max-width: 299px) {
   .line {
     width: 12vw;
@@ -219,11 +220,11 @@ button.create-account-btn:hover {
     font-size: 6vw;
   }
 
-  .otp-input>input:nth-child(3) {
+  .otp-input > input:nth-child(3) {
     margin-right: 3vw;
   }
 
-  .otp-input>input:nth-child(4) {
+  .otp-input > input:nth-child(4) {
     margin-left: 3vw;
   }
 }
@@ -252,14 +253,13 @@ button.create-account-btn:hover {
     font-size: 16px;
   }
 
-  .otp-input>input:nth-child(3) {
+  .otp-input > input:nth-child(3) {
     margin-right: 10px;
   }
 
-  .otp-input>input:nth-child(4) {
+  .otp-input > input:nth-child(4) {
     margin-left: 10px;
   }
-
 }
 
 @media screen and (max-width: 600px) {
@@ -369,11 +369,11 @@ button.create-account-btn:hover {
     font-size: 20px;
   }
 
-  .otp-input>input:nth-child(3) {
+  .otp-input > input:nth-child(3) {
     margin-right: 10px;
   }
 
-  .otp-input>input:nth-child(4) {
+  .otp-input > input:nth-child(4) {
     margin-left: 10px;
   }
 

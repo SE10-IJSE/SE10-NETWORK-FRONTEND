@@ -74,13 +74,13 @@ body {
   align-items: center;
 }
 
-.reg-bg>img {
+.reg-bg > img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.reg-bg>div {
+.reg-bg > div {
   display: contents;
 }
 
@@ -88,14 +88,14 @@ body {
   border-radius: 0 0 10px 10px;
 }
 
-.reg-bg>div>div {
+.reg-bg > div > div {
   position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.reg-bg>div>img {
+.reg-bg > div > img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -134,7 +134,7 @@ form {
 }
 
 /* Image styling */
-.reg-bg>img {
+.reg-bg > img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -191,8 +191,7 @@ h4 {
   justify-content: space-between;
 }
 
-/*Batch Combo Box CSS*/
-
+/* Batch Combo Box CSS */
 select {
   height: 40px;
   width: 120px;
@@ -227,9 +226,7 @@ select option {
 
 select option:checked {
   background-color: #fcc0c0;
-  /* Change this to your desired color */
   color: #000;
-  /* Change this to your desired text color */
 }
 
 select:focus {
@@ -239,8 +236,7 @@ select:focus {
   box-shadow: 0 0 0 2px rgba(233, 7, 8, 0.5) !important;
 }
 
-/*First 3 Input Fields CSS*/
-
+/* First 3 Input Fields' CSS */
 .input-container {
   position: relative;
   width: 100%;
@@ -275,8 +271,8 @@ select:focus {
   color: #e90708;
 }
 
-.txt-field:focus+.txt-label,
-.txt-field:not(:placeholder-shown)+.txt-label {
+.txt-field:focus + .txt-label,
+.txt-field:not(:placeholder-shown) + .txt-label {
   top: 18px;
   left: 25px;
   font-size: 12px;
@@ -284,13 +280,13 @@ select:focus {
   z-index: 10;
 }
 
-.txt-field:focus+.name,
-.txt-field:not(:placeholder-shown)+.name {
+.txt-field:focus + .name,
+.txt-field:not(:placeholder-shown) + .name {
   top: 38px;
 }
 
-.txt-field:focus+.email,
-.txt-field:not(:placeholder-shown)+.email {
+.txt-field:focus + .email,
+.txt-field:not(:placeholder-shown) + .email {
   top: 38px;
 }
 
@@ -322,7 +318,7 @@ select:focus {
   gap: 14px;
 }
 
-.password>.input-container:nth-child(1) {
+.password > .input-container:nth-child(1) {
   margin-bottom: 16px;
   margin-top: 16px;
 }
@@ -357,8 +353,8 @@ select:focus {
   color: #e90708;
 }
 
-.txt-field:focus+.dob,
-.txt-field:not(:placeholder-shown)+.dob {
+.txt-field:focus + .dob,
+.txt-field:not(:placeholder-shown) + .dob {
   top: 38px;
 }
 
@@ -400,7 +396,7 @@ input[type="date"] {
   margin-top: 20px;
 }
 
-.not-acc-container>p {
+.not-acc-container > p {
   margin-top: 16px;
 }
 
@@ -421,10 +417,8 @@ input[type="date"] {
   font-style: normal;
 }
 
-/* Responsive */
-
+/* Responsive Adjustments */
 @media only screen and (max-width: 360px) and (min-width: 300px) {
-
   html,
   body {
     padding: 0;
@@ -453,11 +447,10 @@ input[type="date"] {
     order: 1;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-
     position: absolute;
   }
 
-  .password>.input-container {
+  .password > .input-container {
     margin-top: 0;
   }
 
@@ -465,7 +458,7 @@ input[type="date"] {
     display: contents;
   }
 
-  .reg-bg>.desktop-img {
+  .reg-bg > .desktop-img {
     display: none;
   }
 
@@ -525,8 +518,8 @@ input[type="date"] {
     font-size: 12px;
   }
 
-  .txt-field:focus+.txt-label,
-  .txt-field:not(:placeholder-shown)+.txt-label {
+  .txt-field:focus + .txt-label,
+  .txt-field:not(:placeholder-shown) + .txt-label {
     top: 15px;
     left: 15px;
     font-size: 10px;
@@ -588,7 +581,6 @@ input[type="date"] {
 }
 
 @media only screen and (max-width: 425px) and (min-width: 361px) {
-
   html,
   body {
     padding: 0;
@@ -639,11 +631,11 @@ input[type="date"] {
     justify-content: flex-start;
   }
 
-  body>div>div>form {
+  body > div > div > form {
     height: auto;
   }
 
-  body>div>div>form>div:nth-child(1) {
+  body > div > div > form > div:nth-child(1) {
     margin-top: 20px;
   }
 
@@ -694,12 +686,12 @@ input[type="date"] {
     font-size: 12px;
   }
 
-  .password>.input-container:nth-child(2) {
+  .password > .input-container:nth-child(2) {
     margin-top: 0;
   }
 
-  .txt-field:focus+.txt-label,
-  .txt-field:not(:placeholder-shown)+.txt-label {
+  .txt-field:focus + .txt-label,
+  .txt-field:not(:placeholder-shown) + .txt-label {
     top: 15px;
     left: 15px;
     font-size: 10px;
@@ -761,7 +753,6 @@ input[type="date"] {
 }
 
 @media only screen and (max-width: 575px) and (min-width: 425px) {
-
   html,
   body {
     padding: 0;
@@ -854,12 +845,12 @@ input[type="date"] {
     font-size: 12px;
   }
 
-  .password>.input-container:nth-child(2) {
+  .password > .input-container:nth-child(2) {
     margin-top: 0;
   }
 
-  .txt-field:focus+.txt-label,
-  .txt-field:not(:placeholder-shown)+.txt-label {
+  .txt-field:focus + .txt-label,
+  .txt-field:not(:placeholder-shown) + .txt-label {
     top: 15px;
     left: 15px;
     font-size: 10px;
@@ -999,7 +990,7 @@ input[type="date"] {
     font-size: 12px;
   }
 
-  .password>.input-container:nth-child(2) {
+  .password > .input-container:nth-child(2) {
     margin-top: 0;
   }
 
@@ -1019,8 +1010,8 @@ input[type="date"] {
     font-size: 18px;
   }
 
-  .txt-field:focus+.txt-label,
-  .txt-field:not(:placeholder-shown)+.txt-label {
+  .txt-field:focus + .txt-label,
+  .txt-field:not(:placeholder-shown) + .txt-label {
     top: 15px;
     left: 15px;
     font-size: 15px;
@@ -1074,7 +1065,7 @@ input[type="date"] {
 }
 
 @media only screen and (max-width: 1025px) and (min-width: 992px) {
-  .reg-bg>.mobile-img-contenor {
+  .reg-bg > .mobile-img-contenor {
     display: none;
   }
 
@@ -1083,7 +1074,7 @@ input[type="date"] {
     position: relative;
   }
 
-  .reg-bg>.desktop-img {
+  .reg-bg > .desktop-img {
     display: block;
   }
 
@@ -1137,18 +1128,18 @@ input[type="date"] {
     font-size: 14px;
   }
 
-  .txt-field:focus+.email,
-  .txt-field:not(:placeholder-shown)+.email {
+  .txt-field:focus + .email,
+  .txt-field:not(:placeholder-shown) + .email {
     top: 30px;
   }
 
-  .txt-field:focus+.name,
-  .txt-field:not(:placeholder-shown)+.name {
+  .txt-field:focus + .name,
+  .txt-field:not(:placeholder-shown) + .name {
     top: 30px;
   }
 
-  .txt-field:focus+.dob,
-  .txt-field:not(:placeholder-shown)+.dob {
+  .txt-field:focus + .dob,
+  .txt-field:not(:placeholder-shown) + .dob {
     top: 30px;
   }
 }

@@ -47,7 +47,8 @@ async function setNotificationData(user) {
   try {
     const notificationData = await getNotifications(user.userId);
     if (notificationData.length === 0) {
-      $(".recent-list").html("<div class='container mt-1' style='font-size:14px ; color:#797979'>You haven't any notifications</div>"
+      $(".recent-list").html(
+        "<div class='container mt-1' style='font-size:14px ; color:#797979'>You haven't any notifications</div>"
       );
     } else {
       setNotifications(notificationData);
@@ -88,7 +89,9 @@ function createNotificationElement(notification) {
   } else {
   }
 
-  let imageElement = $("<div>").addClass("avatar d-flex justify-content-center").append(notificationIcon);
+  let imageElement = $("<div>")
+    .addClass("avatar d-flex justify-content-center")
+    .append(notificationIcon);
 
   let notificationText = $("<div>")
     .addClass("text")
@@ -101,5 +104,8 @@ function createNotificationElement(notification) {
         .append(imageElement, notificationText)
     );
 
-  return $("<li>").addClass("notification").append(notificationElement).css("box-shadow", "0 4px 18.3px 0 rgba(0, 0, 0, 0.05)");
+  return $("<li>")
+    .addClass("notification")
+    .append(notificationElement)
+    .css("box-shadow", "0 4px 18.3px 0 rgba(0, 0, 0, 0.05)");
 }

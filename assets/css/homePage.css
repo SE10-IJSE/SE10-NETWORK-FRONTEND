@@ -125,7 +125,6 @@ body {
   font-size: 18px;
   font-weight: 700;
   line-height: 18px;
-  /* text-overflow: ellipsis; */
 }
 
 #homePage .profile h5 {
@@ -200,7 +199,6 @@ body {
 #homePage > .homeWallComponent {
   width: 58vw;
   height: 83vh;
-  /*margin: 0 16px;*/
 }
 
 #homePage .homeWallComponent > iframe {
@@ -293,7 +291,7 @@ body {
   display: none;
 }
 
-/* bottom nav bar mobile start */
+/* bottom nav bar mobile css start */
 .img-box {
   border-bottom: 3px solid transparent;
   padding: 1px !important;
@@ -303,8 +301,7 @@ body {
 .red-border-bottom {
   border-bottom: 3px solid var(--btn-bg-color);
 }
-
-/* bottom nav bar mobile end */
+/* bottom nav bar mobile css end */
 
 @media screen and (max-width: 1440px) {
   #homePage {
@@ -316,7 +313,7 @@ body {
   }
 }
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 991px) {
   #navBar {
     padding: 0;
   }

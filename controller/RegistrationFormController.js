@@ -99,12 +99,12 @@ $(document).ready(function () {
     console.log(dobYear);
 
     if (dobYear > currentYear) {
-      this.value = currentDate.toISOString().split("T")[0];  
+      this.value = currentDate.toISOString().split("T")[0];
     }
-    
-    if(dobYear < 1900){
+
+    if (dobYear < 1900) {
       this.value = "1900-01-01";
-    } 
+    }
   });
 
   $("#password").attr({

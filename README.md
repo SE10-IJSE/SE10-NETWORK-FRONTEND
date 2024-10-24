@@ -1,17 +1,17 @@
 <a id="readme-top"></a>
-<!--
+
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]-->
+[![MIT License][license-shield]][license-url]
 
 
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
   <a href="https://github.com/SE10-IJSE/SE10-NETWORK-FRONTEND">
-    <img src="/assests/ico/SE10-Readme-Logo.png" alt="SE10 Logo" width="90" height="90">
+    <img src="/assets/icons/readmeIcon/SE10-Readme-Logo.png" alt="SE10 Logo" width="90" height="90">
   </a>
 
   <h2 align="center">SE10 NETWORK FRONTEND</h2>
@@ -179,7 +179,7 @@ Distributed under the MIT License. See [LICENSE](LICENSE) for more information.
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-<!--[contributors-shield]: https://img.shields.io/github/contributors/SE10-IJSE/SE10-NETWORK-FRONTEND.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/SE10-IJSE/SE10-NETWORK-FRONTEND.svg?style=for-the-badge
 [contributors-url]: https://github.com/SE10-IJSE/SE10-NETWORK-FRONTEND/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/SE10-IJSE/SE10-NETWORK-FRONTEND.svg?style=for-the-badge
 [forks-url]: https://github.com/SE10-IJSE/SE10-NETWORK-FRONTEND/network/members
@@ -188,7 +188,7 @@ Distributed under the MIT License. See [LICENSE](LICENSE) for more information.
 [issues-shield]: https://img.shields.io/github/issues/SE10-IJSE/SE10-NETWORK-FRONTEND.svg?style=for-the-badge
 [issues-url]: https://github.com/SE10-IJSE/SE10-NETWORK-FRONTEND/issues
 [license-shield]: https://img.shields.io/github/license/SE10-IJSE/SE10-NETWORK-FRONTEND.svg?style=for-the-badge
-[license-url]: https://github.com/SE10-IJSE/SE10-NETWORK-FRONTEND/blob/main/LICENSE -->
+[license-url]: https://github.com/SE10-IJSE/SE10-NETWORK-FRONTEND/blob/main/LICENSE
 [HTML.com]: https://img.shields.io/badge/HTML-E34F26?style=for-the-badge&logo=html5&logoColor=white
 [HTML-url]: https://developer.mozilla.org/en-US/docs/Web/HTML
 [CSS.com]: https://img.shields.io/badge/CSS-1572B6?style=for-the-badge&logo=css3&logoColor=white

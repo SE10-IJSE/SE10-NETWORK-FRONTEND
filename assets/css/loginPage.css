@@ -262,8 +262,8 @@ input[type="checkbox"] {
   z-index: 1;
 }
 
-.txt-field:focus+.txt-label,
-.txt-field:not(:placeholder-shown)+.txt-label {
+.txt-field:focus + .txt-label,
+.txt-field:not(:placeholder-shown) + .txt-label {
   top: 18px;
   left: 25px;
   font-size: 12px;
@@ -284,6 +284,11 @@ input[type="checkbox"] {
 
 #togglePassword:hover {
   color: var(--btn-bg-color);
+}
+
+#forgot-password-link {
+  color: #999;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 1320px) {
@@ -473,8 +478,8 @@ input[type="checkbox"] {
     font-size: 12px;
   }
 
-  .txt-field:focus+.txt-label,
-  .txt-field:not(:placeholder-shown)+.txt-label {
+  .txt-field:focus + .txt-label,
+  .txt-field:not(:placeholder-shown) + .txt-label {
     left: 16px;
     font-size: 11px;
   }

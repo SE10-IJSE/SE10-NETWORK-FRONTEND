@@ -96,11 +96,12 @@ export const updateUserPhoto = (formData) => {
     });
 };
 
-export const updateUserPassword = (email, password) => {
+export const updateUserPassword = (email, newPassword, otp) => {
   let config = {
     method: "put",
     maxBodyLength: Infinity,
-    url: `http://localhost:8080/api/v1/auth/update_password?email=${email}&password=${password}`,
+    url: `http://localhost:8080/api/v1/auth/update_password`,
+    data: { email, newPassword, otp },
   };
 
   return axios(config)
@@ -151,9 +152,6 @@ export const deleteUserPhoto = (data) => {
     });
 };
 
-
-
-
 export const getFriendData = (email) => {
   let config = {
     method: "get",
@@ -171,4 +169,3 @@ export const getFriendData = (email) => {
       throw error;
     });
 };
-

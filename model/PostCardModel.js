@@ -26,10 +26,11 @@ export const updatePost = (id, content) => {
   let config = {
     method: "put",
     maxBodyLength: Infinity,
-    url: `http://localhost:8080/api/v1/post/${id}?content=${content}`,
+    url: `http://localhost:8080/api/v1/post/${id}`,
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": "text/plain",
     },
+    data: content,
   };
 
   return axios(config)

@@ -22,9 +22,7 @@ function togglePassword(inputId, element) {
 
 // Initial setup on page load
 $(document).ready(async function () {
-
   //Validation Checks
-
   $("#name").attr("required", true);
 
   $("#dob").attr("required", true);
@@ -39,12 +37,12 @@ $(document).ready(async function () {
     console.log(dobYear);
 
     if (dobYear > currentYear) {
-      this.value = currentDate.toISOString().split("T")[0];  
+      this.value = currentDate.toISOString().split("T")[0];
     }
-    
-    if(dobYear < 1900){
+
+    if (dobYear < 1900) {
       this.value = "1900-01-01";
-    } 
+    }
   });
 
   $("#email").attr({
@@ -59,7 +57,7 @@ $(document).ready(async function () {
 
   $("#bio").attr({
     pattern: ".{1,30}",
-    title: "Please enter between 1 and 30 characters.",
+    title: "Please enter between 1 to 30 characters.",
     required: true,
   });
 
@@ -72,8 +70,6 @@ $(document).ready(async function () {
     minlength: "8",
     required: true,
   });
-
-
 
   $("#name, #bio, #email, #dob").prop("readonly", true);
   $("#security-section").hide();
@@ -130,12 +126,24 @@ $(document).ready(async function () {
                     removeJwtToken();
                   } else {
                     closeDeleteModal();
-                    alert("Failed to delete account.");
+                    Toastify({
+                      text: "Failed to delete account.",
+                      duration: 3000,
+                      gravity: "top",
+                      position: "right",
+                      backgroundColor: "#ff0000",
+                    }).showToast();
                   }
                 } catch (error) {
                   closeDeleteModal();
                   console.error("Error deleting user:", error);
-                  alert("Error deleting account.");
+                  Toastify({
+                    text: "Error deleting account.",
+                    duration: 3000,
+                    gravity: "top",
+                    position: "right",
+                    backgroundColor: "#ff0000",
+                  }).showToast();
                 }
               });
 
@@ -178,14 +186,14 @@ $(document).ready(async function () {
     const isReadOnly = $("#name").prop("readonly");
 
     //Check for validity
-    $("#name,#email,#dob,#currentPassword,#newPassword,#confirmPassword,#bio").each(
-      function () {       
-        if (!this.checkValidity()) {
-          $(this).get(0).reportValidity();
-          return false; 
-        }
+    $(
+      "#name,#email,#dob,#currentPassword,#newPassword,#confirmPassword,#bio"
+    ).each(function () {
+      if (!this.checkValidity()) {
+        $(this).get(0).reportValidity();
+        return false;
       }
-    );
+    });
 
     if (isReadOnly) {
       $("#name, #bio, #email, #dob").prop("readonly", false);
@@ -221,7 +229,7 @@ $(document).ready(async function () {
         email: $("#email").val(),
         bio: $("#bio").val(),
         dob: $("#dob").val(),
-        password: document.getElementById("currentPassword").value,
+        password: currentPassword,
         newPassword: newPassword,
       };
 
@@ -233,14 +241,34 @@ $(document).ready(async function () {
             // Set the new cookie with the updated token
             document.cookie = `jwt=${response.data.data.token}; path=/`;
             window.top.location.reload();
-          } else alert("Failed to update profile.");
+          } else {
+            Toastify({
+              text: "Failed to update profile.",
+              duration: 3000,
+              gravity: "top",
+              position: "right",
+              backgroundColor: "#ff0000",
+            }).showToast();
+          }
         })
         .catch((error) => {
           if (error.code === 406) {
-            alert("Current password is incorrect.");
+            Toastify({
+              text: "Current password is incorrect.",
+              duration: 3000,
+              gravity: "top",
+              position: "right",
+              backgroundColor: "#ff0000",
+            }).showToast();
           } else {
             console.error("Error updating profile:", error);
-            alert("Error updating profile.");
+            Toastify({
+              text: "Error updating profile.",
+              duration: 3000,
+              gravity: "top",
+              position: "right",
+              backgroundColor: "#ff0000",
+            }).showToast();
           }
         });
     }
@@ -297,10 +325,22 @@ $(document).ready(async function () {
         if (response.status === 200) {
           window.top.location.reload();
         } else {
-          alert("Failed to remove photo.");
+          Toastify({
+            text: `Failed to update ${type} photo.`,
+            duration: 3000,
+            gravity: "top",
+            position: "right",
+            backgroundColor: "#ff0000",
+          }).showToast();
         }
       } catch (error) {
-        alert("Error removing photo.");
+        Toastify({
+          text: `Error uploading ${type} photo.`,
+          duration: 3000,
+          gravity: "top",
+          position: "right",
+          backgroundColor: "#ff0000",
+        }).showToast();
       }
 
       dropdownMenu.style.display = "none";
@@ -337,13 +377,31 @@ $(document).ready(async function () {
                 if (response.status === 200) {
                   window.top.location.reload();
                 } else {
-                  alert(`Failed to update ${type} photo.`);
+                  Toastify({
+                    text: `Failed to update ${type} photo.`,
+                    duration: 3000,
+                    gravity: "top",
+                    position: "right",
+                    backgroundColor: "#ff0000",
+                  }).showToast();
                 }
               } catch (error) {
-                alert(`Error uploading ${type} photo.`);
+                Toastify({
+                  text: `Error uploading ${type} photo.`,
+                  duration: 3000,
+                  gravity: "top",
+                  position: "right",
+                  backgroundColor: "#ff0000",
+                }).showToast();
               }
             } else {
-              alert("Image needs to be less than 7MB.");
+              Toastify({
+                text: "Image needs to be less than 7MB.",
+                duration: 3000,
+                gravity: "top",
+                position: "right",
+                backgroundColor: "#ff0000",
+              }).showToast();
             }
           }
           fileInput.value = "";

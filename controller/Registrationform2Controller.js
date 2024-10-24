@@ -72,7 +72,15 @@ function displayProfilePicture() {
   if (file) {
     if (file.size > 7 * 1024 * 1024) {
       // Check if file size exceeds 7MB
-      alert("Please select a profile photo smaller than 7MB.");
+      Toastify({
+        text: "Please select a profile photo smaller than 7MB.",
+        duration: 3000,
+        gravity: "top",
+        position: "right",
+        backgroundColor: "#ff0000",
+        close: true,
+        stopOnFocus: true,
+      }).showToast();
       profileInputFile.value = ""; // Reset the file input
       profileImgView.style.backgroundImage = ""; // Clear any previous image
     } else if (file.type.startsWith("image/") && file.type !== "image/gif") {
@@ -83,10 +91,16 @@ function displayProfilePicture() {
         profileImgView.textContent = "";
       };
       reader.readAsDataURL(file);
-    }else{
-      alert(
-        "Please select a valid image file (JPEG, PNG, etc.). GIFs are not allowed."
-      );
+    } else {
+      Toastify({
+        text: "Please select a valid image file (JPEG, PNG, etc.). GIFs are not allowed.",
+        duration: 3000,
+        gravity: "top",
+        position: "right",
+        backgroundColor: "#ff0000",
+        close: true,
+        stopOnFocus: true,
+      }).showToast();
       profileInputFile.value = "";
       profileImgView.style.backgroundImage = "";
     }
@@ -99,10 +113,18 @@ function displayCoverPicture() {
   if (file) {
     if (file.size > 7 * 1024 * 1024) {
       // Check if file size exceeds 7MB
-      alert("Please select a cover photo smaller than 7MB.");
+      Toastify({
+        text: "Please select a profile photo smaller than 7MB.",
+        duration: 3000,
+        gravity: "top",
+        position: "right",
+        backgroundColor: "#ff0000",
+        close: true,
+        stopOnFocus: true,
+      }).showToast();
       coverInputFile.value = ""; // Reset the file input
       coverImgView.style.backgroundImage = ""; // Clear any previous image
-    }else if (file.type.startsWith("image/") && file.type !== "image/gif") {
+    } else if (file.type.startsWith("image/") && file.type !== "image/gif") {
       const reader = new FileReader();
       reader.onloadend = function () {
         const coverPicBase64 = reader.result;
@@ -110,10 +132,16 @@ function displayCoverPicture() {
         coverImgView.textContent = "";
       };
       reader.readAsDataURL(file);
-    }else {
-      alert(
-        "Please select a valid image file (JPEG, PNG, etc.). GIFs are not allowed."
-      );
+    } else {
+      Toastify({
+        text: "Please select a valid image file (JPEG, PNG, etc.). GIFs are not allowed.",
+        duration: 3000,
+        gravity: "top",
+        position: "right",
+        backgroundColor: "#ff0000",
+        close: true,
+        stopOnFocus: true,
+      }).showToast();
       coverInputFile.value = "";
       coverImgView.style.backgroundImage = "";
     }

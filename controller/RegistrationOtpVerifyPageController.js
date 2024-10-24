@@ -1,5 +1,5 @@
 import { postRegisterData } from "../model/RegistrationFormModel.js";
-import { postDataForOtp, verifyOtp } from "../model/VerificationFormModel.js";
+import { postDataForOtp } from "../model/VerificationFormModel.js";
 
 $(document).ready(function () {
   //Add validation
@@ -11,7 +11,15 @@ $(document).ready(function () {
   const formData = JSON.parse(storedData);
 
   if (!postData(formData.name, formData.email))
-    alert("Failed to send data. Please try again.");
+    Toastify({
+      text: "Failed to send data. Please try again.",
+      duration: 3000,
+      gravity: "top",
+      position: "right",
+      backgroundColor: "#ff0000",
+      close: true,
+      stopOnFocus: true,
+    }).showToast();
 
   $(".otp-field").each(function (index, input) {
     $(input).on("input", function () {
@@ -27,20 +35,14 @@ $(document).ready(function () {
 
   $(".create-account-btn").on("click", async function (event) {
     event.preventDefault();
-    if (this.checkValidity()){ 
-    let otpValues = [];
-    $(".otp-field").each(function () {
-      otpValues.push($(this).val().trim());
-    });
+    if (this.checkValidity()) {
+      let otpValues = [];
+      $(".otp-field").each(function () {
+        otpValues.push($(this).val().trim());
+      });
 
-    if (otpValues.length > 0) {
-      const combinedOtp = otpValues.join("");
-      const verifyResponse = await verifyEnteredOtp(
-        formData.email,
-        combinedOtp
-      );
-
-      if (verifyResponse) {
+      if (otpValues.length > 0) {
+        const combinedOtp = otpValues.join("");
         if (storedData) {
           const formDataToSend = new FormData();
           formDataToSend.append("userId", formData.studentId);
@@ -50,6 +52,7 @@ $(document).ready(function () {
           formDataToSend.append("dob", formData.dob);
           formDataToSend.append("batch", formData.batch);
           formDataToSend.append("bio", formData.bio);
+          formDataToSend.append("otp", combinedOtp);
 
           // Convert base64 to Blob for profilePic and coverPic
           if (formData.profilePic) {
@@ -77,30 +80,85 @@ $(document).ready(function () {
 
                 // Redirect to the homepage
                 window.location.href = "/pages/homePage.html";
-              } else alert("SignUp failed. Please check your details.");
+              } else {
+                Toastify({
+                  text: "SignUp failed. Please check your details.",
+                  duration: 3000,
+                  gravity: "top",
+                  position: "right",
+                  backgroundColor: "#ff0000",
+                  close: true,
+                  stopOnFocus: true,
+                }).showToast();
+              }
             })
             .catch((error) => {
               console.error("SignUp error:", error);
-              alert("An error occurred during SignUp. Please try again later.");
+              if (error.response.status === 400) {
+                Toastify({
+                  text: "Invalid OTP. Please try again.",
+                  duration: 3000,
+                  gravity: "top",
+                  position: "right",
+                  backgroundColor: "#ff0000",
+                  close: true,
+                  stopOnFocus: true,
+                }).showToast();
+              } else {
+                Toastify({
+                  text: "An error occurred during SignUp. Please try again later.",
+                  duration: 3000,
+                  gravity: "top",
+                  position: "right",
+                  backgroundColor: "#ff0000",
+                  close: true,
+                  stopOnFocus: true,
+                }).showToast();
+              }
             });
-        } else
-          alert("An error occurred during SignUp. Please try again later.");
-      } else alert("Invalid OTP. Please try again.");
-
-      $(".otp-field").each(function () {
-        $(this).val("");
-      });
-    } else alert("No OTP values entered.");
-  }else{
-    this.reportValidity();
-  }
+        } else {
+          Toastify({
+            text: "An error occurred during SignUp. Please try again later.",
+            duration: 3000,
+            gravity: "top",
+            position: "right",
+            backgroundColor: "#ff0000",
+            close: true,
+            stopOnFocus: true,
+          }).showToast();
+        }
+        $(".otp-field").each(function () {
+          $(this).val("");
+        });
+      } else {
+        Toastify({
+          text: "No OTP values entered.",
+          duration: 3000,
+          gravity: "top",
+          position: "right",
+          backgroundColor: "#ff0000",
+          close: true,
+          stopOnFocus: true,
+        }).showToast();
+      }
+    } else {
+      this.reportValidity();
+    }
   });
 
   $("#resend-otp").on("click", function (event) {
     event.preventDefault();
 
     if (!postData(formData.name, formData.email))
-      alert("Failed to send data. Please try again.");
+      Toastify({
+        text: "Failed to send data. Please try again.",
+        duration: 3000,
+        gravity: "top",
+        position: "right",
+        backgroundColor: "#ff0000",
+        close: true,
+        stopOnFocus: true,
+      }).showToast();
     else {
       $(".otp-field").each(function () {
         $(this).val("");
@@ -108,16 +166,6 @@ $(document).ready(function () {
     }
   });
 });
-
-const verifyEnteredOtp = async (email, otp) => {
-  try {
-    const otpResponse = await verifyOtp(email, otp);
-    return otpResponse.status === 200 ? true : false;
-  } catch (error) {
-    console.error("Error verifying otp:", error);
-    return false;
-  }
-};
 
 const postData = async (name, email) => {
   try {

@@ -1,6 +1,12 @@
-import { updateUserPassword } from "../model/UserProfileModel.js";
-
 $(document).ready(function () {
+  //Validations
+  $("#password").attr({
+    minlength: "8",
+    required: true,
+  });
+
+  $("#confirm-password").attr("required", true);
+
   const $togglePassword = $("#togglePassword");
   const $togglePasswordConfirm = $("#togglePasswordConfirm");
   const $passwordInput = $("#password");
@@ -30,10 +36,14 @@ $(document).ready(function () {
   $("input").keydown(function (e) {
     if (e.key === "Enter") {
       e.preventDefault();
-      const $inputs = $("input");
-      const nextInput = $inputs.get($inputs.index(this) + 1);
-      if (nextInput) {
-        nextInput.focus();
+      if (this.checkValidity()) {
+        const $inputs = $("input");
+        const nextInput = $inputs.get($inputs.index(this) + 1);
+        if (nextInput) {
+          nextInput.focus();
+        }
+      } else {
+        this.reportValidity();
       }
     }
   });
@@ -44,27 +54,34 @@ $(document).ready(function () {
 
   $("#login").on("submit", function (event) {
     event.preventDefault();
-    changePassword();
+    if (this.checkValidity() & validatePasswords()) {
+      if ($passwordInput.val() === $passwordInputConfirm.val()) {
+        localStorage.setItem("newPassword", $passwordInput.val());
+        window.location.href = "/pages/forgotPasswordOtpVerifyPage.html";
+      }
+    } else {
+      this.reportValidity();
+    }
   });
 
-  function changePassword() {
-    if ($passwordInput.val() === $passwordInputConfirm.val()) {
-      if (updatePassword(localStorage.getItem("email"), $passwordInput.val())) {
-        localStorage.removeItem("email");
-        window.location.href = "/index.html";
-      } else alert("Failed to update password. Please try again.");
-    } else {
-      alert("Passwords do not match!");
-    }
-  }
+  $("#password").on("input", function () {
+    this.setCustomValidity("");
+  });
+
+  $("#confirm-password").on("input", function () {
+    this.setCustomValidity("");
+  });
 });
 
-const updatePassword = async (email, password) => {
-  try {
-    const response = await updateUserPassword(email, password);
-    return response.status === 204 ? true : false;
-  } catch (error) {
-    console.error("Error updating password:", error);
+function validatePasswords() {
+  const password = $("#password").val();
+  const confirmPassword = $("#confirm-password").val();
+
+  if (password !== confirmPassword) {
+    $("#confirm-password")[0].setCustomValidity("Passwords do not match");
     return false;
+  } else {
+    $("#confirm-password")[0].setCustomValidity("");
+    return true;
   }
-};
+}
