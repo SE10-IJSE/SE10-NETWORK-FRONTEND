@@ -286,6 +286,11 @@ input[type="checkbox"] {
   color: var(--btn-bg-color);
 }
 
+#forgot-password-link {
+  color: #999;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 1320px) {
   .container {
     max-width: 1200px;

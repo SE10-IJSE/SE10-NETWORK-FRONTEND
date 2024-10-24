@@ -21,7 +21,7 @@ export const deleteInspiration = (postId) => {
   let config = {
     method: "delete",
     maxBodyLength: Infinity,
-    url: `http://localhost:8080/api/v1/inspire/${postId}`,
+    url: `http://localhost:8080/api/v1/inspire/post/${postId}`,
   };
 
   return axios(config)

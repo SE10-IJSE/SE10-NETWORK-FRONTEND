@@ -143,9 +143,8 @@ $(document).ready(function () {
 
     if (userData) {
       saveRecentSearch(userData);
-      localStorage.setItem('selectedFriendEmail', userData.email);
+      localStorage.setItem("selectedFriendEmail", userData.email);
 
-        
       const $iframe = $(window.parent.document).find(
         "#homePage .homeWallComponent iframe"
       );

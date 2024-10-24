@@ -1,4 +1,5 @@
-import { postDataForOtp, verifyOtp } from "../model/VerificationFormModel.js";
+import { postDataForOtp } from "../model/VerificationFormModel.js";
+import { updateUserPassword } from "../model/UserProfileModel.js";
 
 $(document).ready(function () {
   //Add validation
@@ -7,7 +8,18 @@ $(document).ready(function () {
   });
 
   const email = localStorage.getItem("email");
-  if (!postData("", email)) alert("Failed to send data. Please try again.");
+  const newPassword = localStorage.getItem("newPassword");
+
+  if (!postData("", email))
+    Toastify({
+      text: "Failed to send data. Please try again.",
+      duration: 3000,
+      gravity: "top",
+      position: "right",
+      backgroundColor: "#ff0000",
+      close: true,
+      stopOnFocus: true,
+    }).showToast();
 
   $(".otp-input").each(function (index, input) {
     $(input).on("input", function () {
@@ -21,36 +33,65 @@ $(document).ready(function () {
     });
   });
 
-  $(".btn-submit").submit(async function (event) {
+  $(".Reset-Password").submit(async function (event) {
     event.preventDefault();
-    if (this.checkValidity()){ 
-    let otpValues = [];
-    $(".otp-input").each(function () {
-      otpValues.push($(this).val().trim());
-    });
 
-    if (otpValues.length > 0) {
-      const combinedOtp = otpValues.join("");
-
-      const verifyResponse = await verifyEnteredOtp(email, combinedOtp);
-      if (verifyResponse)
-        window.location.href = "/pages/forgotPasswordForm.html";
-      else alert("Invalid OTP. Please try again.");
-
-      $(".otp-field").each(function () {
-        $(this).val("");
+    if (this.checkValidity()) {
+      let otpValues = [];
+      $(".otp-input").each(function () {
+        otpValues.push($(this).val().trim());
       });
-    } else alert("No OTP values entered.");
-  }else{
-    this.reportValidity();
-  }
+
+      if (otpValues.length > 0) {
+        const combinedOtp = otpValues.join("");
+        const isUpdated = await updatePassword(email, newPassword, combinedOtp);
+        if (isUpdated) {
+          Toastify({
+            text: "Password updated successfully!",
+            duration: 3000,
+            gravity: "top",
+            position: "center",
+            backgroundColor: "#00b09b",
+            close: true,
+            stopOnFocus: true,
+          }).showToast();
+          localStorage.removeItem("email");
+          localStorage.removeItem("newPassword");
+          window.location.href = "/index.html";
+        }
+
+        $(".otp-field").each(function () {
+          $(this).val("");
+        });
+      } else {
+        Toastify({
+          text: "No OTP values entered.",
+          duration: 3000,
+          gravity: "top",
+          position: "right",
+          backgroundColor: "#ff0000",
+          close: true,
+          stopOnFocus: true,
+        }).showToast();
+      }
+    } else {
+      this.reportValidity();
+    }
   });
-  
+
   $("#resend").on("click", function (event) {
     event.preventDefault();
 
-    if (!postData(formData.name, formData.email))
-      alert("Failed to send data. Please try again.");
+    if (!postData("", email))
+      Toastify({
+        text: "Failed to send data. Please try again.",
+        duration: 3000,
+        gravity: "top",
+        position: "right",
+        backgroundColor: "#ff0000",
+        close: true,
+        stopOnFocus: true,
+      }).showToast();
     else {
       $(".otp-input").each(function () {
         $(this).val("");
@@ -59,12 +100,42 @@ $(document).ready(function () {
   });
 });
 
-const verifyEnteredOtp = async (email, otp) => {
+const updatePassword = async (email, password, otp) => {
   try {
-    const otpResponse = await verifyOtp(email, otp);
-    return otpResponse.status === 200 ? true : false;
+    const response = await updateUserPassword(email, password, otp);
+    return response.status === 204 ? true : false;
   } catch (error) {
-    console.error("Error verifying otp:", error);
+    console.error("Error updating password:", error);
+    if (error.response.status === 400)
+      Toastify({
+        text: "Invalid OTP. Please try again.",
+        duration: 3000,
+        gravity: "top",
+        position: "right",
+        backgroundColor: "#ff0000",
+        close: true,
+        stopOnFocus: true,
+      }).showToast();
+    else if (error.response.status === 404)
+      Toastify({
+        text: "User not found.",
+        duration: 3000,
+        gravity: "top",
+        position: "right",
+        backgroundColor: "#ff0000",
+        close: true,
+        stopOnFocus: true,
+      }).showToast();
+    else
+      Toastify({
+        text: "Error updating password",
+        duration: 3000,
+        gravity: "top",
+        position: "right",
+        backgroundColor: "#ff0000",
+        close: true,
+        stopOnFocus: true,
+      }).showToast();
     return false;
   }
 };

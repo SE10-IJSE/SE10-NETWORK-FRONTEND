@@ -173,10 +173,13 @@ $(document).ready(function () {
 
     if (userData) {
       saveRecentSearch(userData);
-  
-      localStorage.setItem('selectedFriendEmail', userData.email);
+
+      localStorage.setItem("selectedFriendEmail", userData.email);
       const $iframe = $("#homePage .homeWallComponent iframe");
-      $iframe.attr('src', '../components/pages/wall/myFriendPostWallComponent.html');
+      $iframe.attr(
+        "src",
+        "../components/pages/wall/myFriendPostWallComponent.html"
+      );
     }
   }
 
@@ -186,13 +189,13 @@ $(document).ready(function () {
     const userData = $clickedItem.data("user");
 
     if (userData) {
-        removeRecentSearch(userData);
-        $clickedItem.remove();
+      removeRecentSearch(userData);
+      $clickedItem.remove();
     }
-}
+  }
 
-// Add click event listener
-$(document).on('click', '.remove-btn', handleRemoveClick);
+  // Add click event listener
+  $(document).on("click", ".remove-btn", handleRemoveClick);
   function removeRecentSearch(userData) {
     let recentSearches = JSON.parse(
       localStorage.getItem("recentSearches") || "[]"

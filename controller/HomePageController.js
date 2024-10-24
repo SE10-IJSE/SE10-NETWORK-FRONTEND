@@ -431,9 +431,25 @@ $(".bottom-nav-bar .add-btn").click(function () {
       }
     } catch (e) {
       console.error(e.message);
-      alert("Could not access iframe content due to security restrictions.");
+      Toastify({
+        text: "Could not access iframe content due to security restrictions.",
+        duration: 3000,
+        gravity: "top",
+        position: "right",
+        backgroundColor: "#ff0000",
+        close: true,
+        stopOnFocus: true,
+      }).showToast();
     }
   } else {
-    alert("Iframe not found.");
+    Toastify({
+      text: "Iframe not found.",
+      duration: 3000,
+      gravity: "top",
+      position: "right",
+      backgroundColor: "#ff0000",
+      close: true,
+      stopOnFocus: true,
+    }).showToast();
   }
 });
