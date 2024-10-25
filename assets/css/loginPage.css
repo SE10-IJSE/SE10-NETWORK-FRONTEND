@@ -262,8 +262,8 @@ input[type="checkbox"] {
   z-index: 1;
 }
 
-.txt-field:focus + .txt-label,
-.txt-field:not(:placeholder-shown) + .txt-label {
+.txt-field:focus+.txt-label,
+.txt-field:not(:placeholder-shown)+.txt-label {
   top: 18px;
   left: 25px;
   font-size: 12px;
@@ -357,31 +357,7 @@ input[type="checkbox"] {
   }
 }
 
-@media screen and (max-width: 991px) {
-  .reg-bg {
-    width: 100%;
-    max-height: 200px;
-  }
-
-  .reg-bg .mobile-img {
-    width: 100vw;
-    height: 200px;
-  }
-
-  form {
-    max-width: 992px;
-  }
-
-  .not-acc {
-    font-size: 13px;
-  }
-
-  .container {
-    height: 100%;
-  }
-}
-
-@media screen and (max-width: 991px) and (min-width: 768px) {
+@media screen and (max-width: 992px) and (min-width: 768px) {
   .btn {
     width: 30vw;
     font-size: 16px;
@@ -478,8 +454,8 @@ input[type="checkbox"] {
     font-size: 12px;
   }
 
-  .txt-field:focus + .txt-label,
-  .txt-field:not(:placeholder-shown) + .txt-label {
+  .txt-field:focus+.txt-label,
+  .txt-field:not(:placeholder-shown)+.txt-label {
     left: 16px;
     font-size: 11px;
   }
