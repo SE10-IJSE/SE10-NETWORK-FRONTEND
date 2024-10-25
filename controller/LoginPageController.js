@@ -1,17 +1,6 @@
 import { postLoginData } from "../model/LoginFormModel.js";
 
 document.addEventListener("DOMContentLoaded", function () {
-  localStorage.removeItem("email");
-  localStorage.removeItem("newPassword");
-  const jwtToken = getJwtToken();
-
-  if (jwtToken) {
-    axios.defaults.headers.common["Authorization"] = `Bearer ${jwtToken}`;
-    window.location.href = "/pages/homePage.html";
-  } else {
-    // No token found, load the login page
-    loadLoginPage();
-  }
 
   //Validations checks
   $("#email").attr({
@@ -23,6 +12,18 @@ document.addEventListener("DOMContentLoaded", function () {
     minlength: "8",
     required: true,
   });
+
+  localStorage.removeItem("email");
+  localStorage.removeItem("newPassword");
+  const jwtToken = getJwtToken();
+
+  if (jwtToken) {
+    axios.defaults.headers.common["Authorization"] = `Bearer ${jwtToken}`;
+    window.location.href = "/pages/homePage.html";
+  } else {
+    // No token found, load the login page
+    loadLoginPage();
+  }
 });
 
 function getJwtToken() {

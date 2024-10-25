@@ -252,6 +252,7 @@ function formatTime(timestamp) {
   return date.toLocaleDateString("en-US", options);
 }
 
+
 // Toggle edit mode for post content
 $("#myPostWallComponent").on("click", ".edit-post-btn", async function () {
   let postCard;
@@ -274,27 +275,63 @@ $("#myPostWallComponent").on("click", ".edit-post-btn", async function () {
     editBtn.data("mode", "save");
     editBtn.find("span").text("Save");
   } else if (mode === "save") {
-    // Switch back to <p> mode
-    const newContent = postCard.find(".edit-input").val();
-    const updatedParagraph = `<p>${newContent}</p>`;
+    // Get the input field
+    const inputField = postCard.find(".edit-input");
+    const postContent = inputField.val().trim();
 
-    postCard.find(".edit-input").replaceWith(updatedParagraph);
-    editBtn.data("mode", "edit");
-    editBtn.find("span").text("Edit Post");
+    //Validations
 
-    // Update the post content in the database
-    try {
-      const postId = postCard.data("post").postId;
-      const response = await updatePost(postId, newContent);
+    function hasLongWord(text) {
+      const words = text.split(/\s+/);
+      return words.some((word) => word.length > 45);
+    }
 
-      if (response.status === 204 || response.status === 200) {
-        alert("Post updated successfully");
-      } else {
+    function getLongestWord(text) {
+      const words = text.split(/\s+/);
+      return words.reduce((longest, current) =>
+        current.length > longest.length ? current : longest
+      );
+    }
+
+    if (!postContent) {
+      inputField[0].setCustomValidity("Post content cannot be empty");
+      inputField[0].reportValidity();
+    } else if (postContent.length > 280) {
+      inputField[0].setCustomValidity(
+        "Post content must not exceed 280 characters"
+      );
+      inputField[0].reportValidity();
+    } else if (hasLongWord(postContent)) {
+      const longWord = getLongestWord(postContent);
+      inputField[0].setCustomValidity(
+        `Word "${longWord}" is too long. Maximum word length is 45 characters`
+      );
+      inputField[0].reportValidity();
+    } else {
+      inputField[0].setCustomValidity("");
+      // Switch back to <p> mode
+      const newContent = inputField.val().trim();
+      const updatedParagraph = `<p>${newContent}</p>`;
+
+      inputField.replaceWith(updatedParagraph);
+      editBtn.data("mode", "edit");
+      editBtn.find("span").text("Edit Post");
+      console.log(newContent)
+
+      // Update the post content in the database
+      try {
+        const postId = postCard.data("post").postId;
+        const response = await updatePost(postId, newContent);
+
+        if (response.status === 204 || response.status === 200) {
+          alert("Post updated successfully");
+        } else {
+          alert("Post update failed! Try again.");
+        }
+      } catch (error) {
+        console.error("Error updating post:", error);
         alert("Post update failed! Try again.");
       }
-    } catch (error) {
-      console.error("Error updating post:", error);
-      alert("Post update failed! Try again.");
     }
   }
 });

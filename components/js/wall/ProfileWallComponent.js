@@ -61,14 +61,12 @@ $(document).ready(async function () {
     required: true,
   });
 
-  $("#newtPassword").attr({
+  $("#newPassword").attr({
     minlength: "8",
-    required: true,
   });
 
   $("#confirmPassword").attr({
     minlength: "8",
-    required: true,
   });
 
   $("#name, #bio, #email, #dob").prop("readonly", true);
@@ -185,15 +183,19 @@ $(document).ready(async function () {
   $("#edit-info-btn").click(function () {
     const isReadOnly = $("#name").prop("readonly");
 
-    //Check for validity
-    $(
-      "#name,#email,#dob,#currentPassword,#newPassword,#confirmPassword,#bio"
-    ).each(function () {
-      if (!this.checkValidity()) {
-        $(this).get(0).reportValidity();
-        return false;
-      }
-    });
+     // Check for validity
+     let isValid = true;
+
+     $("#name,#email,#dob,#currentPassword,#newPassword,#confirmPassword,#bio").each(function () {
+       if (!this.checkValidity()) {
+         $(this).get(0).reportValidity();
+         isValid = false;
+       }
+     });
+ 
+     if (!isValid) {
+       return;
+     }
 
     if (isReadOnly) {
       $("#name, #bio, #email, #dob").prop("readonly", false);
@@ -207,12 +209,9 @@ $(document).ready(async function () {
       const newPassword = document.getElementById("newPassword").value;
       const confirmPassword = document.getElementById("confirmPassword").value;
 
-      if (
-        newPassword !== confirmPassword ||
-        newPassword === "" ||
-        confirmPassword === ""
-      ) {
+      if (newPassword !== confirmPassword) {
         $("#confirmPassword")[0].setCustomValidity("Passwords do not match");
+        $("#confirmPassword")[0].reportValidity();
         return;
       }
 
@@ -312,6 +311,12 @@ $(document).ready(async function () {
       dropdownMenuProfile.style.display = "none";
     }
   });
+
+    // Add event listeners to clear custom validity
+    $("#confirmPassword").on("change", function () {
+      this.setCustomValidity("");
+    });
+  
 
   // Event listeners for "Remove Photo" buttons
   document.querySelectorAll(".remove-photo-btn").forEach((btn) => {
