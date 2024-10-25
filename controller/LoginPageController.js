@@ -2,6 +2,7 @@ import { postLoginData } from "../model/LoginFormModel.js";
 
 document.addEventListener("DOMContentLoaded", function () {
   localStorage.removeItem("email");
+  localStorage.removeItem("newPassword");
   const jwtToken = getJwtToken();
 
   if (jwtToken) {
@@ -55,41 +56,81 @@ function loadLoginPage() {
     window.location.href = "pages/registrationForm.html";
   });
 
-  loginForm.addEventListener("submit", function (event) {
+  loginForm.addEventListener("submit", async function (event) {
     event.preventDefault();
     const email = emailField.value;
     const password = passwordInput.value;
 
-    // Send login data to the server
-    postLoginData({ email, password })
-      .then((response) => {
-        if (response.status === 200) {
-          document.cookie = `jwt=${response.data.data.token}; path=/`;
-
-          window.location.href = "pages/homePage.html";
-        } else {
-          alert("Login failed. Please check your email and password.");
-        }
-      })
-      .catch((error) => {
-        window.location.href = "/";
-        console.error("Login error:", error);
-        alert("An error occurred during login. Please try again later.");
-      });
+    try {
+      const response = await postLoginData({ email, password });
+      if (response.status === 200) {
+        document.cookie = `jwt=${response.data.data.token}; path=/`;
+        window.location.href = "pages/homePage.html";
+      } else {
+        Toastify({
+          text: "Login failed. Please check your email and password.",
+          duration: 3000,
+          gravity: "top",
+          position: "right",
+          backgroundColor: "#ff0000",
+          close: true,
+          stopOnFocus: true,
+        }).showToast();
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      if (error.response.status === 401) {
+        Toastify({
+          text: "Login failed. Please check your email and password.",
+          duration: 3000,
+          gravity: "top",
+          position: "right",
+          backgroundColor: "#ff0000",
+          close: true,
+          stopOnFocus: true,
+        }).showToast();
+      } else {
+        Toastify({
+          text: "An error occurred during login. Please try again later.",
+          duration: 3000,
+          gravity: "top",
+          position: "right",
+          backgroundColor: "#ff0000",
+          close: true,
+          stopOnFocus: true,
+        }).showToast();
+      }
+    }
   });
 
   document
     .getElementById("forgot-password-link")
     .addEventListener("click", function () {
       if (!emailField.value) {
-        alert("Please enter your email address.");
+        Toastify({
+          text: "Please enter your email address.",
+          duration: 3000,
+          gravity: "top",
+          position: "right",
+          backgroundColor: "#ff0000",
+          close: true,
+          stopOnFocus: true,
+        }).showToast();
         return;
       } else if (!emailField.checkValidity()) {
-        alert("Please enter a valid email address.");
+        Toastify({
+          text: "Please enter a valid email address.",
+          duration: 3000,
+          gravity: "top",
+          position: "right",
+          backgroundColor: "#ff0000",
+          close: true,
+          stopOnFocus: true,
+        }).showToast();
         return;
       } else {
         localStorage.setItem("email", emailField.value);
-        window.location.href = "/pages/forgotPasswordOtpVerifyPage.html";
+        window.location.href = "/pages/forgotPasswordForm.html";
       }
     });
 }
