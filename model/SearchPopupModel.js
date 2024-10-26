@@ -10,7 +10,7 @@ export const searchUsers = (searchTerm, pageNo) => {
 
   return axios(config)
     .then((response) => {
-      console.log("Search successful:", response.data);
+      console.log("Search successful:", response.status);
       return response.data;
     })
     .catch((error) => {

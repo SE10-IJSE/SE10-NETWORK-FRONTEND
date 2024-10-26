@@ -105,7 +105,6 @@ async function LoadCards() {
     hasMorePosts = false;
     console.error("Error loading posts:", error);
   }
-
   isLoading = false; // Reset the loading state
 }
 
@@ -154,7 +153,7 @@ const MyPostCard = (post) => {
         <div>
             <div class="d-flex justify-content-between">
                 <div class="d-flex gap-3 align-items-center">
-                    <img class="profileImage" src="${profileImage}" alt="Profile Image" style="border: 2px solid #04FF00;">
+                    <img class="profileImage" src="${profileImage}" alt="Profile Image" style="border: 2px solid #c0c0c0;">
                     <div class="d-flex flex-column">
                         <h5 class="m-0">${post.userName}</h5>
                         <h6>${formatTime(post.updatedAt)}</h6>
@@ -207,7 +206,7 @@ const PostCardMobile = (post) => {
             <div>
                 <div class="d-flex justify-content-between">
                     <div class="d-flex gap-3 align-items-center">
-                        <img class="profileImage" src="${profileImage}" alt="Profile Image" style="border: 2px solid #04FF00; ">
+                        <img class="profileImage" src="${profileImage}" alt="Profile Image" style="border: 2px solid #c0c0c0; ">
                         <div class="d-flex flex-column mt-1">
                             <h5>${post.userName}</h5>
                             <h6>${formatTime(post.updatedAt)}</h6>
@@ -252,7 +251,6 @@ function formatTime(timestamp) {
   return date.toLocaleDateString("en-US", options);
 }
 
-
 // Toggle edit mode for post content
 $("#myPostWallComponent").on("click", ".edit-post-btn", async function () {
   let postCard;
@@ -279,8 +277,7 @@ $("#myPostWallComponent").on("click", ".edit-post-btn", async function () {
     const inputField = postCard.find(".edit-input");
     const postContent = inputField.val().trim();
 
-    //Validations
-
+    // Validations
     function hasLongWord(text) {
       const words = text.split(/\s+/);
       return words.some((word) => word.length > 45);
@@ -316,7 +313,7 @@ $("#myPostWallComponent").on("click", ".edit-post-btn", async function () {
       inputField.replaceWith(updatedParagraph);
       editBtn.data("mode", "edit");
       editBtn.find("span").text("Edit Post");
-      console.log(newContent)
+      console.log(newContent);
 
       // Update the post content in the database
       try {
@@ -324,13 +321,34 @@ $("#myPostWallComponent").on("click", ".edit-post-btn", async function () {
         const response = await updatePost(postId, newContent);
 
         if (response.status === 204 || response.status === 200) {
-          alert("Post updated successfully");
+          window.parent.postMessage(
+            {
+              type: "alert",
+              message: "Post updated successfully",
+              isError: false,
+            },
+            "*"
+          );
         } else {
-          alert("Post update failed! Try again.");
+          window.parent.postMessage(
+            {
+              type: "alert",
+              message: "Post update failed! Try again.",
+              isError: true,
+            },
+            "*"
+          );
         }
       } catch (error) {
         console.error("Error updating post:", error);
-        alert("Post update failed! Try again.");
+        window.parent.postMessage(
+          {
+            type: "alert",
+            message: "Post update failed! Try again.",
+            isError: true,
+          },
+          "*"
+        );
       }
     }
   }
@@ -341,7 +359,6 @@ $("#myPostWallComponent").on("keyup", ".edit-input", function (e) {
   if (e.key === "Enter") {
     const postCard = $(this).closest(".postCard");
     const editBtn = postCard.find(".edit-post-btn");
-
     // Trigger the click event of the edit button to save changes
     editBtn.click();
   }
@@ -378,11 +395,11 @@ $("#myPostWallComponent").on("click", ".postInfoPopup", function (event) {
   });
 
   let approvedBy = "--"; // Default value
-  if (post.verifiedBy === "APPROVED") {
+  if (post.status === "APPROVED") {
     approvedBy = `${post.verifiedBy} <span style="color:green;">(Approved)</span>`;
-  } else if (post.verifiedBy === "DECLINED") {
+  } else if (post.status === "DECLINED") {
     approvedBy = `${post.verifiedBy} <span style="color:red;">(Declined)</span>`;
-  } else if (post.verifiedBy !== null) {
+  } else if (post.status !== null) {
     approvedBy = post.verifiedBy;
   }
 
@@ -400,7 +417,7 @@ $("#myPostWallComponent").on("click", ".postInfoPopup", function (event) {
   $("#popupModal .modal-info")
     .eq(1)
     .find("p")
-    .html(`<span class="modal-subheader">Approved By:</span> ${approvedBy}`);
+    .html(`<span class="modal-subheader">Verified By:</span> ${approvedBy}`);
 
   // Calculate position of the clicked post
   const postOffset = postCard.offset();
@@ -476,11 +493,25 @@ $("#confirmDelete").on("click", async function () {
         window.location.reload();
       } else {
         closeDeleteModal();
-        alert("Post deletion unsuccessful! Try again.");
+        window.parent.postMessage(
+          {
+            type: "alert",
+            message: "Post deletion unsuccessful! Try again.",
+            isError: true,
+          },
+          "*"
+        );
       }
     } catch (error) {
       closeDeleteModal();
-      alert("Post deletion unsuccessful! Try again.");
+      window.parent.postMessage(
+        {
+          type: "alert",
+          message: "Post deletion unsuccessful! Try again.",
+          isError: true,
+        },
+        "*"
+      );
     }
   }
 });

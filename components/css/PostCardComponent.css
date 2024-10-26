@@ -154,11 +154,6 @@
 
 @media screen and (max-width: 767px) {
   #createPostWeb {
-    display: none;
-  }
-
-  #createPostMobile {
-    margin-top: 10px;
     display: block;
   }
 

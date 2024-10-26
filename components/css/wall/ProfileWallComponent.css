@@ -582,3 +582,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     width: 100%;
   }
 }
+
+@media screen and (max-width: 1495px) {
+  .pre {
+    font-size: 14px;
+  }
+}

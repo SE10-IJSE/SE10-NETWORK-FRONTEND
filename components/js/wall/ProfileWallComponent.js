@@ -20,7 +20,6 @@ function togglePassword(inputId, element) {
   }
 }
 
-// Initial setup on page load
 $(document).ready(async function () {
   //Validation Checks
   $("#name").attr("required", true);
@@ -109,6 +108,8 @@ $(document).ready(async function () {
           });
         });
 
+        let isConfirmDeleteListenerAttached = false;
+
         // Delete button click event
         const deleteBtns = document.querySelectorAll(".delete-btn");
         deleteBtns.forEach((deleteBtn) => {
@@ -116,7 +117,7 @@ $(document).ready(async function () {
             // Show the delete confirmation popup
             showModal();
 
-            if (deleteBtn) {
+            if (!isConfirmDeleteListenerAttached) {
               $("#confirmDelete").on("click", async function () {
                 try {
                   const response = await deleteUser(userData.data.userId);
@@ -124,37 +125,40 @@ $(document).ready(async function () {
                     removeJwtToken();
                   } else {
                     closeDeleteModal();
-                    Toastify({
-                      text: "Failed to delete account.",
-                      duration: 3000,
-                      gravity: "top",
-                      position: "right",
-                      backgroundColor: "#ff0000",
-                    }).showToast();
+                    window.parent.postMessage(
+                      {
+                        type: "alert",
+                        message: "Failed to delete account.",
+                        isError: true,
+                      },
+                      "*"
+                    );
                   }
                 } catch (error) {
                   closeDeleteModal();
                   console.error("Error deleting user:", error);
-                  Toastify({
-                    text: "Error deleting account.",
-                    duration: 3000,
-                    gravity: "top",
-                    position: "right",
-                    backgroundColor: "#ff0000",
-                  }).showToast();
+                  window.parent.postMessage(
+                    {
+                      type: "alert",
+                      message: "Error deleting account.",
+                      isError: true,
+                    },
+                    "*"
+                  );
                 }
               });
+              isConfirmDeleteListenerAttached = true;
+            }
 
-              $("#cancelDelete").on("click", function () {
-                closeDeleteModal();
-              });
+            $("#cancelDelete").on("click", function () {
+              closeDeleteModal();
+            });
 
-              function closeDeleteModal() {
-                $("#deletePopupModal").removeClass("active");
-                setTimeout(function () {
-                  $("#deletePopupModal").css("display", "none");
-                }, 300);
-              }
+            function closeDeleteModal() {
+              $("#deletePopupModal").removeClass("active");
+              setTimeout(function () {
+                $("#deletePopupModal").css("display", "none");
+              }, 300);
             }
 
             function showModal() {
@@ -183,19 +187,21 @@ $(document).ready(async function () {
   $("#edit-info-btn").click(function () {
     const isReadOnly = $("#name").prop("readonly");
 
-     // Check for validity
-     let isValid = true;
+    // Check for validity
+    let isValid = true;
 
-     $("#name,#email,#dob,#currentPassword,#newPassword,#confirmPassword,#bio").each(function () {
-       if (!this.checkValidity()) {
-         $(this).get(0).reportValidity();
-         isValid = false;
-       }
-     });
- 
-     if (!isValid) {
-       return;
-     }
+    $(
+      "#name,#email,#dob,#currentPassword,#newPassword,#confirmPassword,#bio"
+    ).each(function () {
+      if (!this.checkValidity()) {
+        $(this).get(0).reportValidity();
+        isValid = false;
+      }
+    });
+
+    if (!isValid) {
+      return;
+    }
 
     if (isReadOnly) {
       $("#name, #bio, #email, #dob").prop("readonly", false);
@@ -241,33 +247,36 @@ $(document).ready(async function () {
             document.cookie = `jwt=${response.data.data.token}; path=/`;
             window.top.location.reload();
           } else {
-            Toastify({
-              text: "Failed to update profile.",
-              duration: 3000,
-              gravity: "top",
-              position: "right",
-              backgroundColor: "#ff0000",
-            }).showToast();
+            window.parent.postMessage(
+              {
+                type: "alert",
+                message: "Failed to update profile.",
+                isError: true,
+              },
+              "*"
+            );
           }
         })
         .catch((error) => {
           if (error.code === 406) {
-            Toastify({
-              text: "Current password is incorrect.",
-              duration: 3000,
-              gravity: "top",
-              position: "right",
-              backgroundColor: "#ff0000",
-            }).showToast();
+            window.parent.postMessage(
+              {
+                type: "alert",
+                message: "Current password is incorrect.",
+                isError: true,
+              },
+              "*"
+            );
           } else {
             console.error("Error updating profile:", error);
-            Toastify({
-              text: "Error updating profile.",
-              duration: 3000,
-              gravity: "top",
-              position: "right",
-              backgroundColor: "#ff0000",
-            }).showToast();
+            window.parent.postMessage(
+              {
+                type: "alert",
+                message: "Error updating profile.",
+                isError: true,
+              },
+              "*"
+            );
           }
         });
     }
@@ -312,11 +321,10 @@ $(document).ready(async function () {
     }
   });
 
-    // Add event listeners to clear custom validity
-    $("#confirmPassword").on("change", function () {
-      this.setCustomValidity("");
-    });
-  
+  // Add event listeners to clear custom validity
+  $("#confirmPassword").on("change", function () {
+    this.setCustomValidity("");
+  });
 
   // Event listeners for "Remove Photo" buttons
   document.querySelectorAll(".remove-photo-btn").forEach((btn) => {
@@ -330,24 +338,25 @@ $(document).ready(async function () {
         if (response.status === 200) {
           window.top.location.reload();
         } else {
-          Toastify({
-            text: `Failed to update ${type} photo.`,
-            duration: 3000,
-            gravity: "top",
-            position: "right",
-            backgroundColor: "#ff0000",
-          }).showToast();
+          window.parent.postMessage(
+            {
+              type: "alert",
+              message: `Failed to update ${type} photo.`,
+              isError: true,
+            },
+            "*"
+          );
         }
       } catch (error) {
-        Toastify({
-          text: `Error uploading ${type} photo.`,
-          duration: 3000,
-          gravity: "top",
-          position: "right",
-          backgroundColor: "#ff0000",
-        }).showToast();
+        window.parent.postMessage(
+          {
+            type: "alert",
+            message: `Error uploading ${type} photo.`,
+            isError: true,
+          },
+          "*"
+        );
       }
-
       dropdownMenu.style.display = "none";
       dropdownMenuProfile.style.display = "none";
     });
@@ -382,31 +391,34 @@ $(document).ready(async function () {
                 if (response.status === 200) {
                   window.top.location.reload();
                 } else {
-                  Toastify({
-                    text: `Failed to update ${type} photo.`,
-                    duration: 3000,
-                    gravity: "top",
-                    position: "right",
-                    backgroundColor: "#ff0000",
-                  }).showToast();
+                  window.parent.postMessage(
+                    {
+                      type: "alert",
+                      message: `Failed to update ${type} photo.`,
+                      isError: true,
+                    },
+                    "*"
+                  );
                 }
               } catch (error) {
-                Toastify({
-                  text: `Error uploading ${type} photo.`,
-                  duration: 3000,
-                  gravity: "top",
-                  position: "right",
-                  backgroundColor: "#ff0000",
-                }).showToast();
+                window.parent.postMessage(
+                  {
+                    type: "alert",
+                    message: `Error uploading ${type} photo.`,
+                    isError: true,
+                  },
+                  "*"
+                );
               }
             } else {
-              Toastify({
-                text: "Image needs to be less than 7MB.",
-                duration: 3000,
-                gravity: "top",
-                position: "right",
-                backgroundColor: "#ff0000",
-              }).showToast();
+              window.parent.postMessage(
+                {
+                  type: "alert",
+                  message: "Image needs to be less than 7MB.",
+                  isError: true,
+                },
+                "*"
+              );
             }
           }
           fileInput.value = "";

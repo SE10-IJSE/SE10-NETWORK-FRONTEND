@@ -12,7 +12,7 @@ export const savePost = (data) => {
 
   return axios(config)
     .then((response) => {
-      console.log("Post saved successfully:", response.data);
+      console.log("Post saved successfully:", response.status);
       return response;
     })
     .catch((error) => {
@@ -35,7 +35,7 @@ export const updatePost = (id, content) => {
 
   return axios(config)
     .then((response) => {
-      console.log("Post update successfully:", response.data);
+      console.log("Post update successfully:", response.status);
       return response;
     })
     .catch((error) => {
@@ -54,7 +54,7 @@ export const approveOrDeclinePost = (postId, status) => {
 
   return axios(config)
     .then((response) => {
-      console.log("Post status changed successfully:", response.data);
+      console.log("Post status changed successfully:", response.status);
       return response;
     })
     .catch((error) => {
@@ -73,7 +73,7 @@ export const getPostData = (postId) => {
 
   return axios(config)
     .then((response) => {
-      console.log("Post fetched successfully:", response.data);
+      console.log("Post fetched successfully:", response.status);
       return response;
     })
     .catch((error) => {
@@ -92,7 +92,7 @@ export const getAllPosts = (pageNo) => {
 
   return axios(config)
     .then((response) => {
-      console.log("Posts fetched successfully:", response.data);
+      console.log("Posts fetched successfully:", response.status);
       return response;
     })
     .catch((error) => {
@@ -111,7 +111,7 @@ export const getAllPostsOfUser = (pageNo) => {
 
   return axios(config)
     .then((response) => {
-      console.log("Posts fetched successfully:", response.data);
+      console.log("Posts fetched successfully:", response.status);
       return response;
     })
     .catch((error) => {
@@ -130,7 +130,7 @@ export const getUnapprovedPosts = (pageNo) => {
 
   return axios(config)
     .then((response) => {
-      console.log("Unapproved posts fetched successfully:", response.data);
+      console.log("Unapproved posts fetched successfully:", response.status);
       return response;
     })
     .catch((error) => {
@@ -149,7 +149,7 @@ export const deletePost = (postId) => {
 
   return axios(config)
     .then((response) => {
-      console.log("Post deleted successfully:", response.data);
+      console.log("Post deleted successfully:", response.status);
       return response;
     })
     .catch((error) => {
@@ -158,9 +158,8 @@ export const deletePost = (postId) => {
     });
 };
 
-
 // --- get all posts of a friend ---
-export const getAllFriendPosts = (pageNo,email) => {
+export const getAllFriendPosts = (pageNo, email) => {
   let config = {
     method: "get",
     maxBodyLength: Infinity,
@@ -169,7 +168,7 @@ export const getAllFriendPosts = (pageNo,email) => {
 
   return axios(config)
     .then((response) => {
-      console.log("Posts fetched successfully:", response.data);
+      console.log("Posts fetched successfully:", response.status);
       return response;
     })
     .catch((error) => {
@@ -177,4 +176,3 @@ export const getAllFriendPosts = (pageNo,email) => {
       throw error;
     });
 };
-

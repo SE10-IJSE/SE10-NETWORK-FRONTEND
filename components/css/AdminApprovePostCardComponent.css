@@ -6,7 +6,22 @@
   background-color: #ffffff;
   box-shadow: 0 4px 18.3px 0 rgba(0, 0, 0, 0.05);
   border-radius: 10px;
-  height: 175px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: auto;
+  padding: 20px;
+}
+
+#postCard .content {
+  flex-grow: 1;
+}
+
+#postCard .actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 10px;
 }
 
 #postCard .profileImage {
@@ -73,10 +88,6 @@
     height: 25px;
   }
 
-  #postCard {
-    height: 175px;
-  }
-
   #approve {
     right: 5px;
   }
@@ -120,16 +131,14 @@
     height: 35px;
   }
 
-  #postCard {
-    height: 185px;
-  }
-
   #approve {
     right: 80px;
   }
+
   #profile-img {
     width: 15px;
   }
+
   #postCard .profileImage {
     width: 45px;
     height: 45px;
@@ -163,10 +172,6 @@
   #approve {
     width: 90px;
     height: 35px;
-  }
-
-  #postCard {
-    height: 185px;
   }
 
   #approve {
@@ -214,18 +219,13 @@
   #approve {
     width: 90px;
     height: 35px;
-  }
-
-  #postCard {
-    height: 185px;
-  }
-
-  #approve {
     right: 80px;
   }
+
   #profile-img {
     width: 15px;
   }
+
   #postCard .profileImage {
     width: 45px;
     height: 45px;
@@ -259,9 +259,5 @@
   #approve {
     position: absolute;
     right: 58px;
-  }
-
-  #postCard {
-    height: 185px;
   }
 }

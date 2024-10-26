@@ -1,19 +1,21 @@
-import { getFriendData  } from "../../../model/UserProfileModel.js";
-import {getAllFriendPosts} from "../../../model/PostCardModel.js";
-import { saveInspiration,deleteInspiration } from "../../../model/InspireModel.js";
+import { getFriendData } from "../../../model/UserProfileModel.js";
+import { getAllFriendPosts } from "../../../model/PostCardModel.js";
+import {
+  saveInspiration,
+  deleteInspiration,
+} from "../../../model/InspireModel.js";
 
 let currentPage = 0;
 let isLoading = false;
 let hasMorePosts = true;
 let lastScrollPosition = 0;
-let friendUserName = '';
-
+let friendUserName = "";
 
 $(document).ready(async function () {
-  const token = getJwtToken()
-  const selectedFriendEmail = localStorage.getItem('selectedFriendEmail');
+  const token = getJwtToken();
+  const selectedFriendEmail = localStorage.getItem("selectedFriendEmail");
   friendUserName = selectedFriendEmail;
- 
+
   let userData;
   if (token) {
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
@@ -70,7 +72,7 @@ $(document).ready(async function () {
         });
       }
     } catch (error) {
-      showNotFoundPage()
+      showNotFoundPage();
       console.error("Error fetching data:", error);
     }
   } else {
@@ -95,7 +97,7 @@ async function LoadCards() {
   const isMobile = window.innerWidth <= 767;
 
   try {
-    const response = await getAllFriendPosts(currentPage,friendUserName);
+    const response = await getAllFriendPosts(currentPage, friendUserName);
     const posts = response.data;
 
     posts.forEach((post) => {
@@ -104,7 +106,6 @@ async function LoadCards() {
     });
     $(".postMoreOption").css("display", "none");
     currentPage++;
-
 
     // Adding the Inspire Button Logic
     $(document).on("click", ".inspire-btn", function () {
@@ -146,7 +147,6 @@ async function LoadCards() {
           });
       }
     });
-    
   } catch (error) {
     hasMorePosts = false;
     console.error("Error loading posts:", error);
@@ -257,9 +257,8 @@ const PostCardMobile = (post) => {
       `;
 };
 
-
 function showNotFoundPage() {
-    document.body.innerHTML = `
+  document.body.innerHTML = `
     <div class="container text-center my-5">
       <div class="row w-100 text-center">
         <!-- Content Section -->
@@ -285,8 +284,7 @@ function showNotFoundPage() {
         </div>
       </div>
     </div>`;
-  }
-  
+}
 
 function formatTime(timestamp) {
   const date = new Date(timestamp);

@@ -1,7 +1,7 @@
 <a id="readme-top"></a>
 
 [![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
+[![Closed Pull Requests][closed-pull-requests-shield]][closed-pull-requests-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
@@ -20,7 +20,7 @@
     Welcome to the <strong>SE10 NETWORK</strong> frontend repository! This frontend application serves as the user interface for a social media platform specifically designed for students of <strong>IJSE</strong> (Institute of Software Engineering). It enables students to create and share posts, view updates from others, and receive notifications about important events like birthdays and 
 campus-related activities.
     <br />
-    <a href="https://github.com/SE10-IJSE/SE10-NETWORK-FRONTEND"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/SE10-IJSE/SE10-NETWORK-FRONTEND"><strong>Explore the project »</strong></a>
     <br />
     <br />
     <a href="https://www.figma.com/design/5PdKIjEzJCegZ8EMcPSQxw/SE10---Galle-Branch?node-id=1669-162202&node-type=canvas&t=7zzsFOiX0p3oQuxe-0">View Design</a>
@@ -58,6 +58,7 @@ campus-related activities.
     <li>
       <a href="#backend-repository">Backend Repository</a>
     </li>
+    <li><a href="#top-contributors">Top contributors</a></li>
     <li><a href="#license">License</a></li>
   </ol>
 </details>
@@ -141,7 +142,7 @@ Follow these steps to install and set up the project on your local machine:
 
 ## API Documentation
 
-Refer to the [Postman API Documentation](https://documenter.getpostman.com/view/35384124/2sA3s4nAij) for detailed API endpoints and usage instructions.
+Refer to the [Postman API Documentation](https://documenter.getpostman.com/view/39303999/2sAY4sjQPn) for detailed API endpoints and usage instructions.
 
 ## Figma Design
 
@@ -155,7 +156,7 @@ Access the backend repository on GitHub [here](https://github.com/SE10-IJSE/SE10
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-### Top contributors:
+## Top contributors:
 
 <a href="https://github.com/SE10-IJSE/SE10-NETWORK-FRONTEND/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=SE10-IJSE/SE10-NETWORK-FRONTEND" alt="contrib.rocks image" />
@@ -181,8 +182,8 @@ Distributed under the MIT License. See [LICENSE](LICENSE) for more information.
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [contributors-shield]: https://img.shields.io/github/contributors/SE10-IJSE/SE10-NETWORK-FRONTEND.svg?style=for-the-badge
 [contributors-url]: https://github.com/SE10-IJSE/SE10-NETWORK-FRONTEND/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/SE10-IJSE/SE10-NETWORK-FRONTEND.svg?style=for-the-badge
-[forks-url]: https://github.com/SE10-IJSE/SE10-NETWORK-FRONTEND/network/members
+[closed-pull-requests-shield]: https://img.shields.io/github/issues-pr-closed/SE10-IJSE/SE10-NETWORK-FRONTEND.svg?style=for-the-badge
+[closed-pull-requests-url]: https://github.com/SE10-IJSE/SE10-NETWORK-FRONTEND/pulls?q=is%3Apr+is%3Aclosed
 [stars-shield]: https://img.shields.io/github/stars/SE10-IJSE/SE10-NETWORK-FRONTEND.svg?style=for-the-badge
 [stars-url]: https://github.com/othneildrew/Best-README-Template/stargazers
 [issues-shield]: https://img.shields.io/github/issues/SE10-IJSE/SE10-NETWORK-FRONTEND.svg?style=for-the-badge

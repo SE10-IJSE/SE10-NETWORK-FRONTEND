@@ -11,7 +11,7 @@ export const postRegisterData = (formDataToSend) => {
 
   return axios(config)
     .then((response) => {
-      console.log("Registration successful:", response.data);
+      console.log("Registration successful:", response.status);
       return response;
     })
     .catch((error) => {

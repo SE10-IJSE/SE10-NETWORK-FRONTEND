@@ -11,7 +11,7 @@ export const postLoginData = (data) => {
 
   return axios(config)
     .then((response) => {
-      console.log("Login successful:", response.data);
+      console.log("Login successful:", response.status);
       return response;
     })
     .catch((error) => {

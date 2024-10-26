@@ -84,7 +84,7 @@ button {
 .delete-btn {
   background-color: #d9534f;
   color: #fff;
-  padding: 10px 20px;
+  padding: 7px 20px;
 }
 
 .delete-btn:hover {
@@ -129,7 +129,7 @@ button {
 @media (max-width: 400px) {
   .modal-content {
     width: 100%;
-    max-width: 250px;
+    max-width: 255px;
     padding: 0px 10px 10px 10px;
   }
 

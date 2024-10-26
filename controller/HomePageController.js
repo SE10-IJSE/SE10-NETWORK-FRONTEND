@@ -19,8 +19,8 @@ $(document).ready(async function () {
           const userData = await getUserData();
           setUserProfileDetails(userData.data);
           changeButtonCss("home");
-          approveButtonVisibility(userData.data.role);
           setNotificationData(userData.data);
+          approveButtonVisibility(userData.data.role);
 
           // Fetch and display birthday names
           const birthdayResponse = await getBirthdayNames();
@@ -98,13 +98,13 @@ function approveButtonVisibility(role) {
         "src",
         "mobileHomePage.html"
       );
-      $(".bottom-nav-bar .home-nav").addClass("red-border-bottom");
     }
-
     approveButton.classList.remove("d-none");
   } else {
+     $("#FormSwitch").addClass("d-none");
     approveButton.classList.add("d-none");
   }
+  $(".bottom-nav-bar .home-nav").addClass("red-border-bottom");
 }
 
 function updateBirthdaySection(birthdays) {
@@ -449,6 +449,22 @@ $(".bottom-nav-bar .add-btn").click(function () {
       position: "right",
       backgroundColor: "#ff0000",
       close: true,
+      stopOnFocus: true,
+    }).showToast();
+  }
+});
+
+// Listen for messages from the iframe
+window.addEventListener("message", function (event) {
+  if (event.data.type === "alert") {
+    const backgroundColor = event.data.isError ? "#ff0000" : "#4CAF50";
+    Toastify({
+      text: event.data.message,
+      duration: 3000,
+      close: true,
+      gravity: "top",
+      position: "right",
+      backgroundColor: backgroundColor,
       stopOnFocus: true,
     }).showToast();
   }
