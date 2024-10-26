@@ -60,6 +60,47 @@ $(document).ready(function () {
         }
       }
     );
+
+    // Add event listener for the inspire button
+    $(document).on("click", ".inspire-btn", function () {
+      const button = $(this);
+      const postId = button.data("post-id");
+      const inspirationCountElement = button
+        .closest("div")
+        .find(".inspiration-count");
+      let currentCount = parseInt(
+        inspirationCountElement.text().split(" ")[0],
+        10
+      );
+
+      // Check the current background color to determine if it's inspired
+      if (
+        button.css("background-color") === "rgba(0, 0, 0, 0)" ||
+        button.css("background-color") === "transparent"
+      ) {
+        // Call saveInspiration and change the button color
+        saveInspiration({ postId: postId })
+          .then(() => {
+            button.css("background-color", "#57AFF68F");
+            currentCount++;
+            inspirationCountElement.text(`${currentCount} Inspirations`);
+          })
+          .catch((error) => {
+            console.error("Error saving inspiration:", error);
+          });
+      } else {
+        // Call deleteInspiration and change the button color back to transparent
+        deleteInspiration(postId)
+          .then(() => {
+            button.css("background-color", "transparent");
+            currentCount--;
+            inspirationCountElement.text(`${currentCount} Inspirations`);
+          })
+          .catch((error) => {
+            console.error("Error deleting inspiration:", error);
+          });
+      }
+    });
   } else {
     console.error("JWT token not found in cookies");
   }
@@ -97,21 +138,20 @@ function handleSavePost() {
   const postContentWeb = $("#createPostWeb input").val().trim();
   const postContentMobile = $("#createPostMobile input").val().trim();
 
-
   function hasLongWord(text) {
     const words = text.split(/\s+/);
-    return words.some(word => word.length > 45);
+    return words.some((word) => word.length > 45);
   }
 
   // To find the longest word for error message
   function getLongestWord(text) {
     const words = text.split(/\s+/);
-    return words.reduce((longest, current) => 
+    return words.reduce((longest, current) =>
       current.length > longest.length ? current : longest
     );
   }
 
-  //Validations
+  // Validations
   if (!(postContentWeb || postContentMobile)) {
     $("#createPostWeb input, #createPostMobile input")[0].setCustomValidity(
       "Post cannot be empty"
@@ -124,7 +164,7 @@ function handleSavePost() {
     $("#createPostWeb input, #createPostMobile input")[0].reportValidity();
   } else if (hasLongWord(postContentWeb) || hasLongWord(postContentMobile)) {
     const content = postContentWeb || postContentMobile;
-    const longWord = getLongestWord(content);   
+    const longWord = getLongestWord(content);
     $("#createPostWeb input, #createPostMobile input")[0].setCustomValidity(
       `Word "${longWord}" is too long. Maximum word length is 45 characters`
     );
@@ -165,52 +205,10 @@ async function LoadCards() {
       $("#homeWallComponent").append(postHtml);
     });
     currentPage++;
-
-    // Adding the Inspire Button Logic
-    $(document).on("click", ".inspire-btn", function () {
-      const button = $(this);
-      const postId = button.data("post-id");
-      const inspirationCountElement = button
-        .closest("div")
-        .find(".inspiration-count");
-      let currentCount = parseInt(
-        inspirationCountElement.text().split(" ")[0],
-        10
-      );
-
-      // Check the current background color to determine if it's inspired
-      if (
-        button.css("background-color") === "rgba(0, 0, 0, 0)" ||
-        button.css("background-color") === "transparent"
-      ) {
-        // Call saveInspiration and change the button color
-        saveInspiration({ postId: postId })
-          .then(() => {
-            button.css("background-color", "#57AFF68F");
-            currentCount++;
-            inspirationCountElement.text(`${currentCount} Inspirations`);
-          })
-          .catch((error) => {
-            console.error("Error saving inspiration:", error);
-          });
-      } else {
-        // Call deleteInspiration and change the button color back to transparent
-        deleteInspiration(postId)
-          .then(() => {
-            button.css("background-color", "transparent");
-            currentCount--;
-            inspirationCountElement.text(`${currentCount} Inspirations`);
-          })
-          .catch((error) => {
-            console.error("Error deleting inspiration:", error);
-          });
-      }
-    });
   } catch (error) {
     hasMorePosts = false;
     console.error("Error loading posts:", error);
   }
-
   isLoading = false; // Reset the loading state
 }
 
@@ -225,7 +223,7 @@ const PostCard = (post) => {
                     <div class="d-flex gap-3 align-items-center">
                         <img class="profileImage" src="${profileImage}" alt="Profile Image">
                         <div class="d-flex flex-column">
-                            <h5 class="m-0">${post.userName}</h5>
+                            <h5 class="m-0 mb-1">${post.userName}</h5>
                             <h6>${formatTime(post.updatedAt)}</h6>
                         </div>
                     </div>
@@ -264,7 +262,7 @@ const PostCardMobile = (post) => {
                     <div class="d-flex gap-3 align-items-center">
                         <img class="profileImage" src="${profileImage}" alt="Profile Image">
                         <div class="d-flex flex-column mt-1">
-                            <h5>${post.userName}</h5>
+                            <h5 class="mb-3">${post.userName}</h5>
                             <h6>${formatTime(post.updatedAt)}</h6>
                         </div>
                     </div>

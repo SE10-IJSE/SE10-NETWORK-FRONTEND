@@ -49,7 +49,7 @@ body {
 
 .profilepic {
   border-radius: 50%;
-  border: 3px solid rgb(16, 240, 16);
+  border: 3px solid #c0c0c0;
   width: 42px;
   height: 42px;
   margin-right: 10px;

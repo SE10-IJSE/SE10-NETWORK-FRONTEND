@@ -291,6 +291,16 @@ body {
   display: none;
 }
 
+#notifications {
+  height: 60vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+#notifications::-webkit-scrollbar {
+  width: 0 !important;
+}
+
 /* bottom nav bar mobile css start */
 .img-box {
   border-bottom: 3px solid transparent;

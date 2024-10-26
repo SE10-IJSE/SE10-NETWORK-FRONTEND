@@ -7,7 +7,7 @@ export const postDataForOtp = (name, email) => {
 
   return axios(config)
     .then((response) => {
-      console.log("Otp sent successfully:", response.data);
+      console.log("Otp sent successfully:", response.status);
       return response;
     })
     .catch((error) => {

@@ -7,7 +7,7 @@ export const getUserData = () => {
 
   return axios(config)
     .then((response) => {
-      console.log("Data Retrieved successfully:", response.data);
+      console.log("Data Retrieved successfully:", response.status);
       return response;
     })
     .catch((error) => {
@@ -44,7 +44,7 @@ export const updateUserData = (data) => {
 
   return axios(config)
     .then((response) => {
-      console.log("Update successful:", response.data);
+      console.log("Update successful:", response.status);
       return response;
     })
     .catch((error) => {
@@ -87,7 +87,7 @@ export const updateUserPhoto = (formData) => {
 
   return axios(config)
     .then((response) => {
-      console.log("Update successful:", response.data);
+      console.log("Update successful:", response.status);
       return response;
     })
     .catch((error) => {
@@ -124,7 +124,7 @@ export const deleteUserData = (id) => {
 
   return axios(config)
     .then((response) => {
-      console.log("Delete successful:", response);
+      console.log("Delete successful:", response.status);
       return response;
     })
     .catch((error) => {
@@ -143,7 +143,7 @@ export const deleteUserPhoto = (data) => {
 
   return axios(config)
     .then((response) => {
-      console.log("Delete successful:", response.data);
+      console.log("Delete successful:", response.status);
       return response;
     })
     .catch((error) => {
@@ -161,7 +161,7 @@ export const getFriendData = (email) => {
 
   return axios(config)
     .then((response) => {
-      console.log("Data Retrieved successfully:", response.data);
+      console.log("Data Retrieved successfully:", response.status);
       return response;
     })
     .catch((error) => {

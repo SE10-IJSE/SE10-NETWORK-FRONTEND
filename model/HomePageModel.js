@@ -7,7 +7,7 @@ export const getTokenValidation = () => {
 
   return axios(config)
     .then((response) => {
-      console.log("Validation successful:", response.data);
+      console.log("Validation successful:", response.status);
       return response;
     })
     .catch((error) => {
@@ -25,7 +25,7 @@ export const getBirthdayNames = () => {
 
   return axios(config)
     .then((response) => {
-      console.log("Birthday names retrieved successfully:", response.data);
+      console.log("Birthday names retrieved successfully:", response.status);
       return response;
     })
     .catch((error) => {
@@ -43,7 +43,7 @@ export const getBirthdayData = () => {
 
   return axios(config)
     .then((response) => {
-      console.log("Birthday data retrieved successfully:", response.data);
+      console.log("Birthday data retrieved successfully:", response.status);
       return response;
     })
     .catch((error) => {

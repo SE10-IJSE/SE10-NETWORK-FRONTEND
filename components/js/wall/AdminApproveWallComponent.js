@@ -134,28 +134,27 @@ const PostCard = (post) => {
               </div>
             </div>
           </div>
-          <div class="px-1 mx-lg-5 mt-3">
+          <div class="content px-1 mx-lg-5 mt-3">
             <p>${post.content}</p>
-            <div class="d-flex justify-content-end gap-3">
-              <button id="decline-${
-                post.postId
-              }" class="border-0 p-2 px-2 rounded-4 d-flex align-items-center gap-1 decline-post">
+          </div>
+          <div class="actions d-flex justify-content-end gap-3">
+            <button id="decline-${
+              post.postId
+            }" class="border-0 p-2 px-2 rounded-4 d-flex align-items-center gap-1 decline-post">
                 <img src="../../../assets/icons/decline_dark.png" alt="Decline Icon">
                 <span>Decline</span>
-              </button>
-              <button id="approve-${
-                post.postId
-              }" class="border-0 p-2 px-2 rounded-4 d-flex align-items-center gap-1 approve-post">
+            </button>
+            <button id="approve-${
+              post.postId
+            }" class="border-0 p-2 px-2 rounded-4 d-flex align-items-center gap-1 approve-post">
                 <img src="../../../assets/icons/approve-dark.png" alt="Approve Icon">
                 <span>Approve</span>
-              </button>
-            </div>
+            </button>
           </div>
         </div>
       </div>
     `;
 
-  // Append post to the wall and attach event listeners after rendering
   $("#homeWallComponent").append(postHtml);
 
   // Attach event listeners for approve and decline buttons
