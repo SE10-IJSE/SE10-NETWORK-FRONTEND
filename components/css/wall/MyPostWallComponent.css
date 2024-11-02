@@ -1,0 +1,211 @@
+body {
+  background-color: var(--bg-color);
+  margin: 0;
+  padding: 0;
+  border-radius: 15px;
+  background-clip: content-box;
+  box-shadow: 0px 4px 18.3px 0px rgba(0, 0, 0, 0.1);
+}
+
+body::-webkit-scrollbar {
+  width: 0;
+}
+
+.profile-wall * {
+  font-family: "Poppins", sans-serif;
+}
+
+.profile-banner {
+  height: 35vh;
+  min-height: 200px;
+  max-height: 400px;
+  position: relative;
+  border-radius: 10px;
+}
+
+.profile-wall {
+  padding-bottom: 2%;
+  border-radius: 15px;
+  background: var(--bg-color);
+  box-sizing: border-box;
+}
+
+.profile-banner .img-fluid {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-banner .btn-edit-cover {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  padding: 8px 15px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 14px;
+  color: #000;
+}
+
+#btn-Edit {
+  border-radius: 100%;
+}
+
+.details-container {
+  bottom: 30px;
+  position: relative;
+}
+
+.profile-pic {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border: 5px solid white;
+  border-radius: 50%;
+}
+
+.profile-info h1 {
+  font-size: 25px;
+  font-weight: 700;
+  margin: 0;
+  margin-top: 10%;
+}
+
+.profile-info h3 {
+  font-size: 15px;
+  margin: 0;
+}
+
+.profile-info h4 {
+  font-size: 18px;
+  color: var(--text-color);
+  margin: 10px 0 0 0;
+}
+
+.btn-light {
+  background-color: rgba(241, 235, 235, 0.8);
+  border: 1px solid rgb(187, 186, 186);
+  border-radius: 5px;
+  padding: 8px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-light:hover {
+  background-color: rgba(255, 255, 255, 1);
+}
+
+#edit-info-btn {
+  font-size: 0.8rem;
+  gap: 20px;
+}
+
+.information-container {
+  margin: 0 3%;
+}
+
+.info-box {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 0 22.9px -6px rgba(0, 0, 0, 0.1);
+}
+
+.form-control:focus {
+  box-shadow: none !important;
+}
+
+.info-box h5 {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.profile-wall input {
+  color: #000;
+}
+
+#popupModal {
+  transition: opacity 0.3s ease, top 0.3s ease;
+  opacity: 0;
+}
+
+#popupModal.active {
+  opacity: 1;
+}
+
+@media screen and (max-width: 576px) {
+  .profile-info h4 {
+    font-size: 15px;
+    margin-top: 5px;
+    padding-right: 30px;
+  }
+
+  #edit-info-btn {
+    margin-left: 20px;
+    margin-top: 15px;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .profile-banner {
+    height: 25vh;
+  }
+
+  .btn-edit-cover {
+    display: none;
+  }
+
+  .flex-column {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+
+  .profile-pic {
+    margin-top: -60px;
+  }
+
+  .profile-info {
+    text-align: left !important;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .profile-info h1,
+  .profile-info h3,
+  .profile-info h4 {
+    width: 100%;
+    margin-left: 20px;
+  }
+
+  .profile-info h1 {
+    font-size: 25px;
+    margin-top: 5px;
+  }
+
+  .profile-info h3 {
+    font-size: 13px;
+    margin-top: 5px;
+  }
+
+  .profile-info h4 {
+    font-size: 16px;
+    margin-top: 5px;
+  }
+
+  #edit-info-btn {
+    margin-left: 20px;
+    margin-top: 15px;
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  #edit-info-btn {
+    margin-left: auto;
+    margin-right: 15px;
+    display: block;
+  }
+}

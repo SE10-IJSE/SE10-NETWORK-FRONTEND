@@ -1,0 +1,70 @@
+body {
+  overflow-y: hidden;
+  background-color: #fffafa;
+}
+
+.recent-list {
+  list-style: none;
+  padding: 8px;
+  gap: 10px;
+}
+
+.data-notify {
+  font-family: "Poppins", sans-serif;
+  font-size: 12px;
+  color: #505050;
+  margin-top: 5px;
+  font-weight: 600;
+}
+
+.recent-list {
+  height: auto;
+  max-height: 80vh;
+  overflow: scroll;
+}
+
+.recent-list::-webkit-scrollbar {
+  width: 0 !important;
+}
+
+.title {
+  font-family: "Poppins", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  cursor: alias;
+}
+
+.subtitle {
+  font-size: 13px;
+  font-weight: 700;
+  color: #948e8e;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+}
+
+.notification-item {
+  display: flex;
+  align-items: center;
+  border: 1px solid #e8e8e8;
+  border-radius: 15px;
+  padding: 15px;
+  background-color: #ffffff;
+}
+
+.avatar {
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+  object-fit: cover;
+}
+
+.text {
+  flex: 1;
+}
+
+.text p {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  font-size: 10px;
+  color: #7a7a7a;
+}

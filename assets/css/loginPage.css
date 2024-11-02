@@ -1,0 +1,516 @@
+/* Retain box shadow and prevent color change for autofill in Chrome, Safari, and Edge */
+/* Chrome, Safari, Edge */
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 22.9px -6px rgba(0, 0, 0, 0.1),
+    0 0 0 1000px white inset !important;
+  -webkit-text-fill-color: black !important;
+}
+
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 22.9px -6px rgba(0, 0, 0, 0.1),
+    0 0 0 1000px white inset !important;
+  -webkit-text-fill-color: black !important;
+}
+
+input:-webkit-autofill:hover {
+  -webkit-box-shadow: 0 0 22.9px -6px rgba(0, 0, 0, 0.1),
+    0 0 0 1000px white inset !important;
+  -webkit-text-fill-color: black !important;
+}
+
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 22.9px -6px rgba(0, 0, 0, 0.1),
+    0 0 0 1000px white inset !important;
+  -webkit-text-fill-color: black !important;
+}
+
+/* Firefox */
+input:-moz-autofill {
+  box-shadow: 0 0 22.9px -6px rgba(0, 0, 0, 0.1), 0 0 0 1000px white inset !important;
+  -moz-text-fill-color: black !important;
+}
+
+input:-moz-autofill:focus {
+  box-shadow: 0 0 22.9px -6px rgba(0, 0, 0, 0.1), 0 0 0 1000px white inset !important;
+  -moz-text-fill-color: black !important;
+}
+
+input:-moz-autofill:hover {
+  box-shadow: 0 0 22.9px -6px rgba(0, 0, 0, 0.1), 0 0 0 1000px white inset !important;
+  -moz-text-fill-color: black !important;
+}
+
+input:-moz-autofill:active {
+  box-shadow: 0 0 22.9px -6px rgba(0, 0, 0, 0.1), 0 0 0 1000px white inset !important;
+  -moz-text-fill-color: black !important;
+}
+
+html,
+body {
+  background-color: #f6f5f7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Poppins", sans-serif;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  max-height: 832px;
+  max-width: 1280px;
+  box-shadow: 0px 0px 22.9px -6px rgba(0, 0, 0, 0.1);
+  background-color: var(--bg-color);
+  position: relative;
+}
+
+.small-image {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 150px;
+  height: auto;
+}
+
+.reg-bg,
+.form-container {
+  flex: 1;
+  /* Divides the container into two equal parts */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.banner {
+  display: none;
+}
+
+.reg-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: none;
+}
+
+.reg-bg .desktop-img {
+  display: block;
+}
+
+form {
+  background-color: var(--bg-color);
+  padding: 0 20px;
+  width: 100%;
+  max-width: 494px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.reg-line {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.line {
+  background-color: var(--btn-bg-color);
+  width: 43px;
+  height: 2px;
+}
+
+h1 {
+  font-size: 32px;
+  margin: 40px 0 0 0;
+}
+
+h3 {
+  font-size: 14px;
+  color: #7b7b7b;
+}
+
+h4 {
+  font-size: 15px;
+  color: #b2b2b2;
+  margin: 0 0 50px 0;
+}
+
+.input-container {
+  position: relative;
+  width: 100%;
+}
+
+.password-container {
+  width: 100%;
+  position: relative;
+}
+
+.password-container .txt-field {
+  padding-right: 55px;
+}
+
+.password-container i {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 22px;
+  color: var(--btn-bg-color);
+}
+
+.remember-container {
+  display: flex;
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  font-size: 14px;
+}
+
+.remember-container a {
+  text-decoration: none;
+  color: #949494;
+  font-size: 14px;
+}
+
+.remember-container label {
+  color: #949494;
+}
+
+.remember-checkbox {
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+input[type="checkbox"] {
+  accent-color: var(--btn-bg-color);
+}
+
+.btn {
+  background-color: var(--btn-bg-color);
+  border-radius: 28px;
+  height: 44px;
+  width: 190px;
+  border: none;
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.not-acc-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.not-acc {
+  color: #949494;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.not-acc span {
+  color: var(--btn-bg-color);
+  cursor: pointer;
+}
+
+.txt-field {
+  width: 100%;
+  height: 66px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 22.9px -6px rgba(0, 0, 0, 0.1);
+  border: none;
+  padding: 25px 50px 15px 30px;
+  /* Adjusted padding-left and padding-right */
+  font-weight: bold;
+  font-size: 16px;
+  background-color: white;
+  box-sizing: border-box;
+}
+
+.txt-field:focus {
+  outline: 2px solid var(--btn-bg-color);
+  background-color: white;
+}
+
+.txt-field::placeholder {
+  color: #999;
+  opacity: 1;
+  transition: color 0.2s ease-out;
+}
+
+.txt-field:focus::placeholder {
+  color: var(--btn-bg-color);
+}
+
+.txt-label {
+  position: absolute;
+  left: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #999;
+  pointer-events: none;
+  transition: all 0.2s ease-out;
+  background-color: transparent;
+  padding: 0 5px;
+  font-weight: normal;
+  z-index: 1;
+}
+
+.txt-field:focus+.txt-label,
+.txt-field:not(:placeholder-shown)+.txt-label {
+  top: 18px;
+  left: 25px;
+  font-size: 12px;
+  color: var(--btn-bg-color);
+  z-index: 10;
+}
+
+#togglePassword {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  /* Position inside the input field */
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 24px;
+  color: var(--btn-bg-color);
+}
+
+#togglePassword:hover {
+  color: var(--btn-bg-color);
+}
+
+#forgot-password-link {
+  color: #999;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1320px) {
+  .container {
+    max-width: 1200px;
+  }
+}
+
+@media screen and (max-width: 1250px) {
+  .container {
+    max-width: 1100px;
+  }
+
+  .line {
+    width: 35px;
+  }
+
+  h3 {
+    font-size: 12px;
+  }
+
+  h1 {
+    font-size: 25px;
+    margin-bottom: 5px;
+  }
+
+  h4 {
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .container {
+    max-width: 1050px;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .container {
+    max-width: 950px;
+  }
+
+  .remember-container label {
+    font-size: 12px;
+  }
+
+  .remember-container a {
+    font-size: 12px;
+  }
+
+  .btn {
+    width: 160px;
+    font-size: 13px;
+  }
+
+  .small-image {
+    width: 100px;
+  }
+
+  .txt-label {
+    font-size: 14px;
+  }
+
+  form {
+    padding: 0 30px;
+  }
+}
+
+@media screen and (max-width: 992px) and (min-width: 768px) {
+  .btn {
+    width: 30vw;
+    font-size: 16px;
+  }
+
+  .banner {
+    display: block;
+    position: relative;
+    text-align: center;
+    height: 20vh;
+  }
+
+  .fluid {
+    width: 100%;
+    height: 20vh;
+    object-fit: cover;
+  }
+
+  .overlay-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 768px) and (min-width: 577px) {
+  .btn {
+    width: 300px;
+    font-size: 16px;
+  }
+
+  .banner {
+    display: block;
+    position: relative;
+    text-align: center;
+    height: 20vh;
+  }
+
+  .fluid {
+    width: 100%;
+    height: 20vh;
+    object-fit: cover;
+  }
+
+  .overlay-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .txt-field {
+    height: 55px;
+    padding-left: 20px;
+    font-size: 14px;
+  }
+
+  .btn {
+    width: 250px;
+    font-size: 16px;
+  }
+
+  h1 {
+    font-size: 20px;
+    margin: 30px 0 0 0;
+  }
+
+  h4 {
+    font-size: 14px;
+    margin: 0 0 50px 0;
+  }
+
+  .not-acc {
+    font-size: 11px;
+  }
+
+  .txt-label {
+    font-size: 15px;
+    left: 20px;
+  }
+
+  .remember-container {
+    font-size: 12px;
+  }
+
+  .remember-container a {
+    font-size: 12px;
+  }
+
+  .txt-field:focus+.txt-label,
+  .txt-field:not(:placeholder-shown)+.txt-label {
+    left: 16px;
+    font-size: 11px;
+  }
+
+  #togglePassword {
+    font-size: 20px;
+  }
+
+  .banner {
+    display: block;
+    position: relative;
+    text-align: center;
+    height: 20vh;
+  }
+
+  .fluid {
+    width: 100%;
+    height: 20vh;
+    object-fit: cover;
+  }
+
+  .overlay-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 768px) and (min-width: 500px) {
+  h1 {
+    font-size: 23px;
+    margin: 30px 0 0 0;
+  }
+
+  h4 {
+    font-size: 15px;
+    margin: 0 0 35px 0;
+  }
+
+  .txt-field {
+    height: 60px;
+    font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 299px) {
+  h1 {
+    font-size: 17px;
+  }
+
+  h4 {
+    font-size: 12px;
+    margin: 0 0 35px 0;
+  }
+}

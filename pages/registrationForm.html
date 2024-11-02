@@ -1,13 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test Page 01</title>
-    <link rel="stylesheet" href="/assests/css/testPage1.css">
-</head>
-<body>
-    <h1>Test Page 01</h1>
-    <script src="/controller/testPage1Controller.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SE10 NETWORK</title>
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../assets/css/registrationForm.css" />
+  </head>
+  <body>
+    <div
+      class="container p-0 d-flex flex-column-reverse flex-lg-row"
+      id="container"
+    >
+      <div class="form-container register-container p-0">
+        <form id="Register-form-01" class="px-lg-3 mx-lg-4 mx-xl-5">
+          <div class="first-container">
+            <div class="reg-line">
+              <div class="line"></div>
+              <h3 class="mb-0 mx-2">Registration Form 01</h3>
+            </div>
+
+            <select
+              class="form-select fs-6 w-50 h-xl-75"
+              aria-label="select"
+              id="batchSelect"
+            ></select>
+          </div>
+
+          <h1>Where ideas meet execution</h1>
+          <h4>Fill the form to access the portal</h4>
+
+          <div class="input-container">
+            <input
+              type="text"
+              placeholder=" "
+              class="txt-field"
+              id="studentId"
+            />
+            <label for="studentId" class="txt-label">Student Id</label>
+          </div>
+
+          <div class="input-container">
+            <input type="text" placeholder=" " class="txt-field" id="name" />
+            <label for="name" class="txt-label">Name</label>
+          </div>
+
+          <div class="input-container">
+            <input type="email" placeholder=" " class="txt-field" id="email" />
+            <label for="email" class="txt-label">Email</label>
+          </div>
+
+          <div class="input-container">
+            <input
+              type="text"
+              placeholder=" "
+              class="txt-field"
+              id="dob"
+              onfocus="(this.type='date')"
+              onblur="(this.type='text')"
+            />
+            <label for="dob" class="txt-label">Date Of Birth</label>
+          </div>
+
+          <!-- branch comboBox added -->
+          <div id="combo-mobile" class="input-container">
+            <select
+              id="batchSelectMobile"
+              class="combo"
+              style="margin-top: 0"
+            ></select>
+          </div>
+
+          <div class="password">
+            <div class="input-container">
+              <input
+                type="password"
+                placeholder=""
+                class="txt-field"
+                id="password"
+              />
+              <label for="password" class="txt-label">Password</label>
+              <i class="ri-eye-off-line" id="togglePassword"></i>
+            </div>
+            <div class="input-container" style="margin-bottom: 20px">
+              <input
+                type="password"
+                placeholder=""
+                class="txt-field"
+                id="password-confirm"
+              />
+              <label for="password" class="txt-label">Confirm Password</label>
+              <i class="ri-eye-off-line" id="togglePasswordConfirm"></i>
+            </div>
+          </div>
+
+          <div class="not-acc-container">
+            <input type="submit" value="NEXT" class="btn" />
+            <p class="not-acc mb-0">
+              Have an account ? <span id="login">Login</span> Now.
+            </p>
+          </div>
+        </form>
+      </div>
+      <!-- cover image section -->
+      <div class="reg-bg">
+        <!-- destop cover image section -->
+        <img
+          class="desktop-img"
+          src="../assets/image/registrationBg.png"
+          alt=""
+        />
+        <!-- mobile cover imgae section -->
+        <div class="mobile-img-contenor">
+          <img src="../assets/image/cover-background.jpeg" alt="" />
+          <div style="position: absolute">
+            <img src="../assets/image/SE10.png" alt="" />
+            <img src="../assets/image/Learn by Doing.png" alt="" />
+          </div>
+        </div>
+      </div>
+      <!-- Bottem Image -->
+      <img
+        src="../assets/image/dots.png"
+        alt="Small Image"
+        class="small-image"
+      />
+    </div>
+
+    <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../assets/jquery/jquery-3.7.1.min.js"></script>
+    <script src="../controller/RegistrationFormController.js"></script>
+  </body>
 </html>

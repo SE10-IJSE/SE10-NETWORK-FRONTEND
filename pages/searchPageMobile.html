@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SE10 NETWORK</title>
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+    <link rel="stylesheet" href="/assets/css/SearchPageMobile.css" />
+  </head>
+  <body>
+    <div class="search-container">
+      <div class="search-bar">
+        <button class="back-button">
+          <img id="back" src="/assets/image/back.png" alt="back" />
+        </button>
+        <input id="searchInput" type="text" placeholder="Search for friends" />
+      </div>
+    </div>
+    <div class="recent-container">
+      <h2>Recent</h2>
+      <div class="recent-list"></div>
+    </div>
+
+    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/assets/jquery/jquery-3.7.1.min.js"></script>
+    <script src="/assets/axios/axios.min.js"></script>
+    <script
+      type="module"
+      src="/controller/SearchPageMobileController.js"
+    ></script>
+  </body>
+</html>

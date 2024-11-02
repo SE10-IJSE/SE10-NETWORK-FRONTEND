@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SE10 NETWORK</title>
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/assets/tostify/toastify.min.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik+One&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+    <link rel="stylesheet" href="/assets/css/registrationForm2.css" />
+  </head>
+
+  <body>
+    <div class="container" id="container">
+      <div class="form-container">
+        <form id="register-form-02">
+          <!-- Registration form 02 -->
+          <div class="reg-line">
+            <div class="line"></div>
+            <h3 class="mb-0">Registration Form 02</h3>
+          </div>
+
+          <!-- Title & the content -->
+          <h1 class="font-semibold w-100">Where ideas meet execution</h1>
+          <h4>Fill the form to access the portal</h4>
+
+          <!-- Input bio -->
+          <div class="input-container">
+            <input type="text" placeholder=" " class="txt-field" id="bio" />
+            <label for="bio" class="txt-label">Bio</label>
+          </div>
+
+          <!-- Add a profile picture -->
+          <div class="pic-container" id="profile-pic-container">
+            <div class="procontent">
+              <h2>Pick a Profile Picture (Optional)</h2>
+              <h5>
+                A profile picture reflects your personality and <br />
+                professionalism, making a lasting first impression <br />
+                in today's digital world.
+              </h5>
+            </div>
+
+            <div class="propic">
+              <label for="profile-input-file" id="propic-drop-area">
+                <input
+                  type="file"
+                  accept="image/*"
+                  id="profile-input-file"
+                  hidden
+                />
+                <div id="profile-img-view">
+                  <img
+                    src="/assets/icons/profilePicReg.png"
+                    alt="profile picture"
+                  />
+                  <p class="mb-lg-0"><b>Click to upload</b> or drag and drop</p>
+                </div>
+              </label>
+              <div class="profilePic">
+                <img
+                  src="../assets/image/profilePic.png"
+                  alt="profile picture"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Add a cover picture -->
+          <div class="pic-container" id="cover-pic-container">
+            <div class="covercontent">
+              <h2>Pick a Cover Picture (Optional)</h2>
+              <h5>
+                A cover image enhances your profile by adding <br />
+                visual appeal, setting the tone, and showcasing <br />
+                your personal or brand identity.
+              </h5>
+            </div>
+
+            <div class="coverpic">
+              <label for="cover-input-file" id="coverpic-drop-area">
+                <input
+                  type="file"
+                  accept="image/*"
+                  id="cover-input-file"
+                  hidden
+                />
+                <div id="cover-img-view">
+                  <img
+                    src="/assets/icons/profilePicReg.png"
+                    alt="cover picture"
+                  />
+                  <p class="mb-lg-2"><b>Click to upload</b> or drag and drop</p>
+                </div>
+              </label>
+              <div class="CoverPic">
+                <img src="../assets/image/CoverPic.png" alt="cover picture" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Check box -->
+          <label class="checkBox"
+            >By clicking here you confirm that you are agree with our terms &
+            conditions
+            <input type="checkbox" />
+          </label>
+
+          <!-- Create account button -->
+          <div class="not-acc-container">
+            <input type="submit" value="Create Account" class="btn" />
+            <p class="not-acc">
+              Have an account ? <span id="login">Login</span> Now.
+            </p>
+          </div>
+        </form>
+      </div>
+      <div class="reg-bg">
+        <img
+          src="../assets/image/registrationBg.png"
+          alt="Registrationform background"
+          class="desktop-img"
+        />
+      </div>
+      <div class="banner">
+        <img
+          src="../assets/image/cover-background.jpeg"
+          class="fluid"
+          alt="cover-background"
+        />
+        <div class="overlay-text">
+          <img src="../assets/image/SE10.png" alt="" /><br />
+          <img src="../assets/image/Learn%20by%20Doing.png" alt="" />
+        </div>
+      </div>
+
+      <img src="/assets/image/dots.png" alt="Small Image" class="small-image" />
+    </div>
+
+    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/assets/tostify/toastify-js.js"></script>
+    <script src="/assets/jquery/jquery-3.7.1.min.js"></script>
+    <script src="../assets/axios/axios.min.js"></script>
+    <script
+      type="module"
+      src="/controller/Registrationform2Controller.js"
+    ></script>
+  </body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+    <link rel="stylesheet" href="/components/css/wall/HomeWallComponent.css" />
+    <link rel="stylesheet" href="/components/css/CreatePostCardComponent.css" />
+    <link
+      rel="stylesheet"
+      href="/components/css/AdminApprovePostCardComponent.css"
+    />
+    <title>SE10 NETWORK</title>
+  </head>
+  <body class="p-3">
+    <div id="FormSwitch" class="m-4 gap-4 align-items-center d-flex">
+      <h1 class="m-0">Approve</h1>
+      <h2 class="m-0">Home</h2>
+    </div>
+
+    <div id="homeWallComponent">
+      <!-- create post card -->
+      <div class="card border-0 rounded-4 mb-3" id="createPostWeb">
+        <div class="card-header rounded-top-5">Post Something</div>
+        <div class="card-body rounded-bottom-5 d-flex align-items-center gap-4">
+          <img
+            src="../../../assets/image/profilePic.png"
+            alt="Profile Image"
+            class="profile-img"
+          />
+          <div class="input-group flex-nowrap d-flex align-items-center">
+            <input
+              type="text"
+              class="form-control border-0"
+              placeholder="What's on your mind ?"
+              aria-label="What's on your mind ?"
+              aria-describedby="addon-wrapping"
+            />
+            <span
+              class="input-group-text bg-transparent border-0"
+              id="addon-wrapping"
+            >
+              <img
+                src="../../../assets/icons/sendIcon.png"
+                alt="Send Post Icon"
+              />
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="AdminPostCards"></div>
+    </div>
+
+    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../assets/jquery/jquery-3.7.1.min.js"></script>
+    <script
+      src="/controller/AdminApprovePageMobileController.js"
+      type="module"
+    ></script>
+    <script src="/assets/axios/axios.min.js"></script>
+    <script
+      type="module"
+      src="/components/js/wall/AdminApproveWallComponent.js"
+    ></script>
+    <script type="module" src="/controller/HomePageController.js"></script>
+  </body>
+</html>

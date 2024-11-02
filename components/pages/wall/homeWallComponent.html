@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+    <link rel="stylesheet" href="/components/css/CreatePostCardComponent.css" />
+    <link rel="stylesheet" href="/components/css/PostCardComponent.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <title>HOME-WALL</title>
+  </head>
+
+  <body class="p-2 bg-transparent">
+    <div id="homeWallComponent">
+      <!-- create post card -->
+      <div class="card border-0 rounded-4 mb-3" id="createPostWeb">
+        <div class="card-header rounded-top-5">Post Something</div>
+        <div class="card-body rounded-bottom-5 d-flex align-items-center gap-4">
+          <img
+            src="../../../assets/image/profilePic.png"
+            alt="Profile Image"
+            class="profile-img"
+          />
+          <div class="input-group flex-nowrap d-flex align-items-center">
+            <input
+              type="text"
+              class="form-control border-0"
+              placeholder="What's on your mind ?"
+              aria-label="What's on your mind ?"
+              aria-describedby="addon-wrapping"
+            />
+            <span
+              class="input-group-text bg-transparent border-0"
+              id="addon-wrapping"
+            >
+              <img
+                src="../../../assets/icons/sendIcon.png"
+                alt="Send Post Icon"
+              />
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card border-0 rounded-4 mb-3" id="createPostMobile">
+        <div class="card-header px-2 rounded-top-5">Post Something</div>
+        <div
+          class="card-body rounded-bottom-5 d-flex align-items-center gap-2 px-2"
+        >
+          <img
+            src="../../../assets/image/profilePic.png"
+            alt="Profile Image"
+            class="rounded-circle profile-img"
+            style="width: 45px; height: 45px; border: 2px solid #c0c0c0"
+          />
+
+          <div class="input-group flex-nowrap d-flex justify-content-between">
+            <input
+              type="text"
+              class="form-control border-0"
+              style="padding-left: 5px; font-size: 10px"
+              placeholder="What's on your mind?"
+              aria-label="What's on your mind ?"
+              aria-describedby="addon-wrapping"
+            />
+            <span
+              class="input-group-text bg-transparent border-0 px-0"
+              id="addon-wrapping"
+            >
+              <img
+                src="../../../assets/icons/sendIcon.png"
+                alt="Send Post Icon"
+                style="cursor: pointer"
+              />
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="postCards"></div>
+    </div>
+
+    <script src="/assets/jquery/jquery-3.7.1.min.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/assets/axios/axios.min.js"></script>
+    <script
+      type="module"
+      src="/components/js/wall/HomeWallComponent.js"
+    ></script>
+  </body>
+</html>

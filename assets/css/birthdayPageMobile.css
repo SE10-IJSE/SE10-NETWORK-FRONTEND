@@ -1,0 +1,84 @@
+body {
+  overflow-y: hidden;
+  background-color: #fffafa;
+}
+
+.title {
+  font-family: "Poppins", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  cursor: alias;
+}
+
+.subtitle {
+  font-size: 13px;
+  font-weight: 700;
+  color: #948e8e;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+}
+
+.recent-list {
+  list-style: none;
+  padding: 8px;
+  gap: 10px;
+  height: auto;
+  max-height: 80vh;
+  overflow: scroll;
+}
+
+.recent-list::-webkit-scrollbar {
+  width: 0 !important;
+}
+
+.birthday-item {
+  display: flex;
+  align-items: center;
+  border: 1px solid hsla(0, 0%, 91%, 1);
+  border-radius: 15px;
+  padding: 8px;
+  background-color: hsla(0, 0%, 100%, 1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  justify-content: space-between;
+}
+
+.profilepic-container {
+  display: flex;
+  align-items: center;
+}
+
+.profilepic {
+  border-radius: 50%;
+  border: 3px solid #c0c0c0;
+  width: 42px;
+  height: 42px;
+  margin-right: 10px;
+  object-fit: cover;
+}
+
+.text {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+}
+
+.text p {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  font-size: 12px;
+  color: #797979;
+  font-weight: 500;
+}
+
+.username {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; /* Show ellipsis (...) when text overflows */
+  max-width: 180px;
+}
+
+@media (max-width: 350px) {
+  .username {
+    max-width: 140px;
+  }
+}

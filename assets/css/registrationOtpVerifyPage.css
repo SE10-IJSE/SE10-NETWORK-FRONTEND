@@ -1,0 +1,509 @@
+html,
+body {
+  background-color: #f6f5f7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  height: 100vh;
+  width: 100%;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  max-height: 832px;
+  max-width: 1280px;
+  box-shadow: 0px 0px 22.9px -6px rgba(0, 0, 0, 0.1);
+  background-color: #fffafa;
+  position: relative;
+}
+
+.small-image {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 120px;
+  height: 58px;
+}
+
+.reg-bg {
+  flex: 1;
+  display: block;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-container {
+  flex: 1;
+  display: flex;
+}
+
+.reg-bg img {
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+
+.banner {
+  display: none;
+}
+
+.reg-bg .desktop-img {
+  display: block;
+}
+
+.reg-bg .tab-img {
+  display: none;
+}
+
+.reg-bg .tablet-img {
+  display: none;
+}
+
+form {
+  background-color: #fffafa;
+  padding: 0 20px;
+  width: 100%;
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 0 0 0 55px;
+}
+
+.reg-line {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5px;
+}
+
+.line {
+  background-color: #e90708;
+  width: 43px;
+  height: 2px;
+}
+
+h1 {
+  font-size: 32px;
+  font-weight: 600;
+  margin-top: 22px;
+}
+
+h3 {
+  font-size: 14px;
+  color: #7b7b7b;
+  font-weight: 600;
+}
+
+h4 {
+  font-size: 15px;
+  color: #b2b2b2;
+  font-weight: 600;
+  margin-top: -7px;
+}
+
+p.otp-info {
+  color: #000;
+  margin-top: 40px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.otp-input {
+  display: flex;
+  column-gap: 2.8%;
+  margin-top: 21px;
+}
+
+.otp-input input {
+  width: 63px;
+  height: 66px;
+  font-size: 20px;
+  text-align: center;
+  border: 1px solid white;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 8%);
+  transition: box-shadow 0.2s;
+}
+
+.otp-input input:focus {
+  outline: none;
+  border-color: #ff0004;
+}
+
+.otp-input > input:nth-child(3) {
+  margin-right: 4px;
+}
+
+.otp-input > input:nth-child(4) {
+  margin-left: 4px;
+}
+
+.resend-info {
+  margin-top: 32px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #7b7b7b;
+}
+
+.resend-info a {
+  color: #e90708;
+  text-decoration: none;
+}
+
+button.create-account-btn {
+  height: 44px;
+  width: 190px;
+  background-color: #e90708;
+  color: white;
+  border: none;
+  border-radius: 28px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button.create-account-btn:hover {
+  background-color: #c62929;
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 299px) {
+  .line {
+    width: 12vw;
+  }
+
+  .small-image {
+    width: 39vw;
+    height: 17vw;
+  }
+
+  h1 {
+    font-size: 5.3vw;
+  }
+
+  h3 {
+    font-size: 3.6vw;
+  }
+
+  h4 {
+    font-size: 3.6vw;
+  }
+
+  p.otp-info {
+    font-size: 3.3vw;
+  }
+
+  .resend-info {
+    font-size: 3vw;
+  }
+
+  button.create-account-btn {
+    height: 12vw;
+    width: 52vw;
+    font-size: 4vw;
+    padding: 4%;
+  }
+
+  .otp-input {
+    margin-top: 23px;
+    column-gap: 2vw;
+  }
+
+  .otp-input input {
+    font-size: 6vw;
+  }
+
+  .otp-input > input:nth-child(3) {
+    margin-right: 3vw;
+  }
+
+  .otp-input > input:nth-child(4) {
+    margin-left: 3vw;
+  }
+}
+
+@media screen and (min-width: 300px) and (max-width: 600px) {
+  p.otp-info {
+    font-size: 12px;
+    margin-top: 37px;
+  }
+
+  .reg-bg {
+    display: none;
+  }
+
+  .resend-info {
+    font-size: 11px;
+    margin-top: 20px;
+  }
+
+  .otp-input {
+    margin-top: 23px;
+    column-gap: 6px;
+  }
+
+  .otp-input input {
+    font-size: 16px;
+  }
+
+  .otp-input > input:nth-child(3) {
+    margin-right: 10px;
+  }
+
+  .otp-input > input:nth-child(4) {
+    margin-left: 10px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  body {
+    display: block;
+  }
+
+  .container {
+    align-items: center;
+    height: 681px;
+  }
+
+  .form-container {
+    height: auto;
+    width: 100%;
+    padding: 0 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  form {
+    position: relative;
+    height: auto;
+    width: max-content;
+    margin: 0 10px;
+  }
+
+  h1 {
+    font-size: 5vw;
+    margin-top: 37px;
+  }
+
+  h4 {
+    font-size: 3.6vw;
+    margin-top: -7px;
+  }
+
+  .otp-input input {
+    width: 11.7vw;
+    height: 14vw;
+  }
+
+  .reg-bg {
+    width: 100vw;
+    max-height: 116px;
+  }
+
+  .reg-bg .mobile-img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .reg-bg .tab-img {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 601px) and (max-width: 991px) {
+  body {
+    display: block;
+  }
+
+  .container {
+    align-items: center;
+    height: 765px;
+  }
+
+  .form-container {
+    height: auto;
+    width: 100%;
+    padding: 0 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  form {
+    height: auto;
+    width: max-content;
+    margin: 0 10px;
+    position: relative;
+  }
+
+  h1 {
+    font-size: 32px;
+    margin-top: 30px;
+  }
+
+  h4 {
+    font-size: 15px;
+    margin-top: -7px;
+  }
+
+  p.otp-info {
+    font-size: 12px;
+    margin-top: 50px;
+  }
+
+  .otp-input {
+    margin-top: 20px;
+    column-gap: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .otp-input input {
+    font-size: 20px;
+  }
+
+  .otp-input > input:nth-child(3) {
+    margin-right: 10px;
+  }
+
+  .otp-input > input:nth-child(4) {
+    margin-left: 10px;
+  }
+
+  .resend-info {
+    font-size: 11px;
+    margin-top: 20px;
+  }
+
+  .reg-bg {
+    width: 100%;
+    max-height: 200px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .reg-bg .mobile-img {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .reg-bg .tab-img {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .otp-input input {
+    max-width: 63px;
+    max-height: 66px;
+  }
+
+  button.create-account-btn {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    margin-top: 57px;
+  }
+
+  .btnDiv {
+    margin-bottom: 190px;
+  }
+
+  .reg-bg img {
+    object-fit: cover;
+  }
+
+  .banner {
+    display: block;
+    position: relative;
+    text-align: center;
+    width: 100%;
+  }
+
+  .fluid {
+    width: 100%;
+    height: 20vh;
+    object-fit: cover;
+  }
+
+  .overlay-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .reg-line {
+    margin-top: 26%;
+  }
+
+  p.otp-info {
+    margin-top: 68px;
+  }
+
+  button.create-account-btn {
+    margin-top: 54px;
+    margin-bottom: 177px;
+  }
+}
+
+@media screen and (max-width: 1320px) {
+  .container {
+    max-width: 1200px;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+  .container {
+    max-width: 95vw;
+  }
+
+  form {
+    margin: 0 0 0 4vw;
+  }
+
+  h1 {
+    font-size: 26px;
+  }
+
+  h4 {
+    font-size: 11px;
+  }
+
+  p.otp-info {
+    font-size: 11px;
+  }
+
+  .resend-info {
+    font-size: 10px;
+  }
+
+  .otp-input {
+    column-gap: 1vw;
+  }
+
+  .otp-input input {
+    width: 5vw;
+    height: 5.5vw;
+    font-size: 14px;
+  }
+
+  button.create-account-btn {
+    height: 4vw;
+    width: 16vw;
+  }
+}
